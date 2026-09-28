@@ -67,15 +67,32 @@ CSS = """
 .mill .splash{fill:var(--river);stroke:none;animation:vf-drop 1.6s ease-in infinite}
 .mill .splash:nth-of-type(2){animation-delay:.55s}.mill .splash:nth-of-type(3){animation-delay:1.1s}
 
-.ridge{position:relative;height:clamp(90px,11vw,150px);margin:0 0 clamp(36px,5vw,72px);color:var(--jonte);pointer-events:none}
-.ridge > svg:first-child{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
-.ridge .dr{stroke-width:1.6}
-.ridge .dr2{stroke-width:1.1;opacity:.45}
-.ridge .riv{stroke:var(--river);stroke-width:1.6;stroke-dasharray:60 72;animation:vf-flow 7s linear infinite}
-.ridge .thermal{position:absolute;left:56%;top:-22px;width:clamp(90px,9vw,130px);height:auto;color:var(--ink-2);overflow:visible}
-.ridge .thermal g{transform-box:view-box;transform-origin:60px 40px;animation:vf-spin 14s linear infinite}
-.ridge .thermal g + g{animation-duration:19s;animation-direction:reverse}
-.ridge .thermal path{fill:currentColor;opacity:.75}
+/* Paysage des Causses : 3 plans en profondeur, gorge de la Jonte, moulin, vautours en orbe */
+.ridge{position:relative;width:100%;height:clamp(112px,13.8vw,220px);margin:0 0 clamp(36px,5vw,72px);color:var(--jonte);pointer-events:none}
+.ridge svg{position:absolute;inset:0;width:100%;height:100%;overflow:hidden}
+.rg-l2 .rg-fill{fill:var(--paper-2)}
+.rg-l3 .rg-fill{fill:var(--paper)}
+.rg-line{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+.rg-l1 .rg-line{stroke-width:1;opacity:.3}
+.rg-l2 .rg-line{stroke-width:1.1;opacity:.5}
+.rg-l3 .rg-line{stroke-width:1.7}
+.rg-strata path{fill:none;stroke:currentColor;stroke-width:.9;stroke-linecap:round;opacity:.28;stroke-dasharray:70 12 26 9 110 14}
+.rg-river{fill:var(--river);opacity:.3}
+.rg-flow{fill:none;stroke:var(--river);stroke-width:1.4;stroke-linecap:round;stroke-dasharray:16 22;animation:vf-flow 4.5s linear infinite}
+.rg-flow + .rg-flow{animation-duration:6.5s;opacity:.6}
+.rg-mist{fill:#fff;opacity:.6;animation:rg-mist 14s ease-in-out infinite alternate}
+.rg-mist + .rg-mist{opacity:.4;animation-duration:19s;animation-delay:-6s}
+.rg-mill{fill:var(--paper);stroke:currentColor;stroke-width:1.3;stroke-linejoin:round}
+.rg-wheel{fill:none;stroke:currentColor;stroke-width:1.2;transform-origin:676px 216px;animation:vf-spin 7s linear infinite}
+.rg-bird{fill:var(--ink-2);opacity:.85}
+.rg-ox{animation:rg-ox var(--t) ease-in-out var(--dl) infinite alternate}
+.rg-oy{animation:rg-oy var(--t) ease-in-out calc(var(--dl) - var(--t) / 2) infinite alternate}
+.rg-bank{animation:rg-bank var(--t) ease-in-out var(--dl) infinite alternate}
+.rg-flap{transform-box:fill-box;transform-origin:50% 50%;animation:vf-flap 5.5s ease-in-out var(--dl) infinite}
+@keyframes rg-ox{from{transform:translateX(calc(var(--rx) * -1))}to{transform:translateX(var(--rx))}}
+@keyframes rg-oy{from{transform:translateY(calc(var(--ry) * -1))}to{transform:translateY(var(--ry))}}
+@keyframes rg-bank{from{transform:rotate(-8deg)}to{transform:rotate(8deg)}}
+@keyframes rg-mist{from{transform:translateX(-50px)}to{transform:translateX(50px)}}
 
 @media (prefers-reduced-motion:reduce){.vfx-hero *,.glyph *,.mill *,.ridge *{animation:none!important}.vfx-hero .bird{transform:translate(900px,var(--y))}}
 """
@@ -147,32 +164,71 @@ def mill():
 
 # --------------------------------------------------------------------------- Ligne de crête
 def ridge():
-    # Causses : plateaux tabulaires coupés de falaises, vallée de la Jonte au centre
-    crest = ("M0,112 L90,104 L150,62 L400,56 L450,94 L560,104 L620,50 L880,44 L930,90 "
-             "L1040,100 L1100,60 L1330,54 L1390,98 L1440,104")
-    back = "M0,92 L200,70 L360,72 L520,40 L700,46 L820,30 L1000,38 L1180,34 L1300,46 L1440,40"
-    river = "M-20,132 C180,122 360,140 560,130 S960,120 1160,132 S1380,138 1460,130"
-    hawk = VULTURE
+    """Coupe de la vallée : Aigoual au loin, Causses Méjean / Noir, gorge de la Jonte avec le moulin."""
+    far = ("M0,112 C140,92 260,84 380,92 C470,98 520,72 620,68 C720,64 790,88 880,84 "
+           "C990,78 1060,56 1170,62 C1280,68 1360,86 1440,80")
+    mid = ("M0,132 C200,128 380,126 560,122 C600,122 622,140 652,160 C684,178 756,178 788,160 "
+           "C818,142 842,118 882,116 C1100,110 1300,112 1440,116")
+    # plateaux tabulaires + falaises quasi verticales de la gorge
+    front = ("M0,150 C40,148 60,146 90,146 L520,140 C540,140 548,146 552,156 L566,196 "
+             "C572,212 584,222 606,226 L834,226 C856,222 868,212 874,196 L890,150 "
+             "C894,140 904,136 920,136 L1440,142")
+    strata = ["M24,172 C180,168 360,166 536,164", "M16,194 C200,190 380,188 550,186",
+              "M30,216 C220,212 400,210 558,208", "M900,166 C1080,168 1260,170 1420,172",
+              "M886,188 C1080,190 1260,192 1430,194", "M878,210 C1080,212 1260,214 1436,216"]
+
+    def layer(cls, top):
+        return (f'<g class="{cls}"><path class="rg-fill" d="{top} L1440,300 L0,300Z"/>'
+                f'<path class="rg-line" d="{top}"/></g>')
+
+    def bird(t, dl, rx, ry, cx, cy, s):
+        return (f'<g class="rg-ox" style="--t:{t}s;--dl:{dl}s;--rx:{rx}px">'
+                f'<g class="rg-oy" style="--t:{t}s;--dl:{dl}s;--ry:{ry}px">'
+                f'<g transform="translate({cx} {cy})"><g class="rg-bank" style="--t:{t}s;--dl:{dl}s">'
+                f'<g class="rg-flap" style="--dl:{dl}s"><path class="rg-bird" transform="scale({s})" d="{VULTURE}"/></g>'
+                '</g></g></g></g>')
+
+    spokes = "".join(f'<path d="M{676+8*math.cos(a):.1f} {216+8*math.sin(a):.1f}L{676-8*math.cos(a):.1f} {216-8*math.sin(a):.1f}"/>'
+                     for a in (0, math.pi / 4, math.pi / 2, 3 * math.pi / 4))
     return (MARK + '<div class="ridge" aria-hidden="true">'
-            '<svg viewBox="0 0 1440 150" preserveAspectRatio="none" focusable="false">'
-            f'<path class="dr dr2" vector-effect="non-scaling-stroke" d="{back}"/>'
-            f'<path class="dr" vector-effect="non-scaling-stroke" d="{crest}"/>'
-            f'<path class="riv" vector-effect="non-scaling-stroke" d="{river}"/></svg>'
-            '<svg class="thermal" viewBox="0 0 120 80" focusable="false">'
-            f'<g><path transform="translate(60 12) scale(.34)" d="{hawk}"/></g>'
-            f'<g><path transform="translate(60 22) scale(.24)" d="{hawk}"/></g>'
-            '</svg></div>')
+            '<svg viewBox="0 0 1440 240" preserveAspectRatio="xMidYMax slice" focusable="false">'
+            '<defs><linearGradient id="rgHaze" x1="0" y1="0" x2="0" y2="1">'
+            '<stop offset="0" style="stop-color:var(--paper-3)"/><stop offset=".7" style="stop-color:var(--paper)"/></linearGradient></defs>'
+            + layer("rg-l1", far).replace('class="rg-fill"', 'class="rg-fill" fill="url(#rgHaze)"')
+            + layer("rg-l2", mid)
+            + '<ellipse class="rg-mist" cx="720" cy="198" rx="160" ry="7"/><ellipse class="rg-mist" cx="760" cy="184" rx="90" ry="5"/>'
+            + layer("rg-l3", front).replace('</g>', '<g class="rg-strata">' + "".join(f'<path d="{d}"/>' for d in strata) + '</g></g>', 1)
+            + '<path class="rg-river" d="M606,226 C650,222 690,229 730,224 C770,220 806,228 834,226 L834,240 L606,240Z"/>'
+            '<path class="rg-flow" d="M614,231 C650,228 690,234 730,230 S800,228 828,232"/>'
+            '<path class="rg-flow" d="M630,234 C670,232 700,236 740,233 S800,232 820,234"/>'
+            '<g class="rg-millg"><path class="rg-mill" d="M640,225V204L654,194L668,204V225Z"/><path class="rg-mill" d="M651,225v-9h6v9"/>'
+            f'<g class="rg-wheel"><circle cx="676" cy="216" r="8"/><circle cx="676" cy="216" r="2"/>{spokes}</g></g>'
+            '<g class="rg-birds">'
+            + bird(11, -2, 150, 22, 720, 72, .34) + bird(14, -9, 105, 16, 790, 50, .25) + bird(17, -5, 200, 28, 660, 96, .29)
+            + '</g></svg></div>')
 
 
 # --------------------------------------------------------------------------- JS (dessin au scroll)
 JS_ANCHOR = "    // Pièce maîtresse : la vallée se dessine"
-JS = """    // vfx : la ligne de crête se dessine au scroll
-    gsap.utils.toArray(".ridge .dr").forEach((p, i) => {
-      const L = Math.ceil(p.getTotalLength());
-      gsap.fromTo(p, { strokeDasharray: L, strokeDashoffset: L }, { strokeDashoffset: 0, duration: 2.2, ease: "power2.inOut", delay: i * .25,
-        scrollTrigger: { trigger: ".ridge", start: "top 88%", once: true },
-        onComplete: () => { p.style.strokeDasharray = ""; p.style.strokeDashoffset = ""; } });
-    });
+JS = """    // vfx : le paysage des Causses se construit au scroll, puis parallaxe douce entre les plans
+    const rg = document.querySelector(".ridge");
+    if (rg) {
+      const q = s => rg.querySelectorAll(s);
+      const lines = q(".rg-line");
+      lines.forEach(p => { p.dataset.len = Math.ceil(p.getTotalLength()); });
+      const tl = gsap.timeline({ scrollTrigger: { trigger: rg, start: "top 88%", once: true } });
+      tl.from(q(".rg-fill"), { opacity: 0, y: 28, duration: 1.2, ease: "power3.out", stagger: .16 })
+        .fromTo(lines, { strokeDasharray: (i, p) => p.dataset.len, strokeDashoffset: (i, p) => p.dataset.len },
+          { strokeDashoffset: 0, duration: 1.8, ease: "power2.inOut", stagger: .15,
+            onComplete() { lines.forEach(p => { p.style.strokeDasharray = ""; p.style.strokeDashoffset = ""; }); } }, .2)
+        .from(q(".rg-strata path"), { opacity: 0, duration: .8, stagger: .05 }, 1.1)
+        .from(q(".rg-river, .rg-flow, .rg-mist"), { opacity: 0, duration: 1 }, 1.2)
+        .from(q(".rg-millg"), { opacity: 0, y: 10, duration: .7, ease: "back.out(2)" }, 1.5)
+        .from(q(".rg-birds > g"), { opacity: 0, duration: 1.2, stagger: .3 }, 1.6);
+      [[".rg-l1", 14], [".rg-l2", 7], [".rg-birds", 20]].forEach(([s, v]) =>
+        gsap.fromTo(rg.querySelector(s), { y: -v }, { y: v, ease: "none",
+          scrollTrigger: { trigger: rg, start: "top bottom", end: "bottom top", scrub: true } }));
+    }
 """
 
 
@@ -195,7 +251,7 @@ def inject(html: str) -> str:
     if JS_ANCHOR not in html:
         raise SystemExit("ancre JS introuvable")
     html = html.replace(JS_ANCHOR, JS + JS_ANCHOR, 1)
-    for check in ("vfx-hero", 'class="glyph"', 'class="mill"', 'class="ridge"', ".ridge .dr"):
+    for check in ("vfx-hero", 'class="glyph"', 'class="mill"', 'class="ridge"', 'q(".rg-line")', "rg-birds"):
         assert check in html, check
     assert html.count('class="glyph"') == 9, html.count('class="glyph"')
     return html

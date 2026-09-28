@@ -392,15 +392,32 @@ dialog.sheet::backdrop{background:rgba(14,26,31,.72)}
 .mill .splash{fill:var(--river);stroke:none;animation:vf-drop 1.6s ease-in infinite}
 .mill .splash:nth-of-type(2){animation-delay:.55s}.mill .splash:nth-of-type(3){animation-delay:1.1s}
 
-.ridge{position:relative;height:clamp(90px,11vw,150px);margin:0 0 clamp(36px,5vw,72px);color:var(--jonte);pointer-events:none}
-.ridge > svg:first-child{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
-.ridge .dr{stroke-width:1.6}
-.ridge .dr2{stroke-width:1.1;opacity:.45}
-.ridge .riv{stroke:var(--river);stroke-width:1.6;stroke-dasharray:60 72;animation:vf-flow 7s linear infinite}
-.ridge .thermal{position:absolute;left:56%;top:-22px;width:clamp(90px,9vw,130px);height:auto;color:var(--ink-2);overflow:visible}
-.ridge .thermal g{transform-box:view-box;transform-origin:60px 40px;animation:vf-spin 14s linear infinite}
-.ridge .thermal g + g{animation-duration:19s;animation-direction:reverse}
-.ridge .thermal path{fill:currentColor;opacity:.75}
+/* Paysage des Causses : 3 plans en profondeur, gorge de la Jonte, moulin, vautours en orbe */
+.ridge{position:relative;width:100%;height:clamp(112px,13.8vw,220px);margin:0 0 clamp(36px,5vw,72px);color:var(--jonte);pointer-events:none}
+.ridge svg{position:absolute;inset:0;width:100%;height:100%;overflow:hidden}
+.rg-l2 .rg-fill{fill:var(--paper-2)}
+.rg-l3 .rg-fill{fill:var(--paper)}
+.rg-line{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+.rg-l1 .rg-line{stroke-width:1;opacity:.3}
+.rg-l2 .rg-line{stroke-width:1.1;opacity:.5}
+.rg-l3 .rg-line{stroke-width:1.7}
+.rg-strata path{fill:none;stroke:currentColor;stroke-width:.9;stroke-linecap:round;opacity:.28;stroke-dasharray:70 12 26 9 110 14}
+.rg-river{fill:var(--river);opacity:.3}
+.rg-flow{fill:none;stroke:var(--river);stroke-width:1.4;stroke-linecap:round;stroke-dasharray:16 22;animation:vf-flow 4.5s linear infinite}
+.rg-flow + .rg-flow{animation-duration:6.5s;opacity:.6}
+.rg-mist{fill:#fff;opacity:.6;animation:rg-mist 14s ease-in-out infinite alternate}
+.rg-mist + .rg-mist{opacity:.4;animation-duration:19s;animation-delay:-6s}
+.rg-mill{fill:var(--paper);stroke:currentColor;stroke-width:1.3;stroke-linejoin:round}
+.rg-wheel{fill:none;stroke:currentColor;stroke-width:1.2;transform-origin:676px 216px;animation:vf-spin 7s linear infinite}
+.rg-bird{fill:var(--ink-2);opacity:.85}
+.rg-ox{animation:rg-ox var(--t) ease-in-out var(--dl) infinite alternate}
+.rg-oy{animation:rg-oy var(--t) ease-in-out calc(var(--dl) - var(--t) / 2) infinite alternate}
+.rg-bank{animation:rg-bank var(--t) ease-in-out var(--dl) infinite alternate}
+.rg-flap{transform-box:fill-box;transform-origin:50% 50%;animation:vf-flap 5.5s ease-in-out var(--dl) infinite}
+@keyframes rg-ox{from{transform:translateX(calc(var(--rx) * -1))}to{transform:translateX(var(--rx))}}
+@keyframes rg-oy{from{transform:translateY(calc(var(--ry) * -1))}to{transform:translateY(var(--ry))}}
+@keyframes rg-bank{from{transform:rotate(-8deg)}to{transform:rotate(8deg)}}
+@keyframes rg-mist{from{transform:translateX(-50px)}to{transform:translateX(50px)}}
 
 @media (prefers-reduced-motion:reduce){.vfx-hero *,.glyph *,.mill *,.ridge *{animation:none!important}.vfx-hero .bird{transform:translate(900px,var(--y))}}
 </style>
@@ -511,7 +528,7 @@ dialog.sheet::backdrop{background:rgba(14,26,31,.72)}
   </div>
   <script type="application/json" id="bestData">{"pounchut": {"name": "Pounchut", "style": "Bière brune", "abv": "6 %", "origin": "L’eau de la brasserie est captée sur le Puech Pounchut, « pic pointu » en occitan. Ce pic se situe juste au-dessus de notre brasserie, mais celui-là est tout rond !", "where": "Le Puech Pounchut", "sub": "source de notre eau"}, "fauve": {"name": "Fauve", "style": "Bière ambrée", "abv": "5,5 %", "origin": "Le vautour fauve a été réintroduit dans les gorges de la Jonte en 1981. Depuis notre brasserie, nous pouvons observer ces grands oiseaux aux reflets fauves.", "where": "Le vautour fauve", "sub": "falaises de la Jonte"}, "tantaravel": {"name": "Tantaravel", "style": "IPA single hop", "abv": "5,5 %", "origin": "Tantaravèl… c’est ainsi que l’on nomme le houblon en occitan. Sobrement !", "where": "Le houblon", "sub": "tantaravèl en occitan"}, "melina": {"name": "Mélina", "style": "Blonde au miel de châtaignier", "abv": "5,5 %", "origin": "En occitan, Mélina signifie « miel fort ».", "where": "Le miel fort", "sub": "châtaigniers des Cévennes"}, "tribalte": {"name": "Tri Balte", "style": "Blonde triple", "abv": "7 %", "origin": "En occitan, balte fait référence au grain : tri-balte, trois grains.", "where": "Les trois grains", "sub": "orge, blé, seigle"}, "rougegorge": {"name": "Rouge Gorge", "style": "IPA ambrée", "abv": "7 %", "origin": "Aux débuts de la brasserie, un petit rouge-gorge avait élu domicile tout près de la salle de brassage. Son poitrail avait la même teinte cuivrée que notre ambrée naissante.", "where": "Le rouge-gorge", "sub": "près de la salle à brasser"}, "ratapenada": {"name": "Ratapenada", "style": "Impérial Stout", "abv": "9 %", "origin": "Ratapenada signifie chauve-souris en occitan : les pipistrelles séjournent l’hiver dans notre cave de dégustation.", "where": "La chauve-souris", "sub": "la cave du Moulin"}, "freyja": {"name": "Freyja", "style": "Session IPA", "abv": "4,5 %", "origin": "Freyja, déesse nordique, a pour attribut la libellule. Assis à notre terrasse au bord de la Jonte, vous en observerez couramment.", "where": "La libellule", "sub": "la terrasse, au bord de l’eau"}, "fario": {"name": "Fario", "style": "Bière blanche", "abv": "5 %", "origin": "La fario est la truite sauvage emblématique de nos rivières cévenoles.", "where": "La truite fario", "sub": "dans la Jonte"}}</script>
 </section><section class="sec" id="gamme" aria-labelledby="gamT">
-  <div class="wrap"><!--vfx--><div class="ridge" aria-hidden="true"><svg viewBox="0 0 1440 150" preserveAspectRatio="none" focusable="false"><path class="dr dr2" vector-effect="non-scaling-stroke" d="M0,92 L200,70 L360,72 L520,40 L700,46 L820,30 L1000,38 L1180,34 L1300,46 L1440,40"/><path class="dr" vector-effect="non-scaling-stroke" d="M0,112 L90,104 L150,62 L400,56 L450,94 L560,104 L620,50 L880,44 L930,90 L1040,100 L1100,60 L1330,54 L1390,98 L1440,104"/><path class="riv" vector-effect="non-scaling-stroke" d="M-20,132 C180,122 360,140 560,130 S960,120 1160,132 S1380,138 1460,130"/></svg><svg class="thermal" viewBox="0 0 120 80" focusable="false"><g><path transform="translate(60 12) scale(.34)" d="M-60,0 C-44,-11 -24,-9 -8,-3 L0,-6 L8,-3 C24,-9 44,-11 60,0 C52,1 46,3 40,2 L46,6 L36,4 L40,8 L28,4 C20,4 12,5 7,5 L3,11 L-3,11 L-7,5 C-12,5 -20,4 -28,4 L-40,8 L-36,4 L-46,6 L-40,2 C-46,3 -52,1 -60,0Z"/></g><g><path transform="translate(60 22) scale(.24)" d="M-60,0 C-44,-11 -24,-9 -8,-3 L0,-6 L8,-3 C24,-9 44,-11 60,0 C52,1 46,3 40,2 L46,6 L36,4 L40,8 L28,4 C20,4 12,5 7,5 L3,11 L-3,11 L-7,5 C-12,5 -20,4 -28,4 L-40,8 L-36,4 L-46,6 L-40,2 C-46,3 -52,1 -60,0Z"/></g></svg></div>
+  <div class="wrap"><!--vfx--><div class="ridge" aria-hidden="true"><svg viewBox="0 0 1440 240" preserveAspectRatio="xMidYMax slice" focusable="false"><defs><linearGradient id="rgHaze" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--paper-3)"/><stop offset=".7" style="stop-color:var(--paper)"/></linearGradient></defs><g class="rg-l1"><path class="rg-fill" fill="url(#rgHaze)" d="M0,112 C140,92 260,84 380,92 C470,98 520,72 620,68 C720,64 790,88 880,84 C990,78 1060,56 1170,62 C1280,68 1360,86 1440,80 L1440,300 L0,300Z"/><path class="rg-line" d="M0,112 C140,92 260,84 380,92 C470,98 520,72 620,68 C720,64 790,88 880,84 C990,78 1060,56 1170,62 C1280,68 1360,86 1440,80"/></g><g class="rg-l2"><path class="rg-fill" d="M0,132 C200,128 380,126 560,122 C600,122 622,140 652,160 C684,178 756,178 788,160 C818,142 842,118 882,116 C1100,110 1300,112 1440,116 L1440,300 L0,300Z"/><path class="rg-line" d="M0,132 C200,128 380,126 560,122 C600,122 622,140 652,160 C684,178 756,178 788,160 C818,142 842,118 882,116 C1100,110 1300,112 1440,116"/></g><ellipse class="rg-mist" cx="720" cy="198" rx="160" ry="7"/><ellipse class="rg-mist" cx="760" cy="184" rx="90" ry="5"/><g class="rg-l3"><path class="rg-fill" d="M0,150 C40,148 60,146 90,146 L520,140 C540,140 548,146 552,156 L566,196 C572,212 584,222 606,226 L834,226 C856,222 868,212 874,196 L890,150 C894,140 904,136 920,136 L1440,142 L1440,300 L0,300Z"/><path class="rg-line" d="M0,150 C40,148 60,146 90,146 L520,140 C540,140 548,146 552,156 L566,196 C572,212 584,222 606,226 L834,226 C856,222 868,212 874,196 L890,150 C894,140 904,136 920,136 L1440,142"/><g class="rg-strata"><path d="M24,172 C180,168 360,166 536,164"/><path d="M16,194 C200,190 380,188 550,186"/><path d="M30,216 C220,212 400,210 558,208"/><path d="M900,166 C1080,168 1260,170 1420,172"/><path d="M886,188 C1080,190 1260,192 1430,194"/><path d="M878,210 C1080,212 1260,214 1436,216"/></g></g><path class="rg-river" d="M606,226 C650,222 690,229 730,224 C770,220 806,228 834,226 L834,240 L606,240Z"/><path class="rg-flow" d="M614,231 C650,228 690,234 730,230 S800,228 828,232"/><path class="rg-flow" d="M630,234 C670,232 700,236 740,233 S800,232 820,234"/><g class="rg-millg"><path class="rg-mill" d="M640,225V204L654,194L668,204V225Z"/><path class="rg-mill" d="M651,225v-9h6v9"/><g class="rg-wheel"><circle cx="676" cy="216" r="8"/><circle cx="676" cy="216" r="2"/><path d="M684.0 216.0L668.0 216.0"/><path d="M681.7 221.7L670.3 210.3"/><path d="M676.0 224.0L676.0 208.0"/><path d="M670.3 221.7L681.7 210.3"/></g></g><g class="rg-birds"><g class="rg-ox" style="--t:11s;--dl:-2s;--rx:150px"><g class="rg-oy" style="--t:11s;--dl:-2s;--ry:22px"><g transform="translate(720 72)"><g class="rg-bank" style="--t:11s;--dl:-2s"><g class="rg-flap" style="--dl:-2s"><path class="rg-bird" transform="scale(0.34)" d="M-60,0 C-44,-11 -24,-9 -8,-3 L0,-6 L8,-3 C24,-9 44,-11 60,0 C52,1 46,3 40,2 L46,6 L36,4 L40,8 L28,4 C20,4 12,5 7,5 L3,11 L-3,11 L-7,5 C-12,5 -20,4 -28,4 L-40,8 L-36,4 L-46,6 L-40,2 C-46,3 -52,1 -60,0Z"/></g></g></g></g></g><g class="rg-ox" style="--t:14s;--dl:-9s;--rx:105px"><g class="rg-oy" style="--t:14s;--dl:-9s;--ry:16px"><g transform="translate(790 50)"><g class="rg-bank" style="--t:14s;--dl:-9s"><g class="rg-flap" style="--dl:-9s"><path class="rg-bird" transform="scale(0.25)" d="M-60,0 C-44,-11 -24,-9 -8,-3 L0,-6 L8,-3 C24,-9 44,-11 60,0 C52,1 46,3 40,2 L46,6 L36,4 L40,8 L28,4 C20,4 12,5 7,5 L3,11 L-3,11 L-7,5 C-12,5 -20,4 -28,4 L-40,8 L-36,4 L-46,6 L-40,2 C-46,3 -52,1 -60,0Z"/></g></g></g></g></g><g class="rg-ox" style="--t:17s;--dl:-5s;--rx:200px"><g class="rg-oy" style="--t:17s;--dl:-5s;--ry:28px"><g transform="translate(660 96)"><g class="rg-bank" style="--t:17s;--dl:-5s"><g class="rg-flap" style="--dl:-5s"><path class="rg-bird" transform="scale(0.29)" d="M-60,0 C-44,-11 -24,-9 -8,-3 L0,-6 L8,-3 C24,-9 44,-11 60,0 C52,1 46,3 40,2 L46,6 L36,4 L40,8 L28,4 C20,4 12,5 7,5 L3,11 L-3,11 L-7,5 C-12,5 -20,4 -28,4 L-40,8 L-36,4 L-46,6 L-40,2 C-46,3 -52,1 -60,0Z"/></g></g></g></g></g></g></svg></div>
     <div class="range__head">
       <div><p class="chap lab"><svg class="glyph" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M9 6h14l-2 22H11z"/><path d="M9.5 11h13"/><circle class="g-bub" cx="14" cy="24" r="1"/><circle class="g-bub" cx="18" cy="25" r=".9"/><circle class="g-bub" cx="16" cy="23" r=".8"/></svg><i>III.</i> La gamme</p>
       <h2 id="gamT">Des classiques <em>aux barriques</em></h2></div>
@@ -907,13 +924,25 @@ dialog.sheet::backdrop{background:rgba(14,26,31,.72)}
       gsap.from(el, { y: 16, opacity: 0, duration: .8, ease: "power2.out", immediateRender: false,
         scrollTrigger: { trigger: el, start: "top 92%", once: true } });
     });
-    // vfx : la ligne de crête se dessine au scroll
-    gsap.utils.toArray(".ridge .dr").forEach((p, i) => {
-      const L = Math.ceil(p.getTotalLength());
-      gsap.fromTo(p, { strokeDasharray: L, strokeDashoffset: L }, { strokeDashoffset: 0, duration: 2.2, ease: "power2.inOut", delay: i * .25,
-        scrollTrigger: { trigger: ".ridge", start: "top 88%", once: true },
-        onComplete: () => { p.style.strokeDasharray = ""; p.style.strokeDashoffset = ""; } });
-    });
+    // vfx : le paysage des Causses se construit au scroll, puis parallaxe douce entre les plans
+    const rg = document.querySelector(".ridge");
+    if (rg) {
+      const q = s => rg.querySelectorAll(s);
+      const lines = q(".rg-line");
+      lines.forEach(p => { p.dataset.len = Math.ceil(p.getTotalLength()); });
+      const tl = gsap.timeline({ scrollTrigger: { trigger: rg, start: "top 88%", once: true } });
+      tl.from(q(".rg-fill"), { opacity: 0, y: 28, duration: 1.2, ease: "power3.out", stagger: .16 })
+        .fromTo(lines, { strokeDasharray: (i, p) => p.dataset.len, strokeDashoffset: (i, p) => p.dataset.len },
+          { strokeDashoffset: 0, duration: 1.8, ease: "power2.inOut", stagger: .15,
+            onComplete() { lines.forEach(p => { p.style.strokeDasharray = ""; p.style.strokeDashoffset = ""; }); } }, .2)
+        .from(q(".rg-strata path"), { opacity: 0, duration: .8, stagger: .05 }, 1.1)
+        .from(q(".rg-river, .rg-flow, .rg-mist"), { opacity: 0, duration: 1 }, 1.2)
+        .from(q(".rg-millg"), { opacity: 0, y: 10, duration: .7, ease: "back.out(2)" }, 1.5)
+        .from(q(".rg-birds > g"), { opacity: 0, duration: 1.2, stagger: .3 }, 1.6);
+      [[".rg-l1", 14], [".rg-l2", 7], [".rg-birds", 20]].forEach(([s, v]) =>
+        gsap.fromTo(rg.querySelector(s), { y: -v }, { y: v, ease: "none",
+          scrollTrigger: { trigger: rg, start: "top bottom", end: "bottom top", scrub: true } }));
+    }
     // Pièce maîtresse : la vallée se dessine, puis les pictos apparaissent
     const paths = $$("#map .draw");
     paths.forEach(p => { const L = Math.ceil(p.getTotalLength ? p.getTotalLength() : 2000); p.style.strokeDasharray = p.getAttribute("stroke-dasharray") || ""; p.dataset.len = L; });

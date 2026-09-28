@@ -28,7 +28,7 @@ for (const w of [1440, 390]) {
     await page.waitForTimeout(2600);
     await page.screenshot({ path: `${out}${sel.replace("#", "/")}-${w}.jpg`, quality: 70 });
   }
-  const ridgeDrawn = await page.evaluate(() => [...document.querySelectorAll(".ridge .dr")].every(p => !p.style.strokeDashoffset || p.style.strokeDashoffset === "0px" || p.style.strokeDashoffset === "0"));
+  const ridgeDrawn = await page.evaluate(() => [...document.querySelectorAll(".ridge .rg-line")].every(p => !p.style.strokeDashoffset || p.style.strokeDashoffset === "0px" || p.style.strokeDashoffset === "0"));
   console.log(w, JSON.stringify({ ...info, ridgeDrawn, errors: errs }));
   if (info.overflow > 0 || errs.length || info.glyphs !== 9 || !ridgeDrawn) fail = 1;
   await page.close();
