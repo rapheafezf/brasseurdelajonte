@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "dev": "./start.sh",
-    "start": "./start.sh"
+    "build": "echo \"Site statique — aucun build requis\""
   },
   "keywords": [
     "brasserie",
