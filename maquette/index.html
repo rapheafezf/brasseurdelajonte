@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Les Brasseurs de la Jonte</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="img/logo-black.webp" type="image/webp">
+<meta name="description" content="Brasserie artisanale au Mas Prades, Gatuzières (Lozère) : bières, limonades bio, Moulin des Brasseurs, visites et location de tireuses.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Alata&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Brasseurs de la Jonte — maquette Xipirons
+   Typo : Cormorant Infant (titres) → Fraunces (serif optique, plus robuste à l'écran, même esprit gravé/naturaliste)
+          Alata (étiquettes, conservée : police d'origine, signature du site)
+          Noto Sans 100 (texte, illisible) → Hanken Grotesk 400 (grotesque chaleureuse, très lisible)
+   Palette : relevée dans le thème d'origine (#205260 Jonte, #B98D58 malt, #C99518 houblon, #242E35 ardoise, #F9F8F4 papier) */
+:root{
+  --paper:#F9F8F4;--paper-2:#F1EDE4;--paper-3:#E7E1D4;--line:#DEDDD9;
+  --ink:#242E35;--ink-2:#4B5554;--jonte:#205260;--jonte-2:#2B6A7A;--river:#78AAB6;
+  --deep:#14262D;--deep-2:#1B333B;--on-deep:#EDEAE2;--on-deep-2:#B9C2C0;
+  --malt:#B98D58;--hop:#C99518;--hop-2:#DDB04A;
+  --fd:"Fraunces",Georgia,"Times New Roman",serif;
+  --fl:"Alata",system-ui,sans-serif;
+  --fb:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --nav:68px;--gut:clamp(20px,4.2vw,64px);--max:1320px;
+}
+[hidden]{display:none!important}
+html{background:var(--paper);color:var(--ink);overflow-x:clip;scroll-padding-top:calc(var(--nav) + 16px);-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.62 var(--fb);overflow-x:clip;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+*,*::before,*::after{box-sizing:border-box}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--hop);outline-offset:3px}
+.deep :focus-visible,.hero :focus-visible,.nav :focus-visible{outline-color:var(--hop-2)}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--hop);color:#1b1b12;padding:10px 16px;font-family:var(--fl)}
+.skip:focus{top:12px}
+.wrap{width:100%;max-width:var(--max);margin-inline:auto;padding-inline:var(--gut)}
+.lab{font-family:var(--fl);font-size:12.5px;line-height:1.4;letter-spacing:.18em;text-transform:uppercase}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ico{width:1.15em;height:1.15em;flex:none;fill:currentColor}
+h1,h2,h3,h4{font-family:var(--fd);font-weight:400;margin:0;font-optical-sizing:auto;letter-spacing:-.015em}
+h2{font-size:clamp(38px,5.4vw,78px);line-height:1.02}
+h2 em,h1 em{font-style:italic;font-weight:300}
+p{margin:0 0 1em}
+.lede{font-size:clamp(18px,1.6vw,21px);line-height:1.55;color:var(--ink-2);max-width:40ch}
+.sec{padding-block:clamp(84px,11vw,168px);position:relative}
+.chap{display:flex;align-items:center;gap:16px;margin-bottom:clamp(22px,3vw,36px);color:var(--jonte)}
+.chap i{font-family:var(--fd);font-style:italic;font-size:22px;letter-spacing:0;text-transform:none;color:var(--malt)}
+.chap::after{content:"";height:1px;flex:0 1 120px;background:currentColor;opacity:.35}
+.deep .chap{color:var(--hop-2)}
+.edge{display:block;width:100%;height:clamp(28px,5vw,72px);color:var(--paper)}
+.edge--top{position:absolute;left:0;right:0;bottom:-1px;z-index:2}
+.edge--flip{transform:scaleY(-1);position:absolute;left:0;right:0;top:-1px;z-index:2}
+
+/* Boutons : changement de teinte uniquement */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:2px;border:1px solid transparent;font-family:var(--fl);font-size:13px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background-color .2s,color .2s,border-color .2s;background:none}
+.btn--hop{background:var(--hop);color:#1B1A12}
+.btn--hop:hover{background:var(--hop-2)}
+.btn--ghost{border-color:rgba(249,248,244,.62);color:#fff}
+.btn--ghost:hover{background:rgba(249,248,244,.14);border-color:#fff}
+.btn--ink{background:var(--ink);color:#fff}
+.btn--ink:hover{background:var(--jonte)}
+.btn--line{border-color:var(--ink);color:var(--ink)}
+.btn--line:hover{background:var(--ink);color:#fff}
+.link{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-family:var(--fl);font-size:13px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--jonte);border-bottom:1px solid currentColor;min-height:0;padding-block:6px}
+.link:hover{color:var(--ink)}
+.deep .link{color:var(--hop-2)}
+.deep .link:hover{color:#fff}
+
+/* Navigation */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--ink);color:#fff;height:var(--nav);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav .wrap{height:100%;display:flex;align-items:center;gap:28px}
+.nav__logo{display:flex;align-items:center;gap:12px;text-decoration:none;flex:none}
+.nav__logo img{height:46px;width:auto}
+.nav__logo span{font-family:var(--fd);font-size:19px;line-height:1.05;letter-spacing:-.01em}
+.nav__links{display:flex;gap:4px;margin:0 0 0 auto;padding:0;list-style:none}
+.nav__links a{display:flex;align-items:center;min-height:44px;padding:0 11px;font-family:var(--fl);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:#D8DDDC;transition:color .2s}
+.nav__links a:hover,.nav__links a[aria-current=true]{color:var(--hop-2)}
+.nav__tel{display:flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:1px solid rgba(255,255,255,.28);border-radius:2px;font-family:var(--fl);font-size:13px;letter-spacing:.06em;text-decoration:none;transition:border-color .2s,color .2s;white-space:nowrap}
+.nav__tel:hover{border-color:var(--hop-2);color:var(--hop-2)}
+.nav__burger{display:none;margin-left:auto;width:48px;height:48px;align-items:center;justify-content:center;background:none;border:1px solid rgba(255,255,255,.28);border-radius:2px;cursor:pointer}
+.nav__burger .ico{width:24px;height:24px}
+.menu{position:fixed;inset:0;z-index:60;background:var(--deep);color:#fff;display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 12px) var(--gut) 32px;overflow:auto}
+.menu__top{display:flex;justify-content:space-between;align-items:center;height:56px}
+.menu__top img{height:44px;width:auto}
+.menu ul{list-style:none;margin:28px 0 auto;padding:0}
+.menu li a{display:flex;align-items:baseline;gap:14px;min-height:56px;padding:6px 0;font-family:var(--fd);font-size:34px;line-height:1.1;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.1)}
+.menu li a small{font-family:var(--fl);font-size:12px;letter-spacing:.16em;color:var(--hop-2)}
+.menu__foot{display:grid;gap:10px;margin-top:28px}
+@media (max-width:1080px){.nav__links{display:none}.nav__tel{margin-left:auto}.nav__burger{display:flex;margin-left:0}}
+@media (max-width:520px){.nav__tel span{display:none}.nav__tel{padding:0 13px}.nav__logo span{font-size:16px}}
+
+/* Héros */
+.hero{position:relative;min-height:calc(100svh - var(--nav));display:flex;align-items:flex-end;color:#fff;background:var(--deep);overflow:hidden}
+.hero__img{position:absolute;inset:-3% 0 0 0;width:100%;height:106%;object-fit:cover;object-position:50% 62%}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(14,26,31,.88) 0%,rgba(14,26,31,.7) 45%,rgba(14,26,31,.3) 72%,rgba(14,26,31,.12) 100%),linear-gradient(0deg,rgba(14,26,31,.92) 0%,rgba(14,26,31,.35) 60%,rgba(14,26,31,.1) 100%)}
+.hero .wrap{position:relative;z-index:3;padding-top:clamp(64px,10vh,120px);padding-bottom:clamp(88px,12vw,150px);display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,.8fr);gap:48px;align-items:end}
+.hero .lab{color:var(--hop-2);margin-bottom:22px;display:block}
+.hero h1{font-size:clamp(52px,8.6vw,138px);line-height:.92;letter-spacing:-.03em;font-weight:350}
+.hero h1 em{display:block;font-weight:300;color:#F3E7C9}
+.hero__sub{margin:28px 0 34px;font-size:clamp(18px,1.55vw,21px);line-height:1.5;max-width:34ch;color:#E6E9E6}
+.hero__cta{display:flex;flex-wrap:wrap;gap:12px}
+.status{border-top:1px solid rgba(255,255,255,.3);padding-top:18px;display:grid;gap:4px}
+.status__dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#8FC7A0;margin-right:10px;vertical-align:1px}
+.status__dot.is-off{background:#E0A07A}
+.status strong{font-family:var(--fd);font-weight:400;font-size:28px;line-height:1.15}
+.status p{margin:6px 0 0;color:#D6DBD9;font-size:15px}
+.status a{color:#fff}
+.facts{position:relative;z-index:3;background:var(--paper);color:var(--ink)}
+.facts ul{list-style:none;margin:0;padding:34px 0 0;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.facts li{border-left:1px solid var(--line);padding-left:18px}
+.facts b{display:block;font-family:var(--fd);font-weight:400;font-size:clamp(30px,3.4vw,46px);line-height:1;color:var(--jonte);font-variant-numeric:tabular-nums lining-nums}
+.facts span{font-size:14.5px;color:var(--ink-2)}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;gap:36px}.facts ul{grid-template-columns:repeat(2,1fr)}
+  .hero::before{background:linear-gradient(0deg,rgba(14,26,31,.94) 0%,rgba(14,26,31,.82) 55%,rgba(14,26,31,.5) 100%)}
+  .hero h1{text-shadow:0 1px 24px rgba(14,26,31,.5)}}
+
+/* I. Histoire */
+.story__head{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,6vw,96px);align-items:end;margin-bottom:clamp(56px,7vw,100px)}
+.story__head blockquote{margin:0;font-family:var(--fd);font-style:italic;font-weight:300;font-size:clamp(22px,2.1vw,30px);line-height:1.35;color:var(--jonte);border-left:2px solid var(--hop);padding-left:24px}
+.story__grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(18px,2.4vw,36px);align-items:start}
+.story__txt{grid-column:1/span 5;columns:1}
+.story__txt p:first-child::first-letter{font-family:var(--fd);float:left;font-size:4.4em;line-height:.82;padding:6px 10px 0 0;color:var(--jonte)}
+.story__figs{grid-column:7/span 6;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.fig{margin:0}
+.fig img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:saturate(.9)}
+.fig figcaption{font-family:var(--fd);font-style:italic;font-size:16px;color:var(--ink-2);margin-top:10px}
+.fig--tall{grid-row:span 2}
+.fig--tall img{aspect-ratio:3/4.4}
+.milestones{margin-top:clamp(64px,8vw,120px);display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--ink)}
+.milestones li{list-style:none;padding:22px 20px 0 0}
+.milestones b{font-family:var(--fd);font-weight:400;font-size:34px;color:var(--jonte);display:block;margin-bottom:8px}
+.milestones p{font-size:15px;color:var(--ink-2);margin:0}
+.milestones{padding:0;margin-inline:0}
+@media (max-width:900px){.story__head,.story__grid{grid-template-columns:1fr}.story__txt,.story__figs{grid-column:1/-1}.milestones{grid-template-columns:1fr 1fr;gap:0 20px}}
+
+/* II. Bestiaire — pièce maîtresse */
+.deep{background:var(--deep);color:var(--on-deep)}
+.deep h2{color:#fff}
+.deep .lede{color:var(--on-deep-2)}
+.best__head{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:end;margin-bottom:clamp(36px,5vw,64px)}
+.best{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(300px,1fr);gap:clamp(24px,3vw,48px);align-items:stretch}
+.map{position:relative;background:#F4EFE3;border-radius:2px;overflow:hidden;align-self:start}
+.map svg{display:block;width:100%;height:auto}
+.map .draw{fill:none;stroke:#3A4146;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.map .thin{stroke-width:1;opacity:.55}
+.spot{position:absolute;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;border:1.5px solid var(--ink);background:#FBF8F1;color:var(--ink);display:grid;place-items:center;cursor:pointer;padding:0;transition:background-color .2s,color .2s,border-color .2s}
+.spot .ico{width:26px;height:26px}
+.spot:hover{background:var(--hop-2)}
+.spot[aria-pressed=true]{background:var(--jonte);color:#fff;border-color:var(--jonte)}
+.spot::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid var(--jonte);opacity:0;transition:opacity .2s}
+.spot[aria-pressed=true]::after{opacity:.55}
+.panel{background:var(--deep-2);border:1px solid rgba(255,255,255,.08);padding:clamp(22px,2.6vw,36px);display:grid;grid-template-columns:120px 1fr;gap:22px;align-content:start;min-height:100%}
+.panel img{width:120px;height:auto;max-height:300px;object-fit:contain;filter:drop-shadow(0 18px 18px rgba(0,0,0,.35))}
+.panel .lab{color:var(--hop-2)}
+.panel h3{font-size:clamp(34px,3.2vw,48px);line-height:1;margin:10px 0 6px;color:#fff}
+.panel .where{font-family:var(--fd);font-style:italic;font-size:19px;color:var(--on-deep-2);margin:0 0 18px}
+.panel .story{font-size:16.5px;line-height:1.6;color:var(--on-deep);border-top:1px solid rgba(255,255,255,.14);padding-top:16px}
+.panel .meta{font-family:var(--fl);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--on-deep-2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.chip{min-height:44px;padding:0 16px;border:1px solid rgba(255,255,255,.26);border-radius:22px;background:none;color:var(--on-deep);font-family:var(--fl);font-size:13px;letter-spacing:.04em;cursor:pointer;transition:background-color .2s,color .2s,border-color .2s}
+.chip:hover{border-color:var(--hop-2);color:var(--hop-2)}
+.chip[aria-pressed=true]{background:var(--hop);border-color:var(--hop);color:#1B1A12}
+@media (max-width:980px){.best,.best__head{grid-template-columns:1fr}}
+@media (max-width:640px){.spot{width:44px;height:44px}.spot .ico{width:22px;height:22px}#map text{display:none}.panel{grid-template-columns:84px 1fr;gap:16px}.panel img{width:84px}}
+
+/* III. La gamme */
+.range__head{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:36px}
+.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;margin-bottom:12px;border-bottom:1px solid var(--line)}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;min-height:48px;padding:0 16px;background:none;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;font-family:var(--fl);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);cursor:pointer;transition:color .2s,border-color .2s}
+.tab:hover{color:var(--jonte)}
+.tab[aria-selected=true]{color:var(--ink);border-bottom-color:var(--hop)}
+.tab sup{font-family:var(--fb);font-size:11px;letter-spacing:0;margin-left:4px;color:var(--ink-2)}
+.range__intro{display:flex;justify-content:space-between;gap:24px;align-items:baseline;margin:22px 0 28px;min-height:3.2em}
+.range__intro p{margin:0;max-width:70ch;color:var(--ink-2)}
+.range__intro h3{font-size:30px;flex:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.card{position:relative;background:var(--paper);display:flex;flex-direction:column;align-items:flex-start;padding:22px 20px 20px;text-align:left;border:0;cursor:pointer;min-height:100%;transition:background-color .2s}
+.card:hover{background:#fff}
+.card__img{width:100%;height:210px;display:flex;align-items:flex-end;justify-content:center;margin-bottom:18px}
+.card__img img{max-height:210px;width:auto;transition:transform .35s ease}
+.card:hover .card__img img{transform:translateY(-4px)}
+.card h4{font-size:24px;line-height:1.1}
+.card .st{font-size:14.5px;color:var(--ink-2);margin-top:4px;line-height:1.4}
+.card .abv{margin-top:auto;padding-top:14px;font-family:var(--fl);font-size:13px;letter-spacing:.08em;color:var(--jonte)}
+.flag{position:absolute;top:14px;right:14px;font-family:var(--fl);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px;background:var(--hop);color:#1B1A12}
+.flag--out{background:var(--ink);color:#fff}
+.range__note{margin-top:22px;font-size:15px;color:var(--ink-2)}
+@media (max-width:760px){.range__head{grid-template-columns:1fr;gap:18px}.grid{grid-template-columns:repeat(2,1fr)}.card{padding:16px 14px}.card__img,.card__img img{height:160px;max-height:160px}.card h4{font-size:20px}.range__intro{flex-direction:column;gap:8px}}
+
+/* Fiche bière (dialog) */
+dialog.sheet{border:0;padding:0;max-width:min(880px,calc(100vw - 32px));width:100%;background:var(--paper);color:var(--ink);box-shadow:0 30px 80px rgba(10,20,24,.45)}
+dialog.sheet::backdrop{background:rgba(14,26,31,.72)}
+.sheet__in{display:grid;grid-template-columns:240px 1fr;min-height:420px}
+.sheet__img{background:var(--paper-2);display:grid;place-items:center;padding:28px}
+.sheet__img img{max-height:340px;width:auto}
+.sheet__txt{padding:clamp(24px,3vw,44px);position:relative}
+.sheet__txt h3{font-size:clamp(34px,4vw,52px);line-height:1;margin:8px 0 10px}
+.sheet__txt .lab{color:var(--jonte)}
+.sheet dl{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:18px 0;padding:16px 0;border-block:1px solid var(--line);font-size:15px}
+.sheet dt{font-family:var(--fl);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);padding-top:2px}
+.sheet dd{margin:0}
+.sheet .origin{font-family:var(--fd);font-style:italic;font-size:18px;color:var(--jonte);margin-top:10px}
+.sheet__close{position:absolute;top:12px;right:12px;width:48px;height:48px;display:grid;place-items:center;background:none;border:1px solid var(--line);border-radius:2px;cursor:pointer;transition:background-color .2s}
+.sheet__close:hover{background:var(--paper-3)}
+@media (max-width:640px){.sheet__in{grid-template-columns:1fr}.sheet__img{padding:20px}.sheet__img img{max-height:200px}}
+
+/* IV. Chronologie (défilement horizontal natif) */
+.chrono{background:var(--paper-2)}
+.chrono__head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:36px}
+.chrono__nav{display:flex;gap:8px}
+.chrono__nav button{width:48px;height:48px;display:grid;place-items:center;border:1px solid var(--ink);background:none;border-radius:2px;cursor:pointer;transition:background-color .2s,color .2s}
+.chrono__nav button:hover{background:var(--ink);color:#fff}
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,300px);gap:28px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 var(--gut) 24px;scrollbar-width:thin;scrollbar-color:var(--malt) transparent;margin:0;list-style:none}
+.rail li{scroll-snap-align:start;border-top:1px solid var(--ink);padding-top:18px;position:relative}
+.rail li::before{content:"";position:absolute;top:-5px;left:0;width:9px;height:9px;border-radius:50%;background:var(--hop)}
+.rail b{display:block;font-family:var(--fd);font-weight:400;font-size:56px;line-height:1;color:var(--jonte)}
+.rail img{width:100%;aspect-ratio:1;object-fit:contain;margin:14px 0 12px}
+.rail h3{font-size:23px;line-height:1.15;margin-bottom:8px}
+.rail p{font-size:15px;color:var(--ink-2);margin:0}
+.rail-wrap{max-width:calc(var(--max) + 0px);margin-inline:auto}
+
+/* V. Équipe */
+.team__head{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:clamp(40px,5vw,72px)}
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2vw,28px);list-style:none;margin:0;padding:0}
+.team li{margin:0}
+.team img{width:100%;aspect-ratio:1;object-fit:cover;filter:grayscale(.15) contrast(1.02);transition:filter .3s}
+.team li:hover img{filter:none}
+.team h3{font-size:26px;margin-top:14px}
+.team .role{font-family:var(--fl);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--jonte);margin:4px 0 8px}
+.team q{display:block;quotes:none;font-family:var(--fd);font-style:italic;font-size:17px;line-height:1.4;color:var(--ink-2)}
+.team__founders{grid-column:span 2}
+.team__founders img{aspect-ratio:2/1}
+@media (max-width:960px){.team{grid-template-columns:repeat(2,1fr)}.team__head{grid-template-columns:1fr;gap:18px}}
+@media (max-width:420px){.team h3{font-size:22px}.team q{font-size:15.5px}}
+
+/* VI. Venir : Moulin + Atelier */
+.visit{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(18px,2.4vw,36px)}
+.visit__photo{grid-column:1/span 7;position:relative;min-height:520px}
+.visit__photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.visit__photo figcaption{position:absolute;left:0;bottom:0;background:var(--paper);padding:14px 18px 0 0;font-family:var(--fd);font-style:italic;font-size:17px;color:var(--ink-2)}
+.visit__info{grid-column:8/span 5}
+.visit__info h3{font-size:clamp(30px,2.8vw,40px);line-height:1.08;margin-bottom:12px}
+.hours{margin:22px 0 10px;border-top:1px solid var(--ink)}
+.hours div{display:grid;grid-template-columns:1fr auto;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.hours div.is-now{background:linear-gradient(90deg,rgba(201,149,24,.14),transparent)}
+.hours dt{font-weight:600}
+.hours dt small{display:block;font-weight:400;font-size:14px;color:var(--ink-2)}
+.hours dd{margin:0;text-align:right;font-variant-numeric:tabular-nums;font-size:15.5px}
+.visit__strip{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,36px);margin-top:clamp(48px,6vw,88px)}
+.atelier{grid-column:1/-1;margin-top:clamp(56px,7vw,110px);display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(18px,2.4vw,36px);align-items:center}
+.atelier__txt{grid-column:1/span 5}
+.atelier__figs{grid-column:7/span 6;display:grid;grid-template-columns:1.3fr 1fr;gap:18px;align-items:end}
+.atelier__figs img{width:100%;object-fit:cover;aspect-ratio:4/5}
+.atelier__figs .fig:first-child img{aspect-ratio:4/5.4}
+.badge-tour{display:inline-grid;grid-template-columns:auto 1fr;gap:4px 14px;padding:18px 20px;border:1px solid var(--ink);margin:14px 0 24px}
+.badge-tour b{grid-row:span 2;font-family:var(--fd);font-weight:400;font-size:52px;line-height:1;color:var(--jonte)}
+.badge-tour span{font-size:15px}
+@media (max-width:900px){.visit__photo,.visit__info,.atelier__txt,.atelier__figs{grid-column:1/-1}.visit__photo{min-height:360px}.visit__strip{grid-template-columns:1fr 1fr}.visit__strip .fig:last-child{display:none}}
+
+/* VII. Tireuses */
+.tap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,80px);align-items:start}
+.tap__img{position:relative}
+.tap__img img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.kegs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin:26px 0}
+.kegs div{background:var(--paper);padding:20px}
+.kegs b{display:block;font-family:var(--fd);font-weight:400;font-size:48px;line-height:1;color:var(--jonte)}
+.kegs span{font-size:15px;color:var(--ink-2)}
+.tap__thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
+.tap__thumbs img{aspect-ratio:1;object-fit:cover;background:#fff}
+.docs{list-style:none;margin:18px 0 0;padding:0;border-top:1px solid var(--line)}
+.docs a{display:flex;align-items:center;gap:12px;min-height:52px;border-bottom:1px solid var(--line);text-decoration:none;transition:color .2s}
+.docs a:hover{color:var(--jonte)}
+.docs .ico:last-child{margin-left:auto;opacity:.6}
+@media (max-width:900px){.tap{grid-template-columns:1fr}}
+
+/* VIII. Où trouver */
+.shops{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.1);margin-top:40px}
+.shops a{background:var(--deep);padding:22px 20px 20px;text-decoration:none;display:flex;flex-direction:column;gap:12px;min-height:100%;transition:background-color .2s}
+.shops a:hover{background:var(--deep-2)}
+.shops img{width:100%;aspect-ratio:16/10;object-fit:contain;background:#fff;padding:10px}
+.shops h3{font-size:22px;color:#fff}
+.shops p{font-size:14.5px;color:var(--on-deep-2);margin:0}
+.shops .link{margin-top:auto;align-self:flex-start}
+.partners{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:clamp(24px,3vw,48px);margin-top:clamp(64px,8vw,110px);padding-top:36px;border-top:1px solid rgba(255,255,255,.14)}
+.partners h3{font-size:26px;color:#fff;margin:8px 0 10px}
+.partners p{font-size:15.5px;color:var(--on-deep-2)}
+.partners .lab{color:var(--hop-2)}
+.collabs{display:flex;flex-wrap:wrap;gap:6px 18px;list-style:none;padding:0;margin:0}
+.collabs a{display:inline-flex;min-height:36px;align-items:center;font-family:var(--fd);font-size:19px;text-decoration:none;color:var(--on-deep);border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+.collabs a:hover{color:var(--hop-2);border-color:var(--hop-2)}
+@media (max-width:1100px){.shops{grid-template-columns:repeat(3,1fr)}.partners{grid-template-columns:1fr}}
+@media (max-width:640px){.shops{grid-template-columns:1fr 1fr}}
+
+/* IX. Contact */
+.contact{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(32px,6vw,96px)}
+.coords{display:grid;gap:0;margin:28px 0;border-top:1px solid var(--ink)}
+.coord{display:grid;grid-template-columns:28px 1fr auto;gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+.coord .ico{width:22px;height:22px;color:var(--jonte)}
+.coord small{display:block;font-family:var(--fl);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.coord > div{min-width:0}
+.coord a,.coord span{display:inline-block;padding-block:10px;font-size:18px;text-decoration:none;user-select:all;-webkit-user-select:all;overflow-wrap:anywhere}
+.status a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;margin-top:4px;border:1px solid rgba(255,255,255,.35);border-radius:2px;text-decoration:none;transition:border-color .2s,color .2s}
+.status a:hover{border-color:var(--hop-2);color:var(--hop-2)}
+.coord a:hover{color:var(--jonte)}
+.copy{min-width:44px;min-height:44px;display:grid;place-items:center;border:1px solid var(--line);background:none;border-radius:2px;cursor:pointer;transition:background-color .2s}
+.copy:hover{background:var(--paper-3)}
+.copy[data-done]{background:var(--jonte);color:#fff;border-color:var(--jonte)}
+.maplink{display:grid;grid-template-columns:140px 1fr;gap:18px;align-items:center;text-decoration:none;padding:14px;border:1px solid var(--line);transition:background-color .2s}
+.maplink:hover{background:#fff}
+.maplink img{aspect-ratio:4/3;object-fit:cover}
+.maplink b{font-family:var(--fd);font-weight:400;font-size:21px;display:block}
+.form{background:#fff;border:1px solid var(--line);padding:clamp(22px,3vw,40px)}
+.seg{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--ink);margin-bottom:22px}
+.seg label{position:relative;display:flex;align-items:center;justify-content:center;min-height:48px;cursor:pointer;font-family:var(--fl);font-size:13px;letter-spacing:.1em;text-transform:uppercase;transition:background-color .2s,color .2s}
+.seg input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.seg label:has(input:checked){background:var(--ink);color:#fff}
+.seg label:has(input:focus-visible){outline:2px solid var(--hop);outline-offset:2px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:grid;gap:6px}
+.field--full{grid-column:1/-1}
+.field label{font-family:var(--fl);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.field input,.field select,.field textarea{width:100%;min-height:48px;padding:12px 14px;font:inherit;font-size:16px;color:var(--ink);background:var(--paper);border:1px solid #C9C6BE;border-radius:2px;transition:border-color .2s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--jonte);outline:2px solid rgba(32,82,96,.25);outline-offset:0}
+.field textarea{min-height:130px;resize:vertical}
+.form__foot{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:22px}
+.form__msg{font-size:15px;color:var(--jonte);margin:0}
+.form__msg a{font-weight:600}
+@media (max-width:900px){.contact{grid-template-columns:1fr}}
+@media (max-width:520px){.fields{grid-template-columns:1fr}.maplink{grid-template-columns:96px 1fr}}
+
+/* Pied */
+.foot{background:var(--ink);color:#D5DAD9;padding:72px 0 110px;font-size:15px}
+.foot .wrap{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:36px}
+.foot img{height:92px;width:auto;margin-bottom:18px}
+.foot h4{font-family:var(--fl);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--hop-2);margin-bottom:12px;font-weight:400}
+.foot ul{list-style:none;margin:0;padding:0}
+.foot li a{display:inline-flex;min-height:36px;align-items:center;text-decoration:none;gap:8px;transition:color .2s}
+.foot a:hover{color:var(--hop-2)}
+.foot .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding-top:22px;display:flex;flex-wrap:wrap;gap:8px 28px;font-size:13.5px;color:#AEB6B5}
+.foot .warn{font-size:13.5px;color:#AEB6B5;margin-top:14px}
+@media (max-width:860px){.foot .wrap{grid-template-columns:1fr 1fr}}
+
+/* Badge maquette */
+.mock{position:fixed;left:12px;bottom:12px;z-index:40;max-width:calc(100vw - 24px);background:rgba(36,46,53,.92);color:#fff;font:500 11.5px/1.3 var(--fb);letter-spacing:.02em;padding:7px 11px;border-radius:2px;pointer-events:none}
+@media (max-width:520px){.mock{font-size:10.5px;padding:6px 9px;left:8px;bottom:8px}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+<header class="nav" role="banner">
+  <div class="wrap">
+    <a class="nav__logo" href="#top" aria-label="Les Brasseurs de la Jonte, retour en haut">
+      <img src="img/logo-white.webp" alt="" width="686" height="650" fetchpriority="high"><span>Les Brasseurs<br>de la Jonte</span></a>
+    <nav aria-label="Navigation principale"><ul class="nav__links"><li><a href="#histoire">Histoire</a></li><li><a href="#bestiaire">Bestiaire</a></li><li><a href="#gamme">La gamme</a></li><li><a href="#equipe">L’équipe</a></li><li><a href="#moulin">Le Moulin</a></li><li><a href="#tireuses">Tireuses</a></li><li><a href="#trouver">Où trouver</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+    <a class="nav__tel" href="tel:+33448500080"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="m222.37 158.46l-47.11-21.11l-.13-.06a16 16 0 0 0-15.17 1.4a8 8 0 0 0-.75.56L134.87 160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16 16 0 0 0 1.32-15.06v-.12L97.54 33.64a16 16 0 0 0-16.62-9.52A56.26 56.26 0 0 0 32 80c0 79.4 64.6 144 144 144a56.26 56.26 0 0 0 55.88-48.92a16 16 0 0 0-9.51-16.62M176 208A128.14 128.14 0 0 1 48 80a40.2 40.2 0 0 1 34.87-40a.6.6 0 0 0 0 .12l21 47l-20.67 24.74a6 6 0 0 0-.57.77a16 16 0 0 0-1 15.7c9.06 18.53 27.73 37.06 46.46 46.11a16 16 0 0 0 15.75-1.14a8 8 0 0 0 .74-.56L168.89 152l47 21.05h.11A40.21 40.21 0 0 1 176 208"/></svg><span class="num">04 48 50 00 80</span></a>
+    <button class="nav__burger" type="button" aria-expanded="false" aria-controls="menu" id="burger"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8M40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16m176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16"/></svg><span class="sr">Ouvrir le menu</span></button>
+  </div>
+</header>
+<div class="menu" id="menu" hidden role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="menu__top"><img src="img/logo-white.webp" alt="Les Brasseurs de la Jonte" width="686" height="650" loading="lazy" decoding="async">
+    <button class="nav__burger" type="button" id="menuClose" style="display:flex"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128L50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z"/></svg><span class="sr">Fermer le menu</span></button></div>
+  <ul><li><a href="#histoire"><small class="num">01</small>Histoire</a></li><li><a href="#bestiaire"><small class="num">02</small>Bestiaire</a></li><li><a href="#gamme"><small class="num">03</small>La gamme</a></li><li><a href="#equipe"><small class="num">04</small>L’équipe</a></li><li><a href="#moulin"><small class="num">05</small>Le Moulin</a></li><li><a href="#tireuses"><small class="num">06</small>Tireuses</a></li><li><a href="#trouver"><small class="num">07</small>Où trouver</a></li><li><a href="#contact"><small class="num">08</small>Contact</a></li></ul>
+  <div class="menu__foot">
+    <a class="btn btn--hop" href="tel:+33448500080"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="m222.37 158.46l-47.11-21.11l-.13-.06a16 16 0 0 0-15.17 1.4a8 8 0 0 0-.75.56L134.87 160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16 16 0 0 0 1.32-15.06v-.12L97.54 33.64a16 16 0 0 0-16.62-9.52A56.26 56.26 0 0 0 32 80c0 79.4 64.6 144 144 144a56.26 56.26 0 0 0 55.88-48.92a16 16 0 0 0-9.51-16.62M176 208A128.14 128.14 0 0 1 48 80a40.2 40.2 0 0 1 34.87-40a.6.6 0 0 0 0 .12l21 47l-20.67 24.74a6 6 0 0 0-.57.77a16 16 0 0 0-1 15.7c9.06 18.53 27.73 37.06 46.46 46.11a16 16 0 0 0 15.75-1.14a8 8 0 0 0 .74-.56L168.89 152l47 21.05h.11A40.21 40.21 0 0 1 176 208"/></svg> <span class="num">04 48 50 00 80</span></a>
+    <a class="btn btn--ghost" href="#moulin">Horaires du Moulin</a>
+  </div>
+</div><main id="main"><section class="hero" id="top" aria-labelledby="heroT">
+  <img src="img/hero-moulin.jpg" alt="Le Moulin des Brasseurs, ancien moulin à eau au bord de la Jonte à Gatuzières" width="1920" height="1920" class="hero__img" fetchpriority="high">
+  <div class="wrap">
+    <div>
+      <span class="lab">Brasserie artisanale · Gatuzières, Lozère · depuis 2013</span>
+      <h1 id="heroT">Brassée au moulin, <em>avec l’eau de la Jonte</em></h1>
+      <p class="hero__sub">Entre Causse Méjean et Mont Aigoual, un ancien moulin à eau où l’on faisait la farine du Causse. Aujourd’hui on y brasse de la bière : toujours une affaire de céréales et d’eau.</p>
+      <div class="hero__cta">
+        <a class="btn btn--hop" href="#gamme">Découvrir la gamme</a>
+        <a class="btn btn--ghost" href="#moulin">Venir au Moulin</a>
+      </div>
+    </div>
+    <aside class="status" aria-label="Ouverture du Moulin">
+      <span class="lab" style="margin:0;color:#D6DBD9">Le Moulin des Brasseurs</span>
+      <strong id="stNow"><span class="status__dot" aria-hidden="true"></span>Ouvert 7/7 de 10h à 19h</strong>
+      <p id="stWhen">Du 1ᵉʳ mai au 30 septembre · point de vente, tap room, petite restauration.</p>
+      <p><a href="tel:+33448500083" class="num">04 48 50 00 83</a></p>
+    </aside>
+  </div>
+  <svg class="edge edge--top" style="color:var(--paper)" viewBox="0 0 2613 216" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M2401.7,167.9c15.1,3.3,29.9,5.8,44.3,7.1c88,8,67,25,131,35c24.7,3.3,36.3,5.3,35,6H0c161-7,161-58,280-63c99.5,0,156.6-15.7,187-25.8c0,0,17.3-6.7,23.4-7.8c0.5-0.1,1.1-0.3,1.6-0.4c70.7-13.3,119.8-20.7,155.1-24.8c0,0-0.1-0.1-0.1-0.2c0,0,79.6-5.2,87.4-5l1.6,0c42,0,186,26,292,64c-104-44-175.5-50.3-169-52c32.3-8.3,116.3-36,123-41c8-6,26,0,26,0s48-9,51-9s50,15,69,15s61-15,91-15s98,9,299,72c-69-27-125.5-40-121-40c14,0,120.8-19.1,167,0c46,19,159,20,150,25s-20.6,5.7-20,6c1.6,0.9,59-4,99-17c0,0,3-1,3-1l28.1-8.7c21-5.9,28.3-5.2,47.9-2.3c38,6,152,49,189,49c3.9,0-103.2,20.7-176.5,26.5l-1.5,0.1l3.7-0.2c208.3-11.2,209.4-46.4,286.4-46.4c64,0,142.4,33.1,215.9,50.9L2401.7,167.9z"/></svg>
+</section>
+<div class="facts"><div class="wrap"><ul>
+  <li><b class="num">2013</b><span>premiers brassins au Mas Prades</span></li>
+  <li><b class="num">100 %</b><span>céréales bio depuis 2020</span></li>
+  <li><b class="num">25</b><span>références de bières, plus limonades, cola et cidres</span></li>
+  <li><b class="num">4,8/5</b><span>sur <a href="https://www.tripadvisor.fr/Attraction_Review-g12216600-d12657472-Reviews-Les_Brasseurs_de_la_Jonte-Gatuzieres_Lozere_Occitanie.html" rel="noopener" target="_blank">309 avis</a></span></li>
+</ul></div></div><section class="sec" id="histoire" aria-labelledby="histT">
+  <div class="wrap">
+    <div class="story__head">
+      <div>
+        <p class="chap lab"><i>I.</i> Il était une fois</p>
+        <h2 id="histT">Deux copains, <em>un moulin</em>, et la chimie qui opère</h2>
+      </div>
+      <blockquote>« Installés en tant que brasseurs artisanaux à Gatuzières depuis fin 2013, nous vous proposons de quoi réveiller vos papilles d’amateurs de bières classiques et atypiques ! »</blockquote>
+    </div>
+    <div class="story__grid">
+      <div class="story__txt">
+        <p>Tout commence en 2013 à Gatuzières. Dans un petit hameau au bord de la Jonte se trouve un ancien moulin à eau, le Mas Prades. Jusque dans les années 60, on y fabriquait de la farine avec les céréales du Causse.</p>
+        <p>Thomas, bourguignon d’origine, est fromager au Fédou et vient d’acheter Mas Prades. Jean a grandi ici et s’est installé comme agriculteur dans la vallée. Le village n’est pas grand : quand des jeunes débarquent, ils ont vite fait de se rencontrer.</p>
+        <p>Thomas fait de la bière chez lui, avec et pour les copains. Très vite, ils brassent à plusieurs et se rendent compte que les bières sont de bonne qualité. Pourquoi ne pas en faire leur métier ? En octobre, Les Brasseurs de la Jonte sont nés.</p>
+        <p>Les granges au-dessus du Moulin sont aménagées avec la famille et les amis, les caves deviennent un point de vente et de dégustation. En 2016, Jean et Thomas travaillent à temps plein à la brasserie, et la drêche part nourrir les bêtes des agriculteurs du coin.</p>
+        <p><a class="link" href="#chrono">La chronologie année par année <svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="m221.66 133.66l-72 72a8 8 0 0 1-11.32-11.32L196.69 136H40a8 8 0 0 1 0-16h156.69l-58.35-58.34a8 8 0 0 1 11.32-11.32l72 72a8 8 0 0 1 0 11.32"/></svg></a></p>
+      </div>
+      <div class="story__figs">
+        <figure class="fig fig--tall"><img src="img/debut-commencement.jpg" alt="Les débuts de la brasserie au Mas Prades" width="1000" height="750" loading="lazy" decoding="async"><figcaption>Au commencement…</figcaption></figure>
+        <figure class="fig"><img src="img/debut-cuve.jpg" alt="L’ancienne cuve de brassage" width="1000" height="750" loading="lazy" decoding="async"><figcaption>L’ancienne cuve de brassage</figcaption></figure>
+        <figure class="fig"><img src="img/debut-brasserie.jpg" alt="La brasserie à ses débuts" width="1000" height="750" loading="lazy" decoding="async"><figcaption>La brasserie à ses débuts</figcaption></figure>
+      </div>
+    </div>
+    <ol class="milestones">
+      <li><b class="num">2015</b><p>Les Brasseurs deviennent une SARL.</p></li>
+      <li><b class="num">2017</b><p>La terrasse ouvre, deux collaborateurs rejoignent l’équipe.</p></li>
+      <li><b class="num">2018</b><p>Nouvelle salle à brasser, plus de capacité et d’ergonomie.</p></li>
+      <li><b class="num">2022</b><p>Nouveau bâtiment, chai à barriques, station d’épuration.</p></li>
+      <li><b class="num">2023</b><p>Les 10 ans : 25 bières à la pression, 3 concerts, une kermesse.</p></li>
+    </ol>
+  </div>
+</section>
+<section class="sec deep" id="bestiaire" aria-labelledby="bestT">
+  <svg class="edge edge--flip" style="color:var(--paper)" viewBox="0 0 2613 216" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M2401.7,167.9c15.1,3.3,29.9,5.8,44.3,7.1c88,8,67,25,131,35c24.7,3.3,36.3,5.3,35,6H0c161-7,161-58,280-63c99.5,0,156.6-15.7,187-25.8c0,0,17.3-6.7,23.4-7.8c0.5-0.1,1.1-0.3,1.6-0.4c70.7-13.3,119.8-20.7,155.1-24.8c0,0-0.1-0.1-0.1-0.2c0,0,79.6-5.2,87.4-5l1.6,0c42,0,186,26,292,64c-104-44-175.5-50.3-169-52c32.3-8.3,116.3-36,123-41c8-6,26,0,26,0s48-9,51-9s50,15,69,15s61-15,91-15s98,9,299,72c-69-27-125.5-40-121-40c14,0,120.8-19.1,167,0c46,19,159,20,150,25s-20.6,5.7-20,6c1.6,0.9,59-4,99-17c0,0,3-1,3-1l28.1-8.7c21-5.9,28.3-5.2,47.9-2.3c38,6,152,49,189,49c3.9,0-103.2,20.7-176.5,26.5l-1.5,0.1l3.7-0.2c208.3-11.2,209.4-46.4,286.4-46.4c64,0,142.4,33.1,215.9,50.9L2401.7,167.9z"/></svg>
+  <div class="wrap">
+    <div class="best__head">
+      <div>
+        <p class="chap lab"><i>II.</i> Le bestiaire</p>
+        <h2 id="bestT">Chaque bière porte <em>un bout de vallée</em></h2>
+      </div>
+      <p class="lede">La truite de la rivière, le vautour des falaises, la chauve-souris de la cave, le rouge-gorge de la salle à brasser… Touchez la carte pour découvrir d’où vient chaque nom.</p>
+    </div>
+    <div class="best">
+      <div class="map" id="map">
+        <svg viewBox="0 0 1000 640" role="img" aria-labelledby="mapT"><title id="mapT">Carte dessinée de la vallée de la Jonte autour de la brasserie, avec les lieux et animaux qui ont donné leur nom aux bières</title><rect width="1000" height="640" fill="#F4EFE3"/><path d="M-10,520 C120,540 220,600 340,575 S520,520 620,480 S820,470 1010,430 L1010,452 C824,492 826,492 626,502 S462,562 342,597 C220,622 120,560 -10,540 Z" fill="#78AAB6" opacity=".28"/><path class="draw thin" d="M0,120 C150,92 300,62 450,82 S750,42 1000,70"/><path class="draw" d="M0,190 C80,170 120,120 170,82 C210,110 250,150 330,160 C420,170 470,120 560,130 C640,140 690,95 760,100 C840,105 900,150 1000,140"/><path class="draw thin" d="M12,194v28 M22,191v30 M36,184v19 M45,177v44 M58,167v21 M69,157v36 M78,149v34 M88,139v19 M97,131v31 M109,120v20 M119,111v20 M132,102v31 M202,96v38 M215,103v19 M228,111v36 M240,120v19 M250,127v19 M263,136v45 M273,143v27 M285,151v22 M298,158v21 M311,163v27 M324,166v44 M338,166v23 M347,166v36 M360,165v38 M370,164v29 M379,162v35 M393,160v20 M406,158v19 M419,156v24 M431,154v39 M444,151v31 M459,148v28 M471,146v36 M483,144v29 M494,142v25 M509,140v23 M523,138v42 M533,137v20 M546,136v27 M559,136v33 M570,136v41 M582,135v27 M595,134v20 M604,132v34 M616,130v23 M631,127v28 M641,125v33 M653,123v19 M667,119v20 M682,116v35 M695,113v43 M710,111v28 M721,109v40 M732,108v37 M744,107v36 M759,106v32 M768,106v44 M777,107v26 M789,108v40 M803,109v20 M812,111v41 M826,113v27 M840,116v36 M854,120v44 M866,123v27 M880,126v30 M894,129v29 M903,132v32 M914,134v23 M927,137v21 M939,140v19 M949,141v42 M960,143v22 M974,145v25 M986,146v30"/><path class="draw thin" d="M0,250 C160,230 260,262 420,240 S720,200 1000,230 M0,610 C200,590 350,622 520,602 S850,580 1000,600"/><path class="draw thin" d="M0,470 C120,452 210,440 318,432 S520,404 700,380 S900,360 1000,352" stroke-dasharray="2 7"/><path class="draw river" d="M-10,520 C120,540 220,600 340,575 S520,520 620,480 S820,470 1010,430" stroke="#205260"/><path class="draw river thin" d="M-10,540 C120,560 220,622 342,597 S526,542 626,502 S824,492 1010,452" stroke="#205260"/><path class="draw" d="M40,300c-7.0,0 -10.0,-15.0 0,-24.0c10.0,9.0 7.0,24.0 0,24.0v9.0 M70,330c-6.1,0 -8.7,-13.0 0,-20.8c8.7,7.8 6.1,20.8 0,20.8v7.8 M105,292c-6.7,0 -9.6,-14.4 0,-23.1c9.6,8.6 6.7,23.1 0,23.1v8.6 M130,340c-6.4,0 -9.1,-13.7 0,-21.9c9.1,8.2 6.4,21.9 0,21.9v8.2 M60,380c-6.0,0 -8.5,-12.8 0,-20.5c8.5,7.7 6.0,20.5 0,20.5v7.7 M205,300c-6.8,0 -9.7,-14.6 0,-23.3c9.7,8.7 6.8,23.3 0,23.3v8.7 M240,332c-7.1,0 -10.2,-15.3 0,-24.5c10.2,9.2 7.1,24.5 0,24.5v9.2 M560,330c-7.6,0 -10.8,-16.2 0,-26.0c10.8,9.7 7.6,26.0 0,26.0v9.7 M700,250c-8.4,0 -11.9,-17.9 0,-28.7c11.9,10.8 8.4,28.7 0,28.7v10.8 M735,285c-7.5,0 -10.7,-16.1 0,-25.8c10.7,9.7 7.5,25.8 0,25.8v9.7 M770,245c-6.7,0 -9.5,-14.3 0,-22.9c9.5,8.6 6.7,22.9 0,22.9v8.6 M820,300c-6.2,0 -8.9,-13.4 0,-21.4c8.9,8.0 6.2,21.4 0,21.4v8.0 M860,270c-5.8,0 -8.3,-12.5 0,-20.0c8.3,7.5 5.8,20.0 0,20.0v7.5 M930,320c-6.0,0 -8.6,-12.9 0,-20.7c8.6,7.7 6.0,20.7 0,20.7v7.7 M960,280c-7.4,0 -10.6,-16.0 0,-25.5c10.6,9.6 7.4,25.5 0,25.5v9.6 M150,470c-5.6,0 -8.0,-12.1 0,-19.3c8.0,7.2 5.6,19.3 0,19.3v7.2 M690,560c-7.9,0 -11.3,-17.0 0,-27.2c11.3,10.2 7.9,27.2 0,27.2v10.2 M740,590c-6.1,0 -8.7,-13.1 0,-21.0c8.7,7.9 6.1,21.0 0,21.0v7.9 M880,560c-6.4,0 -9.1,-13.7 0,-21.9c9.1,8.2 6.4,21.9 0,21.9v8.2 M930,600c-6.0,0 -8.6,-12.9 0,-20.6c8.6,7.7 6.0,20.6 0,20.6v7.7 M40,610c-7.1,0 -10.1,-15.2 0,-24.3c10.1,9.1 7.1,24.3 0,24.3v9.1 M95,585c-7.3,0 -10.4,-15.7 0,-25.1c10.4,9.4 7.3,25.1 0,25.1v9.4"/><path class="draw" d="M318,420 V384 L352,360 L386,384 V420 Z M330,420 v-18 h12 v18 M362,396 h12 v12 h-12 z M398,414 m-17,0 a17,17 0 1,0 34,0 a17,17 0 1,0 -34,0 M398,397 v34 M381,414 h34 M386,402 l24,24 M410,402 l-24,24"/><path class="draw" d="M430,338 h66 v-26 l-33,-18 l-33,18 z M440,338 v-14 M452,338 v-14 M464,338 v-14 M476,338 v-14 M488,338 v-14"/><path class="draw" d="M560,452 h70 M566,452 v10 M624,452 v10 M580,444 a8,5 0 1,0 16,0"/><g fill="#3A4146" font-family="Fraunces, Georgia, serif" font-style="italic"><text x="300" y="118" text-anchor="start" font-size="19">Causse Méjean</text><text x="250" y="36" text-anchor="start" font-size="15">Puech Pounchut</text><text x="366" y="456" text-anchor="middle" font-size="15">Mas Prades</text><text x="463" y="358" text-anchor="middle" font-size="14">l’atelier</text><text x="810" y="492" text-anchor="start" font-size="20">la Jonte</text><text x="236" y="476" text-anchor="start" font-size="15">Gatuzières</text><text x="985" y="628" text-anchor="end" font-size="15">vers le Mont Aigoual →</text><text x="560" y="436" text-anchor="middle" font-size="14">la terrasse</text></g></svg>
+        <button type="button" class="spot" style="left:17%;top:13%" data-beer="pounchut" aria-pressed="false" aria-label="Le Puech Pounchut : bière Pounchut"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="m6.18 10.95l2.54 3.175l.084.093a1 1 0 0 0 1.403-.01l1.637-1.638l1.324 1.985a1 1 0 0 0 1.457.226l3.632-2.906l3.647 7.697A1 1 0 0 1 21 21H3a1 1 0 0 1-.904-1.428zM12 3.072a3.3 3.3 0 0 1 2.983 1.888l2.394 5.057l-3.15 2.52l-1.395-2.092l-.075-.099a1 1 0 0 0-1.464-.053l-1.711 1.709l-1.301-1.627L7.13 8.94l1.888-3.98A3.3 3.3 0 0 1 12 3.072"/></svg></button><button type="button" class="spot" style="left:72%;top:12%" data-beer="fauve" aria-pressed="true" aria-label="Le vautour fauve : bière Fauve"><svg class="ico" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path fill="currentColor" d="M363.188 28.063c-34.372 0-62.25 27.863-62.25 62.218c0 2.92.204 5.782.593 8.595c-17.072 3.958-33.287 12.576-46.592 25.875c-12.052 12.046-30.82 44.714-50.813 83.625L120.25 272.28l32.03.72l-84.718 43.406l74.032-3.562l-38.438 25.656L143 336.125c-1.84 4.05-3.69 8.165-5.406 11.97l-121.688 66.25l46.75-1.283L19 461.094l46.75-17.03l-3.625 32.873l126.938-104.28c5.69 16.434 15.305 28.105 27.156 32.624l32.124 59.47c-20.13 2.938-39.952 12.047-55.063 26.47h129.5c-13.087-17.008-32.674-25.766-53.624-27.283l-31.406-58.156c21.746-6.568 46.638-34.228 67.875-92.28c19.033-10.784 34.323-20.795 42.375-28.844c33.67-33.656 72.28-103.9 53.844-145.687c.006-.006.025.004.03 0c38.314-5.095 66.074-7.915 86.438 21.53c5.48-46.96-25.07-65.864-57.406-74.53a37.55 37.55 0 0 0-8.97-16.157c-8.466-24.3-31.55-41.75-58.748-41.75zm31.53 48.593c10.484 0 18.75 8.3 18.75 18.78c0 10.482-8.267 18.783-18.75 18.783c-10.482 0-18.78-8.302-18.78-18.782s8.297-18.782 18.78-18.782z"/></svg></button><button type="button" class="spot" style="left:88%;top:34%" data-beer="tantaravel" aria-pressed="false" aria-label="Le houblon : bière Tantaravel"><svg class="ico" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path fill="currentColor" d="M455.016 31.335c-7.352 27.563-11.672 51.534-29.666 70.475a132 132 0 0 1 10.89 14.457c21.859-21.479 31.27-55.32 36.444-81.483zm-365.77 86.553c26.53 23.311 75.437 43.214 128.588 50.441c8.93-54.446 25.763-101.262 78.663-111.742c-87.441-32.988-169.736-14.856-207.25 61.3zm181.012-30.992c-23.32 17.537-33.49 55.18-35.172 93.896c-1.561 35.96 3.991 71.655 9.075 90.1c18.466 5.08 54.205 10.628 90.213 9.068c38.762-1.68 76.457-11.845 94.011-35.137c26.195-44.685 11.365-102.657-21.504-136.447c-35.854-30.649-96.195-50.896-136.623-21.48M93.756 144.06c-21.448 19.766-37.77 47.077-44.715 84.466c29.077 14.704 53.089 19.928 81.481 23.61c19.863-23.625 28.623-48.967 39.228-75.043c-29.084-7.861-55.342-19.184-75.994-33.033m93.71 37.314c-13.41 45.213-43.135 138.013-19.993 166.121c20.996 20.505 122.712-2.301 166.324-19.967a360 360 0 0 1-5.027-29.386c-33.203-1.003-67.74-2.657-99.18-12.67c-8.98-34.162-13.172-70.091-12.685-99.073a360 360 0 0 1-29.44-5.025zm271.243 37.24c-9.797 53.078-68.758 74.708-111.867 78.6c7.237 53.09 27.16 101.938 50.498 128.433c85.392-40.18 90.077-136.087 61.37-207.033zM59.217 254.495c-13.823 25.304-23.43 57.957-25.054 84.063c16.933 5.432 36.996 6.918 53.347 7.308c6.387-25.338 18.476-51.542 32.994-76.928c-20.58-3.495-43.292-7.486-61.287-14.443m88.59 3.938c-22.603 45.341-56.073 107.837-42.664 151.328c57.858 6.862 111.673-17.601 151.47-42.592c-32.613 5.741-81.751 15.043-103.86-4.938c-18.09-28.865-13.015-58.231-4.946-103.798m190.277 86.802c-30.287 7.312-51.234 24.35-75.14 39.196c4.16 25.089 9.576 60.967 23.635 81.375c37.436-6.937 64.779-23.24 84.568-44.662c-13.862-20.63-25.194-46.859-33.063-75.909M46.331 360.267c-10.174 36.445-17.91 81.317-4.399 112.632c31.358 13.502 76.288 5.774 112.777-4.39c-2.03-12.867-3.194-26.613-3.529-37.592c-23.234 1.407-41.295.55-59.984-7.201c-7.773-19.583-9.502-42.678-7.215-59.922c-13.049-.685-25.974-1.445-37.65-3.527m199.806 34.162c-25.42 14.508-51.66 26.588-77.03 32.968c.398 20.603.666 38.958 7.315 53.268c31-3.247 58.572-10.692 84.17-25.025c-7.523-22.172-11.492-40.957-14.455-61.211"/></svg></button><button type="button" class="spot" style="left:8%;top:43%" data-beer="melina" aria-pressed="false" aria-label="Le miel fort : bière Mélina"><svg class="ico" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path fill="currentColor" d="m273.625 17.438l3.313 19.406L258.53 40l-3.717-21.594c-11.894 1.303-21.9 3.848-30.188 7.344L238.5 43.375l-14.688 11.563l-15.343-19.5c-9.837 8.29-15.64 18.988-17.657 32.156l24.375-1.344l1.03 18.656l-12.812.72c36.685 31.72 70.686 71.3 102.125 122.718a87 87 0 0 1 10.564-.72a82 82 0 0 1 7.156.25c3.744.31 7.462.914 11.125 1.782c10.252-71.962-6.85-130.822-38.5-191.062c-7.863-.71-15.335-1.137-22.25-1.157zM78.905 27.813C72.95 32.37 67.494 36.937 62.5 41.5l18.47 17.875l-13 13.406l-18.657-18.03c-9.15 10.155-16.053 20.23-20.907 30.125l20.125 4.72l-4.28 18.218l-22.438-5.282a81 81 0 0 0-1.343 6.095c-2.264 12.796-1.332 25.318 2.593 37.47l22.968-11.19l8.157 16.814l-23.53 11.436c4.11 7.18 9.307 14.198 15.562 21.063c3.188 3.5 6.67 6.913 10.405 10.28l15.125-16.28l13.688 12.75l-14.25 15.31c10.718 7.82 22.952 15.15 36.562 21.814l10.47-20.125l16.56 8.624l-10 19.22c9.974 4.158 20.545 7.945 31.657 11.405l6.657-19.407l17.687 6.062l-6.343 18.5c10.976 2.874 22.408 5.395 34.25 7.53l3.157-19.03l18.437 3.063l-3.155 18.937c22.212 3.138 45.688 4.95 70.188 5.188l-.188 18.687c-20.204-.195-39.78-1.404-58.594-3.5c-1.978 7.395-3.443 15.514-4.25 24.438c-99.17-72.015-189.613 29.593-213.843 140c96.828 62.17 166.47 12.61 216.094-69.844l17.532 40.125l17.125-7.5l-23.156-52.97a546 546 0 0 0 12.157-24.28c7.755 11.174 16.53 18.968 25.688 23.655l1.03 32.97l.126 4.25l3.314 2.686l38.406 31.314l11.813-14.5l-35.094-28.625l-.72-22.75c11.463.746 22.9-2.88 33.125-10.345l.72 26.906l.186 6.19l5.783 2.25l62.28 24.092l6.75-17.437l-56.468-21.813l-1.094-39.625c2.924-4.387 5.622-9.2 8-14.468c14.34 60.238 86.187 63.25 103.126 7.936c11.726-38.29-19.33-72.846-52.562-72l-10.156-47.25c29.243 7.773 54.154 23.793 73.906 55.906l15.906-9.78c-25.456-41.388-61.373-60.69-100.375-67.595l-13.688-2.406l2.938 13.564l13.25 61.812c-.644.294-1.298.58-1.938.906l-.062.032c-2.39.595-4.74 1.456-7 2.656c-4.883 2.592-8.73 6.348-11.625 10.78c-9.013-28.358-34.47-46.61-61.406-49.31a719 719 0 0 1 11 19.75l-16.47 8.81C243.755 130.22 169.122 70.843 78.907 27.813zM402.282 276.75c.325-.002.638.013.97.03c2.656.148 5.576.97 8.75 2.564c6.348 3.188 13.04 9.53 17.656 18.22c4.617 8.686 6.13 17.77 5.22 24.81c-.912 7.04-3.827 11.552-7.97 13.75c-4.142 2.2-9.527 2.096-15.875-1.093c-6.347-3.187-13.038-9.53-17.655-18.217c-4.617-8.688-6.13-17.773-5.22-24.813c.912-7.04 3.827-11.55 7.97-13.75c1.812-.962 3.89-1.485 6.156-1.5z"/></svg></button><button type="button" class="spot" style="left:70%;top:46%" data-beer="tribalte" aria-pressed="false" aria-label="Les trois grains : bière Tri Balte"><svg class="ico" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path fill="currentColor" d="M98.344 16.688C79.692 43.785 68.498 69.01 65.5 89.56l23.938 39.157l28.624-33.47c.868-21.213-5.49-48.677-19.718-78.563zM472.5 19.625C444.04 36.055 423.112 54 411.562 71.25l4.75 45.688L456.563 99c9.89-18.777 15.938-46.29 15.938-79.375zm-91.75 27.28c-10.153 21.036-16.8 40.84-20.156 58.314l18.375 57.686l19.78-34.25l-6.5-62.22h.03a277 277 0 0 0-11.53-19.53zM27.25 80.782c-.125 23.364 2.393 44.102 6.875 61.314L75.5 186.25l3.125-39.406L46 93.47l.03-.032a280 280 0 0 0-18.78-12.657zm132.844 10.532c-8.415 3.504-16.29 7.213-23.594 11.094l-39.25 45.97l-3.094 39.374l50.438-39.094c6.712-15.904 12.09-35.263 15.5-57.344m177.22 21.626c-24.024 58.09-16.16 97.86 7.873 108.5l21.157-36.625l-19.594-61.438a274 274 0 0 0-9.438-10.438zm146.03.218c-4.55-.028-8.97.084-13.28.28L414.935 138l-19.78 34.28l62.343-13.655c12.897-11.47 26.09-26.626 38.656-45.094c-4.358-.216-8.64-.348-12.812-.374zm-226.094 8.72c-23.24 23.238-38.832 46.003-45.53 65.655l16.436 42.907l34.22-27.75c4.695-20.704 3.436-48.856-5.126-80.812M16.406 159.06c3.28 62.77 27.482 95.31 53.75 94.594l3.344-42.22l-44.063-47a279 279 0 0 0-13.03-5.374zm143.22 11.375a272 272 0 0 0-18.5 4.563l-48.97 37.938l-3.312 41.75c26.492 7.51 57.16-20.567 70.78-84.25zm16.06 1.563c-4.36 22.935-5.65 43.762-4.374 61.5l32.688 51l10.22-38.188l-22.407-58.437h.03a277 277 0 0 0-16.155-15.875zm267.408 8.938l-60.563 13.218l-20.936 36.25c20.682 18.195 60.438 6.035 100.125-45.625a275 275 0 0 0-18.626-3.843m-138.688 25.53c-8.912 1.92-17.304 4.16-25.187 6.657l-46.97 38.03l-10.22 38.19l56.69-29.283c9.493-14.424 18.323-32.49 25.686-53.593zm155.125 25.063c-25.85 20.324-44.046 41.06-53.03 59.782l11.22 44.532l37.28-23.47c7.126-19.99 9.236-48.088 4.53-80.843zm-123.342 8.595c-34.435 77.573-59.394 159.06-62.97 253.03h18.72c3.558-90.792 27.573-169.428 61.312-245.436l-17.063-7.595zm-185.375 6.906c-8.173 62.347 9.714 98.713 35.687 102.75l10.97-40.874l-34.814-54.25a279 279 0 0 0-11.844-7.625zm221.75 24.532c-7.053 22.243-10.817 42.77-11.657 60.532l26.406 54.594L402 349.967l-15.28-60.687h.06c-4.3-5.848-9.033-11.76-14.217-17.717zm-302.47 1.532c-8.664 74.584-8.13 147.835 12.188 220.062h19.44c-20.877-70.772-21.764-143.02-13.064-217.906l-18.562-2.156zm219.47 11.094c-6.613.16-12.953.54-19.032 1.125L215.5 313.78l-10.844 40.408c24.69 12.23 59.938-9.82 84.906-70zm206.718 36.937c-9.072.844-17.664 2.052-25.78 3.594l-51.156 32.217l-14.688 36.657l59.75-22.313c11.14-13.193 22.055-30.075 31.875-50.155zm-157.31 22c-15.528 60.938-2.096 99.19 23.217 106.28l15.72-39.28l-28.094-58.03c-3.43-3-7.053-5.985-10.844-8.97zM183.25 368.72c-12.674 41.233-22.26 82.547-26.844 124.436h18.813c4.507-39.722 13.69-79.23 25.905-118.97l-17.875-5.467zm270 26.655l-58 21.688l-15.563 38.875c23.056 15.098 60.673-2.606 92.625-59.407a273 273 0 0 0-19.062-1.155zM356.5 469.03c-1.874 7.713-3.185 15.757-3.656 24.126h18.687c.45-6.686 1.55-13.206 3.126-19.687l-18.156-4.44z"/></svg></button><button type="button" class="spot" style="left:52%;top:44%" data-beer="rougegorge" aria-pressed="false" aria-label="Le rouge-gorge : bière Rouge Gorge"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="m236.44 73.34l-23.23-15.48A60 60 0 0 0 156 16h-.29C122.79 16.16 96 43.47 96 76.89v19.74L11.63 197.88l-.1.12A16 16 0 0 0 24 224h88a104.11 104.11 0 0 0 104-104v-19.72l20.44-13.62a8 8 0 0 0 0-13.32m-110.29 59.78l-60 72a8 8 0 1 1-12.29-10.24l60-72a8 8 0 1 1 12.29 10.24M164 80a12 12 0 1 1 12-12a12 12 0 0 1-12 12"/></svg></button><button type="button" class="spot" style="left:25%;top:60%" data-beer="ratapenada" aria-pressed="false" aria-label="La chauve-souris : bière Ratapenada"><svg class="ico" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path fill="currentColor" d="M362.005 149.115s-7 55.77-79 83.36v-24.69c-2.76-1-4.63 7.88-7.26 9.15h-39.49c-2.63-1.27-4.5-10.11-7.26-9.15v24.69c-72-27.59-79-83.36-79-83.36c-60.71 67.68-121.41 80-121.41 80c102.53-16.11 101.36 44.89 101.36 44.89c69.71-11.91 65.64 36.31 65.64 36.31c60.63-6.9 60.41 52.57 60.41 52.57s-.22-59.47 60.41-52.57c0 0-4.07-48.22 65.64-36.31c0 0-1.16-61 101.37-44.88c.02.01-60.69-12.33-121.41-80.01"/></svg></button><button type="button" class="spot" style="left:67%;top:77%" data-beer="freyja" aria-pressed="false" aria-label="La libellule : bière Freyja"><svg class="ico" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path fill="currentColor" d="M131.613 21.576a36 36 0 0 0-1.998.05a34 34 0 0 0-4.52.55c-11.974 2.296-21.052 13.1-23.2 26.908c-1.396 8.968-.708 19.472 2.136 31.824a105 105 0 0 0-7.227-2.967c-7.13-2.6-14-4.21-20.438-4.467s-12.443.842-17.84 3.662c-10.794 5.64-16.044 18.626-14.44 32.8c1.602 14.17 8.625 30.916 21.837 51.21C85.398 191.062 114.3 228.23 144.48 253.7c14.917 12.59 30.117 22.445 45.584 26.738c-.845-6.264-.584-12.854.627-19.44c-10.287-3.848-22.168-11.46-34.16-21.58c-27.774-23.44-56.247-59.745-74.946-88.47c-12.245-18.808-17.856-33.625-18.93-43.116s.955-12.268 4.528-14.135s11.803-2.362 23.216 1.8c6.458 2.357 13.792 6.067 21.65 11.18c11.93 32.113 30.72 71.88 53.518 102.02c9.756 12.898 20.218 24.092 31.672 32.06c2.543-5.522 5.687-10.984 9.403-16.294c-8.655-6.367-17.628-15.747-26.17-27.04c-14.347-18.968-27.52-43.103-38.09-66.32c32.386 29.372 52.07 54.056 72.23 83.198a123 123 0 0 1 13.552-13.241c-22.464-32.146-45.464-60.11-85.05-94.265c-5.26-4.537-10.46-8.602-15.573-12.21c-6.9-19.66-8.5-34.132-7.18-42.628c1.36-8.733 3.763-10.564 8.255-11.426c4.493-.86 13.276 1.01 23.797 7.91c10.52 6.9 22.59 18.372 34.285 34.187c30.384 41.094 45.308 71.17 59.217 106.19c5.643-3.123 11.385-5.618 17.12-7.444c-14.292-35.772-30.187-67.765-61.31-109.857c-12.76-17.26-26.134-30.224-39.062-38.704c-10.605-6.955-21.034-11.202-31.05-11.236zM292.355 122.99a22.1 22.1 0 0 0-15.687 6.498c-8.665 8.665-8.665 22.715 0 31.38c4.917 4.918 11.566 7.04 17.982 6.378c-4.65 11.852-2.165 25.768 7.47 35.404c9.343 9.343 22.71 11.97 34.316 7.885c-.43 6.184 1.71 12.515 6.437 17.242c8.665 8.666 22.714 8.665 31.38 0c8.664-8.665 8.664-22.715 0-31.38c-4.767-4.766-11.16-6.905-17.392-6.428c3.984-11.56 1.338-24.823-7.95-34.11c-6.5-6.5-14.947-9.75-23.394-9.75c-3.78 0-7.56.657-11.164 1.958c.86-6.598-1.238-13.51-6.307-18.58a22.12 22.12 0 0 0-15.69-6.498zm-15.388 74.147a58 58 0 0 0-2.574.5c-13.036 2.85-28.087 11.024-41.024 23.96c-12.937 12.938-21.11 27.99-23.96 41.026c-2.175 9.95-1.36 18.227 1.922 24.367c-46.51 35.78-149.555 119.44-185.19 139.307c-14.113 46.802-2.547 79.386 57.16 57.16c18.846-36.327 105.196-141.11 141.325-185.81c5.487 1.66 12.187 1.78 19.898.093c13.036-2.85 28.087-11.024 41.024-23.96c12.935-12.938 21.108-27.99 23.958-41.026c.304-1.394.537-2.747.726-4.074a51.3 51.3 0 0 1-21.328-12.815a51.3 51.3 0 0 1-11.94-18.728zm48.976 46.455c-1.79 5.75-4.26 11.512-7.357 17.176c38.903 14.977 70.47 29.76 114.947 62.648c15.813 11.693 27.286 23.765 34.186 34.285c6.9 10.522 8.767 19.307 7.905 23.8s-2.693 6.895-11.426 8.254c-8.733 1.36-23.76-.352-44.264-7.748a406 406 0 0 1-5.54-2.05a213 213 0 0 0-8.058-9.92c-36.56-42.378-66.137-65.798-101.258-89.868a125 125 0 0 1-6.316 6.826a123 123 0 0 1-7.15 6.592c29.87 20.288 54.574 39.032 83.163 69.332c-19.92-9.646-39.86-21.038-56.037-33.275c-14.147-10.703-25.3-22.084-31.267-32.666c-5.08 3.958-10.33 7.383-15.67 10.246c7.99 13.694 20.677 25.987 35.664 37.324c28.014 21.192 64.35 38.923 95.127 50.902c7.14 9.994 12.13 19.315 15.04 27.298c4.164 11.414 3.668 19.646 1.802 23.22c-1.867 3.572-4.645 5.6-14.135 4.526s-24.304-6.685-43.113-18.93c-28.722-18.7-65.025-47.176-88.464-74.953c-11.72-13.887-20.09-27.632-23.127-38.92a56 56 0 0 1-.518-2.067c-.52.125-1.04.262-1.56.375c-5.727 1.252-11.486 1.777-17.063 1.512c.29 1.687.645 3.37 1.094 5.035c4.21 15.65 14.155 31.03 26.89 46.12c25.468 30.18 62.636 59.084 92.55 78.562c20.293 13.21 37.04 20.234 51.21 21.837c14.173 1.604 27.16-3.65 32.8-14.443s4.393-24.016-.81-38.276c-1.363-3.74-3.038-7.587-5.008-11.516c14.58 3.888 26.72 4.976 36.89 3.393c13.807-2.148 24.612-11.228 26.908-23.2c2.297-11.973-2.156-24.64-10.634-37.567c-8.48-12.928-21.443-26.302-38.7-39.064c-45.53-33.667-79.24-49.524-118.703-64.798z"/></svg></button><button type="button" class="spot" style="left:41%;top:85%" data-beer="fario" aria-pressed="false" aria-label="La truite fario : bière Fario"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M168 76a12 12 0 1 1-12-12a12 12 0 0 1 12 12m42 79.08c-15.08 20.84-37.53 34.88-66.7 41.74c-20.08 4.72-43.54 6-70.12 3.93q2.4 17.82 6.72 37.54a8 8 0 0 1-6.1 9.52a7.8 7.8 0 0 1-1.72.19a8 8 0 0 1-7.81-6.29q-4.89-22.36-7.41-42.62q-20.22-2.51-42.58-7.41a8 8 0 0 1 3.43-15.63q19.7 4.32 37.5 6.73c-2.09-26.56-.78-50 3.93-70.06C66 83.55 80.05 61.1 100.88 46c14.12-10.24 39.26-22.36 78.39-22c21.19.21 40.83 4.33 43.81 6.08a8 8 0 0 1 2.83 2.83c1.75 3 5.87 22.59 6.08 43.78c.22 21.62-3.42 52.75-21.99 78.39m2.43-111.52a175.8 175.8 0 0 0-39.22-3.51c-24.34.64-44.71 6.49-60.76 17.39a96 96 0 0 0 86.09 86.1c10.91-16 16.76-36.42 17.4-60.76a175.8 175.8 0 0 0-3.5-39.22Z"/></svg></button>
+      </div>
+      <div class="panel" id="panel" aria-live="polite">
+        <img id="pImg" src="img/b-fauve.webp" alt="Bouteille de Fauve" width="200" height="440" loading="lazy">
+        <div>
+          <p class="lab" id="pWhere">Le vautour fauve · falaises de la Jonte</p>
+          <h3 id="pName">Fauve</h3>
+          <p class="meta" id="pMeta">Bière ambrée · 5,5 % vol.</p>
+          <p class="story" id="pStory">Le vautour fauve a été réintroduit dans les gorges de la Jonte en 1981. Depuis notre brasserie, nous pouvons observer ces grands oiseaux aux reflets fauves.</p>
+          <button type="button" class="link" id="pOpen" data-open="fauve">Voir la fiche <svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M200 64v104a8 8 0 0 1-16 0V83.31L69.66 197.66a8 8 0 0 1-11.32-11.32L172.69 72H88a8 8 0 0 1 0-16h104a8 8 0 0 1 8 8"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <div class="chips" role="group" aria-label="Choisir une bière du bestiaire"><button type="button" class="chip" data-beer="pounchut" aria-pressed="false">Pounchut</button><button type="button" class="chip" data-beer="fauve" aria-pressed="true">Fauve</button><button type="button" class="chip" data-beer="tantaravel" aria-pressed="false">Tantaravel</button><button type="button" class="chip" data-beer="melina" aria-pressed="false">Mélina</button><button type="button" class="chip" data-beer="tribalte" aria-pressed="false">Tri Balte</button><button type="button" class="chip" data-beer="rougegorge" aria-pressed="false">Rouge Gorge</button><button type="button" class="chip" data-beer="ratapenada" aria-pressed="false">Ratapenada</button><button type="button" class="chip" data-beer="freyja" aria-pressed="false">Freyja</button><button type="button" class="chip" data-beer="fario" aria-pressed="false">Fario</button></div>
+  </div>
+  <script type="application/json" id="bestData">{"pounchut": {"name": "Pounchut", "style": "Bière brune", "abv": "6 %", "origin": "L’eau de la brasserie est captée sur le Puech Pounchut, « pic pointu » en occitan. Ce pic se situe juste au-dessus de notre brasserie, mais celui-là est tout rond !", "where": "Le Puech Pounchut", "sub": "source de notre eau"}, "fauve": {"name": "Fauve", "style": "Bière ambrée", "abv": "5,5 %", "origin": "Le vautour fauve a été réintroduit dans les gorges de la Jonte en 1981. Depuis notre brasserie, nous pouvons observer ces grands oiseaux aux reflets fauves.", "where": "Le vautour fauve", "sub": "falaises de la Jonte"}, "tantaravel": {"name": "Tantaravel", "style": "IPA single hop", "abv": "5,5 %", "origin": "Tantaravèl… c’est ainsi que l’on nomme le houblon en occitan. Sobrement !", "where": "Le houblon", "sub": "tantaravèl en occitan"}, "melina": {"name": "Mélina", "style": "Blonde au miel de châtaignier", "abv": "5,5 %", "origin": "En occitan, Mélina signifie « miel fort ».", "where": "Le miel fort", "sub": "châtaigniers des Cévennes"}, "tribalte": {"name": "Tri Balte", "style": "Blonde triple", "abv": "7 %", "origin": "En occitan, balte fait référence au grain : tri-balte, trois grains.", "where": "Les trois grains", "sub": "orge, blé, seigle"}, "rougegorge": {"name": "Rouge Gorge", "style": "IPA ambrée", "abv": "7 %", "origin": "Aux débuts de la brasserie, un petit rouge-gorge avait élu domicile tout près de la salle de brassage. Son poitrail avait la même teinte cuivrée que notre ambrée naissante.", "where": "Le rouge-gorge", "sub": "près de la salle à brasser"}, "ratapenada": {"name": "Ratapenada", "style": "Impérial Stout", "abv": "9 %", "origin": "Ratapenada signifie chauve-souris en occitan : les pipistrelles séjournent l’hiver dans notre cave de dégustation.", "where": "La chauve-souris", "sub": "la cave du Moulin"}, "freyja": {"name": "Freyja", "style": "Session IPA", "abv": "4,5 %", "origin": "Freyja, déesse nordique, a pour attribut la libellule. Assis à notre terrasse au bord de la Jonte, vous en observerez couramment.", "where": "La libellule", "sub": "la terrasse, au bord de l’eau"}, "fario": {"name": "Fario", "style": "Bière blanche", "abv": "5 %", "origin": "La fario est la truite sauvage emblématique de nos rivières cévenoles.", "where": "La truite fario", "sub": "dans la Jonte"}}</script>
+</section><section class="sec" id="gamme" aria-labelledby="gamT">
+  <div class="wrap">
+    <div class="range__head">
+      <div><p class="chap lab"><i>III.</i> La gamme</p>
+      <h2 id="gamT">Des classiques <em>aux barriques</em></h2></div>
+    <p class="lede">Des bières aux caractères bien marqués, toutes brassées avec l’eau des montagnes. Choisissez une famille, puis une bouteille pour lire sa fiche.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Familles de boissons"><button type="button" role="tab" class="tab" id="t-classiques" aria-controls="p-classiques" aria-selected="true" tabindex="0">Classiques<sup class="num">4</sup></button><button type="button" role="tab" class="tab" id="t-speciales" aria-controls="p-speciales" aria-selected="false" tabindex="-1">Spéciales<sup class="num">8</sup></button><button type="button" role="tab" class="tab" id="t-bio" aria-controls="p-bio" aria-selected="false" tabindex="-1">Biologiques<sup class="num">9</sup></button><button type="button" role="tab" class="tab" id="t-exceptions" aria-controls="p-exceptions" aria-selected="false" tabindex="-1">Exceptions<sup class="num">4</sup></button><button type="button" role="tab" class="tab" id="t-ephemeres" aria-controls="p-ephemeres" aria-selected="false" tabindex="-1">Éphémères<sup class="num">6</sup></button><button type="button" role="tab" class="tab" id="t-perpetuelles" aria-controls="p-perpetuelles" aria-selected="false" tabindex="-1">Perpétuelles<sup class="num">3</sup></button><button type="button" role="tab" class="tab" id="t-humeur" aria-controls="p-humeur" aria-selected="false" tabindex="-1">Humeur des Brasseurs<sup class="num">8</sup></button><button type="button" role="tab" class="tab" id="t-collab" aria-controls="p-collab" aria-selected="false" tabindex="-1">Collab’<sup class="num">6</sup></button><button type="button" role="tab" class="tab" id="t-cidres" aria-controls="p-cidres" aria-selected="false" tabindex="-1">Cidres<sup class="num">2</sup></button><button type="button" role="tab" class="tab" id="t-limonades" aria-controls="p-limonades" aria-selected="false" tabindex="-1">Limonades &amp; softs<sup class="num">9</sup></button></div>
+    <div role="tabpanel" id="p-classiques" aria-labelledby="t-classiques" class="rpanel">
+      <div class="range__intro"><h3>Les Classiques</h3><p>Les plus anciennes références de notre gamme. Des bières brassées au Mas Prades depuis les tous débuts, les recettes qui ont vu naître la brasserie et qui l’ont fait connaître !</p></div>
+      <div class="grid"><button class="card" type="button" data-open="fario" aria-haspopup="dialog"><span class="card__img"><img src="img/b-fario.webp" alt="" width="305" height="591" loading="lazy" decoding="async"></span><h4>Fario</h4><span class="st">Bière blanche</span><span class="abv num">5 % vol.</span></button><button class="card" type="button" data-open="lupuline" aria-haspopup="dialog"><span class="card__img"><img src="img/b-lupuline.webp" alt="" width="307" height="590" loading="lazy" decoding="async"></span><h4>Lupuline</h4><span class="st">Bière blonde</span><span class="abv num">5,5 % vol.</span></button><button class="card" type="button" data-open="fauve" aria-haspopup="dialog"><span class="card__img"><img src="img/b-fauve.webp" alt="" width="302" height="586" loading="lazy" decoding="async"></span><h4>Fauve</h4><span class="st">Bière ambrée</span><span class="abv num">5,5 % vol.</span></button><button class="card" type="button" data-open="pounchut" aria-haspopup="dialog"><span class="card__img"><img src="img/b-pounchut.webp" alt="" width="304" height="588" loading="lazy" decoding="async"></span><h4>Pounchut</h4><span class="st">Bière brune</span><span class="abv num">6 % vol.</span></button></div></div><div role="tabpanel" id="p-speciales" aria-labelledby="t-speciales" class="rpanel" hidden>
+      <div class="range__intro"><h3>Les Spéciales</h3><p>De la blonde au miel de châtaignier à l’Impérial Stout en passant par nos IPA ou encore une ambrée aux épices, il y en a pour tous les goûts.</p></div>
+      <div class="grid"><button class="card" type="button" data-open="melina" aria-haspopup="dialog"><span class="card__img"><img src="img/b-melina.webp" alt="" width="306" height="588" loading="lazy" decoding="async"></span><h4>Mélina</h4><span class="st">Blonde au miel de châtaignier</span><span class="abv num">5,5 % vol.</span></button><button class="card" type="button" data-open="brimbelle" aria-haspopup="dialog"><span class="card__img"><img src="img/b-brimbelle.webp" alt="" width="302" height="567" loading="lazy" decoding="async"></span><h4>Brimbelle</h4><span class="st">Blanche à la myrtille</span><span class="abv num">5 % vol.</span></button><button class="card" type="button" data-open="tribalte" aria-haspopup="dialog"><span class="card__img"><img src="img/b-tribalte.webp" alt="" width="305" height="580" loading="lazy" decoding="async"></span><h4>Tri Balte</h4><span class="st">Blonde triple</span><span class="abv num">7 % vol.</span></button><button class="card" type="button" data-open="rougegorge" aria-haspopup="dialog"><span class="card__img"><img src="img/b-rougegorge.webp" alt="" width="304" height="579" loading="lazy" decoding="async"></span><h4>Rouge Gorge</h4><span class="st">IPA ambrée</span><span class="abv num">7 % vol.</span></button><button class="card" type="button" data-open="freyja" aria-haspopup="dialog"><span class="card__img"><img src="img/b-freyja.webp" alt="" width="304" height="582" loading="lazy" decoding="async"></span><h4>Freyja</h4><span class="st">Session IPA</span><span class="abv num">4,5 % vol.</span></button><button class="card" type="button" data-open="tantaravel" aria-haspopup="dialog"><span class="card__img"><img src="img/b-tantaravel.webp" alt="" width="309" height="577" loading="lazy" decoding="async"></span><h4>Tantaravel</h4><span class="st">IPA single hop</span><span class="abv num">5,5 % vol.</span></button><button class="card" type="button" data-open="ratapenada" aria-haspopup="dialog"><span class="card__img"><img src="img/b-ratapenada.webp" alt="" width="309" height="576" loading="lazy" decoding="async"></span><h4>Ratapenada</h4><span class="st">Impérial Stout</span><span class="abv num">9 % vol.</span></button><button class="card" type="button" data-open="bainepices" aria-haspopup="dialog"><span class="card__img"><img src="img/b-bainepices.webp" alt="" width="301" height="575" loading="lazy" decoding="async"></span><h4>Bain d’Épices</h4><span class="st">Ambrée aux épices, bière de Noël</span><span class="abv num">6 % vol.</span></button></div></div><div role="tabpanel" id="p-bio" aria-labelledby="t-bio" class="rpanel" hidden>
+      <div class="range__intro"><h3>Les Biologiques</h3><p>Élaborées dans notre atelier avec des malts et des houblons issus de l’agriculture biologique. Leur nom correspond tout simplement au style qu’elles représentent.</p></div>
+      <div class="grid"><button class="card" type="button" data-open="bioblanche" aria-haspopup="dialog"><span class="card__img"><img src="img/b-bioblanche.webp" alt="" width="309" height="595" loading="lazy" decoding="async"></span><h4>Blanche Bio</h4><span class="st">Bière blanche</span><span class="abv num">5 % vol.</span></button><button class="card" type="button" data-open="bioblonde" aria-haspopup="dialog"><span class="card__img"><img src="img/b-bioblonde.webp" alt="" width="313" height="592" loading="lazy" decoding="async"></span><h4>Blonde Bio</h4><span class="st">Bière blonde · sans gluten</span><span class="abv num">5,5 % vol.</span></button><button class="card" type="button" data-open="bioambree" aria-haspopup="dialog"><span class="card__img"><img src="img/b-bioambree.webp" alt="" width="307" height="591" loading="lazy" decoding="async"></span><h4>Ambrée Bio</h4><span class="st">Bière ambrée</span><span class="abv num">5,5 % vol.</span></button><button class="card" type="button" data-open="biobrune" aria-haspopup="dialog"><span class="card__img"><img src="img/b-biobrune.webp" alt="" width="304" height="572" loading="lazy" decoding="async"></span><h4>Brune Bio</h4><span class="st">Bière brune</span><span class="abv num">6 % vol.</span></button><button class="card" type="button" data-open="biotriple" aria-haspopup="dialog"><span class="card__img"><img src="img/b-biotriple.webp" alt="" width="310" height="593" loading="lazy" decoding="async"></span><h4>Triple Bio</h4><span class="st">Bière triple</span><span class="abv num">7 % vol.</span></button><button class="card" type="button" data-open="bioipa" aria-haspopup="dialog"><span class="card__img"><img src="img/b-bioipa.webp" alt="" width="305" height="572" loading="lazy" decoding="async"></span><h4>IPA Bio</h4><span class="st">IPA</span><span class="abv num">7 % vol.</span></button><button class="card" type="button" data-open="bioneipa" aria-haspopup="dialog"><span class="card__img"><img src="img/b-bioneipa.webp" alt="" width="307" height="591" loading="lazy" decoding="async"></span><h4>Neipa Bio</h4><span class="st">New England IPA</span><span class="abv num">6 % vol.</span></button><button class="card" type="button" data-open="minimale" aria-haspopup="dialog"><span class="card__img"><img src="img/b-minimale.webp" alt="" width="308" height="571" loading="lazy" decoding="async"></span><h4>Minim’ale</h4><span class="st">Blonde bio sans alcool</span><span class="abv num">0,45 % vol.</span></button><button class="card" type="button" data-open="minimalefr" aria-haspopup="dialog"><span class="card__img"><img src="img/b-minimalefr.webp" alt="" width="299" height="588" loading="lazy" decoding="async"></span><h4>Minim’ale Framboise</h4><span class="st">Bio sans alcool</span><span class="abv num">0,45 % vol.</span></button></div></div><div role="tabpanel" id="p-exceptions" aria-labelledby="t-exceptions" class="rpanel" hidden>
+      <div class="range__intro"><h3>Les Exceptions</h3><p>Avec leurs bouchons cirés, ces références surprendront vos papilles. Parmi elles la célèbre Feuillette, notre toute première bière barriquée.</p></div>
+      <div class="grid"><button class="card" type="button" data-open="feuillette" aria-haspopup="dialog"><span class="card__img"><img src="img/b-feuillette.webp" alt="" width="306" height="589" loading="lazy" decoding="async"></span><h4>Feuillette</h4><span class="st">Blanche à la framboise, fût de Cognac</span><span class="abv num">11 % vol.</span></button><button class="card" type="button" data-open="brett" aria-haspopup="dialog"><span class="card__img"><img src="img/b-brett.webp" alt="" width="305" height="580" loading="lazy" decoding="async"></span><h4>Pas Folle la Brett</h4><span class="st">Brettanomyces, fût de Bourgogne blanc</span><span class="abv num">8 % vol.</span></button><button class="card" type="button" data-open="vinche" aria-haspopup="dialog"><span class="card__img"><img src="img/b-vinche.webp" alt="" width="305" height="576" loading="lazy" decoding="async"></span><h4>Vinche</h4><span class="st">Cette boisson n’est pas une bière !</span><span class="abv num">11 % vol.</span></button><button class="card" type="button" data-open="triplerhum" aria-haspopup="dialog"><span class="flag">De retour !</span><span class="card__img"><img src="img/b-triplerhum.webp" alt="" width="303" height="578" loading="lazy" decoding="async"></span><h4>Triple Barrique Rhum</h4><span class="st">Triple, fût de rhum de Jamaïque</span><span class="abv num">7 % vol.</span></button></div></div><div role="tabpanel" id="p-ephemeres" aria-labelledby="t-ephemeres" class="rpanel" hidden>
+      <div class="range__intro"><h3>Les Éphémères</h3><p>« Quand y’en a plus, c’est tout bu, y’en a plus ! » Des recettes originales produites en quantités limitées, pour tester et expérimenter de nouvelles saveurs.</p></div>
+      <div class="grid"><button class="card" type="button" data-open="citrus" aria-haspopup="dialog"><span class="flag flag--out">Sold out</span><span class="card__img"><img src="img/b-citrus.webp" alt="" width="309" height="588" loading="lazy" decoding="async"></span><h4>Citrus</h4><span class="st">IPA aux agrumes</span><span class="abv num">6 % vol.</span></button><button class="card" type="button" data-open="figale" aria-haspopup="dialog"><span class="card__img"><img src="img/b-figale.webp" alt="" width="176" height="416" loading="lazy" decoding="async"></span><h4>Fig’Ale</h4><span class="st">Brown Ale figues noisettes · canette 44 cl</span><span class="abv num">8 % vol.</span></button><button class="card" type="button" data-open="beluga" aria-haspopup="dialog"><span class="card__img"><img src="img/b-beluga.webp" alt="" width="164" height="394" loading="lazy" decoding="async"></span><h4>Beluga Splash</h4><span class="st">Sour melon · canette 44 cl</span><span class="abv num">6 % vol.</span></button><button class="card" type="button" data-open="natura" aria-haspopup="dialog"><span class="card__img"><img src="img/b-natura.webp" alt="" width="312" height="605" loading="lazy" decoding="async"></span><h4>Natura</h4><span class="st">Wild Anomalus Barrel</span><span class="abv num">9 % vol.</span></button><button class="card" type="button" data-open="microipa" aria-haspopup="dialog"><span class="card__img"><img src="img/b-microipa.webp" alt="" width="309" height="601" loading="lazy" decoding="async"></span><h4>Micro IPA Bio</h4><span class="st">IPA fine et expressive</span><span class="abv num">3,5 % vol.</span></button><button class="card" type="button" data-open="cumbawa" aria-haspopup="dialog"><span class="card__img"><img src="img/b-cumbawa.webp" alt="" width="307" height="603" loading="lazy" decoding="async"></span><h4>Cumbawa</h4><span class="st">Berliner Weisse au combawa · bio</span><span class="abv num">3,8 % vol.</span></button></div></div><div role="tabpanel" id="p-perpetuelles" aria-labelledby="t-perpetuelles" class="rpanel" hidden>
+      <div class="range__intro"><h3>Les Perpétuelles</h3><p>Élevées 8 mois en barrique par fermentation mixte, les Perpétuelles naissent de l’assemblage de différentes bières : acidité subtile, notes boisées, personnalité singulière.</p></div>
+      <div class="grid"><button class="card" type="button" data-open="originelle" aria-haspopup="dialog"><span class="flag">De retour !</span><span class="card__img"><img src="img/b-originelle.webp" alt="" width="306" height="594" loading="lazy" decoding="async"></span><h4>L’Originelle</h4><span class="st">Fermentation mixte nature</span><span class="abv num">8 % vol.</span></button><button class="card" type="button" data-open="pourpre" aria-haspopup="dialog"><span class="card__img"><img src="img/b-pourpre.webp" alt="" width="307" height="598" loading="lazy" decoding="async"></span><h4>La Pourpre</h4><span class="st">Fermentation mixte fruits rouges</span><span class="abv num">8,5 % vol.</span></button><button class="card" type="button" data-open="tropicale" aria-haspopup="dialog"><span class="flag">De retour !</span><span class="card__img"><img src="img/b-tropicale.webp" alt="" width="304" height="602" loading="lazy" decoding="async"></span><h4>La Tropicale</h4><span class="st">Fermentation mixte mangue ananas</span><span class="abv num">8,5 % vol.</span></button></div></div><div role="tabpanel" id="p-humeur" aria-labelledby="t-humeur" class="rpanel" hidden>
+      <div class="range__intro"><h3>L’Humeur des Brasseurs</h3><p>Recettes au gré des saisons et de nos envies, la plupart du temps barriquées. Notre chai réunit des fûts aux origines diverses (rhum, whisky, calvados…). Humeur (n. f.) : particularité momentanée du caractère.</p></div>
+      <div class="grid"><button class="card" type="button" data-open="caussenoir" aria-haspopup="dialog"><span class="flag">De retour !</span><span class="card__img"><img src="img/b-caussenoir.webp" alt="" width="304" height="600" loading="lazy" decoding="async"></span><h4>Causse Noir</h4><span class="st">Imperial Stout, rhum barrel</span><span class="abv num">11 % vol.</span></button><button class="card" type="button" data-open="alpage" aria-haspopup="dialog"><span class="flag flag--out">Sold out</span><span class="card__img"><img src="img/b-alpage.webp" alt="" width="126" height="500" loading="lazy" decoding="async"></span><h4>Alpage et Dérapage</h4><span class="st">Strong Ale, génépi barrel</span><span class="abv num">9,5 % vol.</span></button><button class="card" type="button" data-open="graindeloup" aria-haspopup="dialog"><span class="card__img"><img src="img/b-graindeloup.webp" alt="" width="305" height="594" loading="lazy" decoding="async"></span><h4>Grain de Loup</h4><span class="st">Grape Ale Chardonnay / Muscat, fût de Pic St Loup</span><span class="abv num">10,5 % vol.</span></button><button class="card" type="button" data-open="darkside" aria-haspopup="dialog"><span class="card__img"><img src="img/b-darkside.webp" alt="" width="298" height="595" loading="lazy" decoding="async"></span><h4>Dark Side of the Zest</h4><span class="st">Imperial Stout clémentine, Armagnac barrel</span><span class="abv num">10 % vol.</span></button><button class="card" type="button" data-open="saison" aria-haspopup="dialog"><span class="card__img"><img src="img/b-saison.webp" alt="" width="299" height="593" loading="lazy" decoding="async"></span><h4>Saison Cévenole</h4><span class="st">Fermentation spontanée sur lie de pomme</span><span class="abv num">8 % vol.</span></button><button class="card" type="button" data-open="cerise" aria-haspopup="dialog"><span class="card__img"><img src="img/b-cerise.webp" alt="" width="304" height="613" loading="lazy" decoding="async"></span><h4>La Cerise sur le Piment</h4><span class="st">Strong Ale cerise, poivron &amp; piment, whisky barrel</span><span class="abv num">7,5 % vol.</span></button><button class="card" type="button" data-open="snowstout" aria-haspopup="dialog"><span class="card__img"><img src="img/b-snowstout.webp" alt="" width="310" height="605" loading="lazy" decoding="async"></span><h4>Snow Stout</h4><span class="st">White Stout, rhum barrel</span><span class="abv num">10 % vol.</span></button><button class="card" type="button" data-open="goseille" aria-haspopup="dialog"><span class="card__img"><img src="img/b-goseille.webp" alt="" width="120" height="486" loading="lazy" decoding="async"></span><h4>Goseille</h4><span class="st">Gose fruits rouges et citron, 24 mois en barrique</span><span class="abv num">7,5 % vol.</span></button></div></div><div role="tabpanel" id="p-collab" aria-labelledby="t-collab" class="rpanel" hidden>
+      <div class="range__intro"><h3>Les Collab’</h3><p>Des bières partagées avec les brasseries d’ici et d’ailleurs, éphémères par nature.</p></div>
+      <div class="grid"><button class="card" type="button" data-open="monotrace" aria-haspopup="dialog"><span class="card__img"><img src="img/b-monotrace.webp" alt="" width="316" height="595" loading="lazy" decoding="async"></span><h4>Monotrace</h4><span class="st">West Coast IPA · avec la brasserie du Larzac</span><span class="abv num">6 % vol.</span></button><button class="card" type="button" data-open="keakea" aria-haspopup="dialog"><span class="flag flag--out">Sold out</span><span class="card__img"><img src="img/b-keakea.webp" alt="" width="184" height="424" loading="lazy" decoding="async"></span><h4>Kea Kea</h4><span class="st">NZ IPA · avec Eighty One</span><span class="abv num">5,8 % vol.</span></button><button class="card" type="button" data-open="aiglon" aria-haspopup="dialog"><span class="card__img"><img src="img/b-aiglon.webp" alt="" width="177" height="426" loading="lazy" decoding="async"></span><h4>L’Aiglon Giflé</h4><span class="st">DDH NEIPA au sapin · avec l’Atelier de Fermentation</span><span class="abv num">6 % vol.</span></button><button class="card" type="button" data-open="cerfoise" aria-haspopup="dialog"><span class="card__img"><img src="img/b-cerfoise.webp" alt="" width="172" height="408" loading="lazy" decoding="async"></span><h4>Cerfoise</h4><span class="st">Anti-IPA bio · avec l’Atelier de Fermentation</span><span class="abv num">6 % vol.</span></button><button class="card" type="button" data-open="lush" aria-haspopup="dialog"><span class="card__img"><img src="img/b-lush.webp" alt="" width="194" height="425" loading="lazy" decoding="async"></span><h4>Lush</h4><span class="st">DIPA · avec la brasserie Gekko</span><span class="abv num">8,5 % vol.</span></button><button class="card" type="button" data-open="confluence" aria-haspopup="dialog"><span class="card__img"><img src="img/b-confluence.webp" alt="" width="181" height="409" loading="lazy" decoding="async"></span><h4>Confluence</h4><span class="st">Neipa poire &amp; tonka · avec la brasserie SOMI</span><span class="abv num">6,5 % vol.</span></button></div></div><div role="tabpanel" id="p-cidres" aria-labelledby="t-cidres" class="rpanel" hidden>
+      <div class="range__intro"><h3>Cidres</h3><p>Des pommes ramassées par l’équipe, fermentées à la brasserie.</p></div>
+      <div class="grid"><button class="card" type="button" data-open="cidre" aria-haspopup="dialog"><span class="flag flag--out">Sold out</span><span class="card__img"><img src="img/b-cidre.webp" alt="" width="191" height="614" loading="lazy" decoding="async"></span><h4>Cidre</h4><span class="st">Extra brut bio</span><span class="abv num">8 % vol.</span></button><button class="card" type="button" data-open="popopom" aria-haspopup="dialog"><span class="flag">De retour !</span><span class="card__img"><img src="img/b-popopom.webp" alt="" width="308" height="603" loading="lazy" decoding="async"></span><h4>Popopo Pom</h4><span class="st">Cidre doux bio</span><span class="abv num">5,4 % vol.</span></button></div></div><div role="tabpanel" id="p-limonades" aria-labelledby="t-limonades" class="rpanel" hidden>
+      <div class="range__intro"><h3>Limonades &amp; softs</h3><p>Élaborées à la brasserie avec des ingrédients bio, sans conservateurs, très peu sucrées. En 33 cl et 1 l, certaines en fûts.</p></div>
+      <div class="grid"><div class="card"><span class="card__img"><img src="img/b-limcitron.webp" alt="" width="317" height="610" loading="lazy" decoding="async"></span><h4>Citron</h4><span class="st">La rafraîchissante</span></div><div class="card"><span class="card__img"><img src="img/b-limmyrtille.webp" alt="" width="311" height="590" loading="lazy" decoding="async"></span><h4>Myrtille</h4><span class="st">L’originale</span></div><div class="card"><span class="card__img"><img src="img/b-limmiel.webp" alt="" width="311" height="600" loading="lazy" decoding="async"></span><h4>Miel de châtaignier</h4><span class="st">La cévenole</span></div><div class="card"><span class="card__img"><img src="img/b-limabricot.webp" alt="" width="312" height="593" loading="lazy" decoding="async"></span><h4>Abricot</h4><span class="st">La fruitée</span></div><div class="card"><span class="card__img"><img src="img/b-limsureau.webp" alt="" width="318" height="608" loading="lazy" decoding="async"></span><h4>Sureau</h4><span class="st">La fleurie</span></div><div class="card"><span class="card__img"><img src="img/b-limginger.webp" alt="" width="316" height="601" loading="lazy" decoding="async"></span><h4>Gingembre</h4><span class="st">La Ginger Beer</span></div><div class="card"><span class="card__img"><img src="img/b-limmenthe.webp" alt="" width="311" height="592" loading="lazy" decoding="async"></span><h4>Menthe poivrée</h4><span class="st">La peppermint</span></div><div class="card"><span class="card__img"><img src="img/b-thepeche.webp" alt="" width="313" height="617" loading="lazy" decoding="async"></span><h4>Thé Pêche</h4><span class="st">Le glacé</span></div><div class="card"><span class="card__img"><img src="img/b-cola.webp" alt="" width="307" height="587" loading="lazy" decoding="async"></span><h4>Cola</h4><span class="st">Le revisité</span></div></div></div>
+    <p class="range__note">Certaines bières ne vivent plus que dans vos souvenirs : <a href="https://lesbrasseursdelajonte.fr/nos-anciennes-bieres/" target="_blank" rel="noopener">toutes nos anciennes bières</a>. L’abus d’alcool est dangereux pour la santé, à consommer avec modération.</p>
+  </div>
+  <dialog class="sheet" id="sheet" aria-labelledby="sName">
+    <div class="sheet__in">
+      <div class="sheet__img"><img id="sImg" src="img/b-fario.webp" alt="" width="200" height="440"></div>
+      <div class="sheet__txt">
+        <button type="button" class="sheet__close" id="sClose"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128L50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z"/></svg><span class="sr">Fermer la fiche</span></button>
+        <p class="lab" id="sRange"></p>
+        <h3 id="sName"></h3>
+        <p id="sStyle" style="color:var(--ink-2);margin:0"></p>
+        <dl><dt>Alcool</dt><dd id="sAbv" class="num"></dd><dt id="sHopsT">Houblons</dt><dd id="sHops"></dd></dl>
+        <p id="sTaste"></p>
+        <p class="origin" id="sOrigin"></p>
+      </div>
+    </div>
+  </dialog>
+  <script type="application/json" id="beerData">{"fario": {"name": "Fario", "style": "Bière blanche", "abv": "5 %", "hops": "Nugget, Cascade, Citra", "taste": "Cette bière à l’amertume présente laisse apparaître des notes de fruits tropicaux et d’agrumes à la dégustation. Légère et désaltérante, c’est une blanche dont on se rappelle !", "origin": "La fario est la truite sauvage emblématique de nos rivières cévenoles.", "flag": "", "range": "Les Classiques"}, "lupuline": {"name": "Lupuline", "style": "Bière blonde", "abv": "5,5 %", "hops": "Nugget, Tradition", "taste": "Bière charnue aux bulles fines laissant ressortir des saveurs de miel. L’amertume est modérée et les notes florales sont puissantes.", "origin": "La lupuline est la résine jaunâtre produite par les fleurs femelles du houblon, responsable de l’amertume de la bière.", "flag": "", "range": "Les Classiques"}, "fauve": {"name": "Fauve", "style": "Bière ambrée", "abv": "5,5 %", "hops": "Nugget, Strisselspalt", "taste": "Bière longue en bouche avec une finale caramel intense. Amertume modérée avec une rondeur en bouche importante.", "origin": "Le vautour fauve a été réintroduit dans les gorges de la Jonte en 1981. Depuis notre brasserie, nous pouvons observer ces grands oiseaux aux reflets fauves.", "flag": "", "range": "Les Classiques"}, "pounchut": {"name": "Pounchut", "style": "Bière brune", "abv": "6 %", "hops": "Nugget, Aramis", "taste": "Bière à la fois puissante, subtile et fruitée sur une finale réglisse qui reste légère et peu amère.", "origin": "L’eau de la brasserie est captée sur le Puech Pounchut, « pic pointu » en occitan. Ce pic se situe juste au-dessus de notre brasserie, mais celui-là est tout rond !", "flag": "", "range": "Les Classiques"}, "melina": {"name": "Mélina", "style": "Blonde au miel de châtaignier", "abv": "5,5 %", "hops": "Nugget, Tradition", "taste": "Bière au miel de châtaignier des Cévennes, dont le goût et le nez particuliers sont bien présents, sans en faire une bière liquoreuse. Fraîche, elle accompagnera très bien vos apéritifs. C’est la plus locale de nos bières !", "origin": "En occitan, Mélina signifie « miel fort ».", "flag": "", "range": "Les Spéciales"}, "brimbelle": {"name": "Brimbelle", "style": "Blanche à la myrtille", "abv": "5 %", "hops": "Nugget, Barbe Rouge", "taste": "Une bière peu sucrée, sans colorant, juste de la bière et de la myrtille. Fruitée avec une légère amertume, aux notes boisées, elle est très désaltérante.", "origin": "Dans les Vosges, la brimbelle est un nom commun de la myrtille. Nous ne sommes pas Vosgiens, mais nous aimons bien la sonorité.", "flag": "", "range": "Les Spéciales"}, "tribalte": {"name": "Tri Balte", "style": "Blonde triple", "abv": "7 %", "hops": "Nugget, Azacca, Jarrylo", "taste": "Bière blonde, ronde et délicate avec des notes de banane et de poire. Réalisée avec trois céréales (orge, blé et seigle) et un triple houblonnage, pour trois fois plus de plaisir !", "origin": "En occitan, balte fait référence au grain : tri-balte, trois grains.", "flag": "", "range": "Les Spéciales"}, "rougegorge": {"name": "Rouge Gorge", "style": "IPA ambrée", "abv": "7 %", "hops": "Nugget, Simcoe, Cascade, Mosaic, Citra", "taste": "Bière rousse au goût franc de houblon, plus amère et plus fruitée que notre gamme classique. L’entrée de bouche est très fruitée et la finale est caramel.", "origin": "Aux débuts de la brasserie, un petit rouge-gorge avait élu domicile tout près de la salle de brassage. Son poitrail avait la même teinte cuivrée que notre ambrée naissante.", "flag": "", "range": "Les Spéciales"}, "freyja": {"name": "Freyja", "style": "Session IPA", "abv": "4,5 %", "hops": "Nugget, Azacca, Citra, Nelson Sauvin", "taste": "Robe jaune pâle, douce et légère. Nez de raisin vert et d’agrumes ; en bouche, l’amertume franche laisse place à des notes de fruits tropicaux et de pin.", "origin": "Freyja, déesse nordique, a pour attribut la libellule. Assis à notre terrasse au bord de la Jonte, vous en observerez couramment.", "flag": "", "range": "Les Spéciales"}, "tantaravel": {"name": "Tantaravel", "style": "IPA single hop", "abv": "5,5 %", "hops": "Un seul houblon, variant selon le brassin", "taste": "Nez frais et généreux : chaque houblon apporte son explosion d’arômes. Robe jaune-orangé, mousse blanche et dense. L’amertume est très présente mais la dégustation reste très fruitée.", "origin": "Tantaravèl… c’est ainsi que l’on nomme le houblon en occitan. Sobrement !", "flag": "", "range": "Les Spéciales"}, "ratapenada": {"name": "Ratapenada", "style": "Impérial Stout", "abv": "9 %", "hops": "Nugget, Jarrylo", "taste": "Robe brune très foncée, couronne de mousse couleur crème. Nez de cacao, chocolat noir, café ; en bouche, chocolat et notes de poire. Pour les amateurs de notes torréfiées.", "origin": "Ratapenada signifie chauve-souris en occitan : les pipistrelles séjournent l’hiver dans notre cave de dégustation.", "flag": "", "range": "Les Spéciales"}, "bainepices": {"name": "Bain d’Épices", "style": "Ambrée aux épices, bière de Noël", "abv": "6 %", "hops": "Nugget, Strisselspalt", "taste": "Bière aux épices d’ailleurs (cannelle, gingembre, coriandre, anis…), idéale pour les fêtes et les desserts. C’est notre bière de Noël !", "origin": "Vous avez saisi le jeu de mots ? Elle rappelle la bonne odeur du pain d’épices.", "flag": "", "range": "Les Spéciales"}, "bioblanche": {"name": "Blanche Bio", "style": "Bière blanche", "abv": "5 %", "hops": "Perle, Citra, Mosaïc", "taste": "Bière de lignée belge à l’amertume légère et aux notes houblonnées intenses. Un houblonnage à cru lui confère un nez puissant et une certaine longueur en bouche.", "origin": "", "flag": "", "range": "Les Biologiques"}, "bioblonde": {"name": "Blonde Bio", "style": "Bière blonde · sans gluten", "abv": "5,5 %", "hops": "Perle, Pekko", "taste": "Bière assez levurée et maltée avec des notes de fraise des bois.", "origin": "", "flag": "", "range": "Les Biologiques"}, "bioambree": {"name": "Ambrée Bio", "style": "Bière ambrée", "abv": "5,5 %", "hops": "Perle, Idaho 7, Mosaïc", "taste": "Une ambrée colorée présentant des notes torréfiées assez franches et un houblonnage aromatique puissant.", "origin": "", "flag": "", "range": "Les Biologiques"}, "biobrune": {"name": "Brune Bio", "style": "Bière brune", "abv": "6 %", "hops": "Perle, Aramis", "taste": "Une bière ronde avec de légères notes de cacao torréfié, accompagnées d’une belle amertume.", "origin": "", "flag": "", "range": "Les Biologiques"}, "biotriple": {"name": "Triple Bio", "style": "Bière triple", "abv": "7 %", "hops": "Perle, Azacca", "taste": "Une bière généreusement maltée avec une belle rondeur en bouche.", "origin": "", "flag": "", "range": "Les Biologiques"}, "bioipa": {"name": "IPA Bio", "style": "IPA", "abv": "7 %", "hops": "Perle, Idaho 7, Simcoe, Mosaïc", "taste": "Bière blonde corpulente aux arômes de houblon puissants. Les notes de fruits à coque sont bien présentes, pour une longueur en bouche intense.", "origin": "", "flag": "", "range": "Les Biologiques"}, "bioneipa": {"name": "Neipa Bio", "style": "New England IPA", "abv": "6 %", "hops": "Perle, Citra, Mosaïc", "taste": "Un nez houblonné très puissant ! Une robe très opaque et trouble, caractéristique du style. Médaille d’argent au Millésime Bio 2023.", "origin": "", "flag": "", "range": "Les Biologiques"}, "minimale": {"name": "Minim’ale", "style": "Blonde bio sans alcool", "abv": "0,45 %", "hops": "", "taste": "Bière blonde bio, avec du corps. Finement houblonnée, nez très aromatique. Attaque sur la céréale et finale citronnée.", "origin": "", "flag": "", "range": "Les Biologiques"}, "minimalefr": {"name": "Minim’ale Framboise", "style": "Bio sans alcool", "abv": "0,45 %", "hops": "", "taste": "Base maltée ronde et structurée, purée de framboise bio : une expression fruitée franche, sans excès de sucrosité, avec une belle fraîcheur en finale.", "origin": "", "flag": "", "range": "Les Biologiques"}, "feuillette": {"name": "Feuillette", "style": "Blanche à la framboise, fût de Cognac", "abv": "11 %", "hops": "Summit", "taste": "Orge, blé et framboise, robe rose pâle. La framboise d’abord, puis le suave du cognac, et enfin une finale pamplemousse. Elle se débouche pour les grandes occasions !", "origin": "La feuillette était une unité de mesure pré-métrique de volume pour les liquides ; le mot vient du feuillet, la jauge du fût.", "flag": "", "range": "Les Exceptions"}, "brett": {"name": "Pas Folle la Brett", "style": "Brettanomyces, fût de Bourgogne blanc", "abv": "8 %", "hops": "Nugget, Simcoe, Cascade, Mosaic, Citra", "taste": "Vieillie en fût de bourgogne et ensemencée avec des levures Brettanomyces bruxellensis, cette IPA sort de l’ordinaire. Notes de sous-bois légères, fruits à coque en bouche.", "origin": "", "flag": "", "range": "Les Exceptions"}, "vinche": {"name": "Vinche", "style": "Cette boisson n’est pas une bière !", "abv": "11 %", "hops": "Nugget, Citra, Cascade", "taste": "Mélange de jus de raisin (Syrah) fraîchement pressé et de moût de bière blonde, fermentés ensemble. Fruits rouges intenses au nez comme en bouche.", "origin": "Les racines bourguignonnes de Thomas nous ont poussés à oser ce mélange, à mi-chemin entre le vin et la bière.", "flag": "", "range": "Les Exceptions"}, "triplerhum": {"name": "Triple Barrique Rhum", "style": "Triple, fût de rhum de Jamaïque", "abv": "7 %", "hops": "Nugget, Azacca, Jarrylo", "taste": "Nez puissant de rhum de Jamaïque. Le vieillissement en barrique lui confère une longueur et une rondeur exceptionnelles.", "origin": "", "flag": "De retour !", "range": "Les Exceptions"}, "citrus": {"name": "Citrus", "style": "IPA aux agrumes", "abv": "6 %", "hops": "", "taste": "Un cocktail d’agrumes en bouteille ! Une IPA légère, fruitée et peu sucrée.", "origin": "", "flag": "Sold out", "range": "Les Éphémères"}, "figale": {"name": "Fig’Ale", "style": "Brown Ale figues noisettes · canette 44 cl", "abv": "8 %", "hops": "", "taste": "La rondeur de la figue, l’aromatique de la feuille de figuier et les notes finales de noisette. Gourmandise assurée !", "origin": "", "flag": "", "range": "Les Éphémères"}, "beluga": {"name": "Beluga Splash", "style": "Sour melon · canette 44 cl", "abv": "6 %", "hops": "", "taste": "L’acidité légère se marie à la douceur du melon, pour une bière rafraîchissante, pétillante et fruitée.", "origin": "", "flag": "", "range": "Les Éphémères"}, "natura": {"name": "Natura", "style": "Wild Anomalus Barrel", "abv": "9 %", "hops": "", "taste": "Élevage long, levures indomptées, saveurs boisées et sauvages : une bière rare, profonde, vivante. Une balade en forêt à chaque gorgée.", "origin": "", "flag": "", "range": "Les Éphémères"}, "microipa": {"name": "Micro IPA Bio", "style": "IPA fine et expressive", "abv": "3,5 %", "hops": "", "taste": "Toute l’aromatique d’une IPA, tout en finesse : agrumes, fruits frais, amertume bien présente et finale ultra désaltérante. Petite en alcool, grande en goût.", "origin": "", "flag": "", "range": "Les Éphémères"}, "cumbawa": {"name": "Cumbawa", "style": "Berliner Weisse au combawa · bio", "abv": "3,8 %", "hops": "", "taste": "Robe limpide et nez très floral. Le combawa apporte une belle touche fruitée. Très légère.", "origin": "", "flag": "", "range": "Les Éphémères"}, "originelle": {"name": "L’Originelle", "style": "Fermentation mixte nature", "abv": "8 %", "hops": "", "taste": "Élevée en barrique pendant 8 mois. Une complexité aromatique unique, entre acidité subtile et notes boisées.", "origin": "", "flag": "De retour !", "range": "Les Perpétuelles"}, "pourpre": {"name": "La Pourpre", "style": "Fermentation mixte fruits rouges", "abv": "8,5 %", "hops": "", "taste": "Aux fruits rouges : une bière acidulée, fraîche et boisée. Une bière avec du caractère !", "origin": "", "flag": "", "range": "Les Perpétuelles"}, "tropicale": {"name": "La Tropicale", "style": "Fermentation mixte mangue ananas", "abv": "8,5 %", "hops": "", "taste": "Acidulée, accompagnée de la rondeur des fruits tropicaux, au boisé soutenu !", "origin": "", "flag": "De retour !", "range": "Les Perpétuelles"}, "caussenoir": {"name": "Causse Noir", "style": "Imperial Stout, rhum barrel", "abv": "11 %", "hops": "", "taste": "Vieillie 10 mois en barrique de rhum de Jamaïque. Puissamment torréfiée, notes de vanille et d’orange, gourmande et très ronde.", "origin": "", "flag": "De retour !", "range": "L’Humeur des Brasseurs"}, "alpage": {"name": "Alpage et Dérapage", "style": "Strong Ale, génépi barrel", "abv": "9,5 %", "hops": "", "taste": "Au nez, les plantes de montagne : herbacées, florales, légèrement résineuses. Le fût apporte de la profondeur.", "origin": "", "flag": "Sold out", "range": "L’Humeur des Brasseurs"}, "graindeloup": {"name": "Grain de Loup", "style": "Grape Ale Chardonnay / Muscat, fût de Pic St Loup", "abv": "10,5 %", "hops": "", "taste": "Sèche, fruitée, patiemment affinée 8 mois en barrique. Équilibrée, fine, longue en bouche, avec l’élégance d’un champagne.", "origin": "", "flag": "", "range": "L’Humeur des Brasseurs"}, "darkside": {"name": "Dark Side of the Zest", "style": "Imperial Stout clémentine, Armagnac barrel", "abv": "10 %", "hops": "", "taste": "Une base intensément chocolatée, riche et veloutée, réveillée par la clémentine. Un contraste gourmand et audacieux.", "origin": "", "flag": "", "range": "L’Humeur des Brasseurs"}, "saison": {"name": "Saison Cévenole", "style": "Fermentation spontanée sur lie de pomme", "abv": "8 %", "hops": "", "taste": "L’éclat du seigle qui rencontre la délicatesse de la pomme. Acidulée, sèche et subtile.", "origin": "", "flag": "", "range": "L’Humeur des Brasseurs"}, "cerise": {"name": "La Cerise sur le Piment", "style": "Strong Ale cerise, poivron & piment, whisky barrel", "abv": "7,5 %", "hops": "", "taste": "La force du poivron, la gourmandise de la cerise, un souffle de piment… le tout sublimé par la douceur du whisky.", "origin": "", "flag": "", "range": "L’Humeur des Brasseurs"}, "snowstout": {"name": "Snow Stout", "style": "White Stout, rhum barrel", "abv": "10 %", "hops": "", "taste": "Café intense, vanille suave et macadamia toastée, portés par une rondeur chaleureuse. Surprenante, soyeuse.", "origin": "", "flag": "", "range": "L’Humeur des Brasseurs"}, "goseille": {"name": "Goseille", "style": "Gose fruits rouges et citron, 24 mois en barrique", "abv": "7,5 %", "hops": "", "taste": "Deux années de barrique pour une acidité fine, des notes fruitées intenses et une profondeur aromatique unique.", "origin": "", "flag": "", "range": "L’Humeur des Brasseurs"}, "monotrace": {"name": "Monotrace", "style": "West Coast IPA · avec la brasserie du Larzac", "abv": "6 %", "hops": "", "taste": "Bière participative pour l’association Sentier : 50 centimes par bouteille reversés à l’entretien des sentiers et chemins nature.", "origin": "", "flag": "", "range": "Les Collab’"}, "keakea": {"name": "Kea Kea", "style": "NZ IPA · avec Eighty One", "abv": "5,8 %", "hops": "Waimea, Rakau", "taste": "Une NZ Hazy IPA qui met à l’honneur les houblons emblématiques de Nouvelle-Zélande.", "origin": "", "flag": "Sold out", "range": "Les Collab’"}, "aiglon": {"name": "L’Aiglon Giflé", "style": "DDH NEIPA au sapin · avec l’Atelier de Fermentation", "abv": "6 %", "hops": "Barbe Rouge, Motueka, Strata, Amarillo", "taste": "Doublement houblonnée, relevée d’une touche de sapin. Juteuse, aromatique et résineuse.", "origin": "", "flag": "", "range": "Les Collab’"}, "cerfoise": {"name": "Cerfoise", "style": "Anti-IPA bio · avec l’Atelier de Fermentation", "abv": "6 %", "hops": "Sans houblon", "taste": "Menthe poivrée, citronnelle, verveine, thym citronné et miel : légère et parfumée.", "origin": "", "flag": "", "range": "Les Collab’"}, "lush": {"name": "Lush", "style": "DIPA · avec la brasserie Gekko", "abv": "8,5 %", "hops": "Centennial, Galaxy, Nelson Sauvin", "taste": "Puissante, juteuse, dangereusement buvable. Fruits tropicaux, raisin blanc, agrumes vifs et amertume franche.", "origin": "", "flag": "", "range": "Les Collab’"}, "confluence": {"name": "Confluence", "style": "Neipa poire & tonka · avec la brasserie SOMI", "abv": "6,5 %", "hops": "", "taste": "Fruits exotiques, vrai nectar de poire, fève tonka entre vanille et amande. Ronde, gourmande, équilibrée.", "origin": "", "flag": "", "range": "Les Collab’"}, "cidre": {"name": "Cidre", "style": "Extra brut bio", "abv": "8 %", "hops": "", "taste": "Pommes Reinette du Vigan ramassées par nos soins à Pont-d’Hérault, pressées en Lozère, fermentées avec des levures indigènes. Très parfumé, notes de pomme fraîche.", "origin": "", "flag": "Sold out", "range": "Cidres"}, "popopom": {"name": "Popopo Pom", "style": "Cidre doux bio", "abv": "5,4 %", "hops": "", "taste": "Peu sucré et désaltérant, pommes Juliet et puis c’est tout. Frais pour l’été !", "origin": "", "flag": "De retour !", "range": "Cidres"}}</script>
+</section><section class="sec chrono" id="chrono" aria-labelledby="chrT">
+  <div class="wrap chrono__head">
+    <div><p class="chap lab"><i>IV.</i> L’histoire de nos bières</p>
+    <h2 id="chrT">Une bière <em>par saison</em>, ou presque</h2></div>
+    <div class="chrono__nav"><button type="button" id="cPrev"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M224 128a8 8 0 0 1-8 8H59.31l58.35 58.34a8 8 0 0 1-11.32 11.32l-72-72a8 8 0 0 1 0-11.32l72-72a8 8 0 0 1 11.32 11.32L59.31 120H216a8 8 0 0 1 8 8"/></svg><span class="sr">Année précédente</span></button>
+    <button type="button" id="cNext"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="m221.66 133.66l-72 72a8 8 0 0 1-11.32-11.32L196.69 136H40a8 8 0 0 1 0-16h156.69l-58.35-58.34a8 8 0 0 1 11.32-11.32l72 72a8 8 0 0 1 0 11.32"/></svg><span class="sr">Année suivante</span></button></div>
+  </div>
+  <div class="rail-wrap"><ol class="rail" id="rail" tabindex="0" aria-label="Chronologie 2013 à 2025, défilement horizontal"><li><b class="num">2013</b><img src="img/chrono-2013.webp" alt="" width="520" height="520" loading="lazy" decoding="async"><h3>Les Classiques</h3><p>Fario, Lupuline, Fauve et Pounchut font l’ouverture de la brasserie.</p></li><li><b class="num">2014</b><img src="img/chrono-2014.webp" alt="" width="520" height="520" loading="lazy" decoding="async"><h3>La Bain d’Épices</h3><p>Brassage d’une bière de Noël.</p></li><li><b class="num">2015</b><img src="img/chrono-2015.webp" alt="" width="520" height="520" loading="lazy" decoding="async"><h3>Mélina et Tri-Balte</h3><p>Elles viennent agrandir la gamme.</p></li><li><b class="num">2016</b><img src="img/chrono-2016.webp" alt="" width="520" height="520" loading="lazy" decoding="async"><h3>Rouge-Gorge et Brimbelle</h3><p>Premières apparitions. Le format des bouteilles de 75 cl change.</p></li><li><b class="num">2017</b><img src="img/chrono-2017.webp" alt="" width="520" height="520" loading="lazy" decoding="async"><h3>Limonades &amp; La Bestia</h3><p>Création des limonades artisanales, collab’ avec La Bestia (Estivale, Impérial Stout).</p></li><li><b class="num">2018</b><img src="img/chrono-2018.webp" alt="" width="520" height="520" loading="lazy" decoding="async"><h3>Nouvelle salle à brasser</h3><p>Feuillette, Tantaravel, Freyja, Ratapenada. Collab’ La Tarnonaise : la Rivière Noire.</p></li><li><b class="num">2019</b><img src="img/chrono-2019.webp" alt="" width="520" height="520" loading="lazy" decoding="async"><h3>Certification bio</h3><p>Pas Folle la Brett’, les Triple Barrique, la première Vinche et la gamme bio.</p></li><li><b class="num">2020</b><img src="img/chrono-2020.webp" alt="" width="520" height="520" loading="lazy" decoding="async"><h3>Surprises barriquées</h3><p>L’Humeur des Brasseurs entre en scène. La Brune complète la gamme bio.</p></li><li><b class="num">2021</b><img src="img/chrono-2021.webp" alt="" width="520" height="520" loading="lazy" decoding="async"><h3>Trois médailles à Lyon</h3><p>Argent pour la Feuillette, Or pour la Rouge Gorge et la Fario. Gamme éphémère.</p></li><li><b class="num">2022</b><img src="img/chrono-2022.webp" alt="" width="520" height="520" loading="lazy" decoding="async"><h3>Nouveaux habits</h3><p>Nouveau logo, nouvelles capsules, nouvelles étiquettes. Limonades en 1 litre.</p></li><li><b class="num">2023</b><img src="img/chrono-2023.webp" alt="" width="520" height="520" loading="lazy" decoding="async"><h3>Médailles &amp; 10 ans</h3><p>Neipa argent au Millésime Bio, Mélina et HB#12 or au France Bière Challenge. Cola, 4 limonades, Minim’ale.</p></li><li><b class="num">2024</b><img src="img/chrono-2024.webp" alt="" width="520" height="516" loading="lazy" decoding="async"><h3>Gamme Humeur renouvelée</h3><p>Barrique Ibérique, Armagnacoco ; la Même Pomm’Ale devient une favorite.</p></li><li><b class="num">2025</b><img src="img/chrono-2025.webp" alt="" width="520" height="520" loading="lazy" decoding="async"><h3>Gamme Perpétuelle</h3><p>L’Originelle, La Pourpre, La Tropicale. Bière Gamote, Thé Glacé Pêche et cidre bio.</p></li></ol></div>
+</section><section class="sec" id="equipe" aria-labelledby="teamT" style="padding-top:clamp(84px,11vw,168px)">
+  <div class="wrap">
+    <div class="team__head">
+      <div><p class="chap lab"><i>V.</i> La fine équipe</p>
+      <h2 id="teamT">Ceux sans qui nos bières n’arriveraient <em>ni dans vos paniers, ni dans vos gosiers</em></h2></div>
+      <p class="lede">Ce n’est plus l’association de deux passionnés : voici seize visages, fromagers, maraîchers, mécanos ou sommelière d’hier, tombés dans la bière.</p>
+    </div>
+    <ul class="team"><li><img src="img/team-jean.jpg" alt="Portrait de Jean" width="640" height="640" loading="lazy" decoding="async"><h3>Jean</h3><p class="role">Cofondateur · administratif et maintenance</p><q>La Feuillette, elle est souvent sur le podium !</q></li><li><img src="img/team-toto.jpg" alt="Portrait de Toto" width="640" height="640" loading="lazy" decoding="async"><h3>Toto</h3><p class="role">Cofondateur · production et organisation</p><q>L’hiver les stouts, au printemps les bières aux fruits, l’été la Freyja et la Tantaravel.</q></li><li><img src="img/team-celine.jpg" alt="Portrait de Céline" width="640" height="640" loading="lazy" decoding="async"><h3>Céline</h3><p class="role">Administratif</p><q>J’suis arrivée ici en vélo ! Et avant je faisais du fromage !</q></li><li><img src="img/team-sara.jpg" alt="Portrait de Sara" width="640" height="640" loading="lazy" decoding="async"><h3>Sara</h3><p class="role">Administration des ventes · tournées</p><q>Une préférence pour la Freyja et la Fario. La Neipa est top aussi !</q></li><li><img src="img/team-adrien.jpg" alt="Portrait de Adrien" width="640" height="640" loading="lazy" decoding="async"><h3>Adrien</h3><p class="role">Production et conditionnement</p><q>De la Freyja à la grosse stout barriquée, en passant par la Tantaravel.</q></li><li><img src="img/team-alex.jpg" alt="Portrait de Alex" width="640" height="640" loading="lazy" decoding="async"><h3>Alex</h3><p class="role">Dresseur de palettes, éleveur de cartons</p><q>Stout Rhum. Et Black Dog de Led Zep.</q></li><li><img src="img/team-tanguy.jpg" alt="Portrait de Tanguy" width="640" height="640" loading="lazy" decoding="async"><h3>Tanguy</h3><p class="role">Brassage, embouteillage, maintenance</p><q>La NEIPA, si vraiment faut choisir.</q></li><li><img src="img/team-romuald.jpg" alt="Portrait de Romuald" width="640" height="640" loading="lazy" decoding="async"><h3>Romuald</h3><p class="role">Responsable logistique</p><q>Une bière, c’est comme une chanson : on l’associe à un instant.</q></li><li><img src="img/team-angel.jpg" alt="Portrait de Angel" width="640" height="640" loading="lazy" decoding="async"><h3>Angel</h3><p class="role">Comptabilité · « Excel est mon ami ! »</p><q>Ma préférée, c’est celle entre amis lors d’une soirée improvisée !</q></li><li><img src="img/team-lena.jpg" alt="Portrait de Léna" width="640" height="640" loading="lazy" decoding="async"><h3>Léna</h3><p class="role">Production et contrôle qualité</p><q>La Freyja ! J’aime aussi beaucoup toute la gamme classique.</q></li><li><img src="img/team-fabrice.jpg" alt="Portrait de Fabrice" width="640" height="640" loading="lazy" decoding="async"><h3>Fabrice</h3><p class="role">Livreur</p><q>L’une de mes préférées est la Tantaravel !</q></li><li><img src="img/team-valentin.jpg" alt="Portrait de Valentin" width="639" height="640" loading="lazy" decoding="async"><h3>Valentin</h3><p class="role">Pourvoyeur de bonheur</p><q>Une bière : la Goseille.</q></li><li><img src="img/team-clement.jpg" alt="Portrait de Clément" width="640" height="640" loading="lazy" decoding="async"><h3>Clément</h3><p class="role">Préparateur de commandes</p><q>Plutôt les NEIPA.</q></li><li><img src="img/team-yragael.jpg" alt="Portrait de Yragael" width="640" height="640" loading="lazy" decoding="async"><h3>Yragael</h3><p class="role">Production, du malt à l’enfûtage</p><q>J’adore la Feuillette, mais aussi les IPA et la Rouge-Gorge.</q></li><li><img src="img/team-fabien.jpg" alt="Portrait de Fabien" width="640" height="640" loading="lazy" decoding="async"><h3>Fabien</h3><p class="role">Commerce (entre deux siestes)</p><q>La Tantaravel Crush. Et à part la bière ? La pêche !</q></li><li><img src="img/team-manon.jpg" alt="Portrait de Manon" width="640" height="640" loading="lazy" decoding="async"><h3>Manon</h3><p class="role">Commerce et communication</p><q>Je raconte les bières avec leurs histoires qui donnent envie d’être partagées !</q></li></ul>
+  </div>
+</section><section class="sec" id="moulin" aria-labelledby="mouT" style="background:var(--paper-2)">
+  <div class="wrap">
+    <p class="chap lab"><i>VI.</i> Venir nous voir</p>
+    <div class="visit">
+      <figure class="visit__photo fig"><img src="img/moulin-terrasse.jpg" alt="La terrasse du Moulin des Brasseurs au bord de la Jonte" width="1400" height="1400" loading="lazy" decoding="async"><figcaption>Le Moulin, intérieur et terrasse</figcaption></figure>
+      <div class="visit__info">
+        <h2 id="mouT" style="font-size:clamp(38px,4.4vw,64px)">Le Moulin <em>des Brasseurs</em></h2>
+        <p style="margin-top:16px">Lieu convivial en intérieur et en extérieur, où découvrir toute la gamme : bières, bières sans alcool et softs. Petite restauration avec des produits locaux à la belle saison.</p>
+        <dl class="hours" id="hours">
+          <div data-from="10-01" data-to="04-30"><dt>1ᵉʳ octobre → 30 avril<small>Point de vente · fermé le week-end et à Noël</small></dt><dd class="num">lun–ven · 10h–12h, 14h–17h</dd></div>
+          <div data-from="05-01" data-to="06-30"><dt>1ᵉʳ mai → 30 juin<small>Point de vente, tap room, restauration, événements</small></dt><dd class="num">7/7 · 10h–19h</dd></div>
+          <div data-from="07-01" data-to="08-31"><dt>1ᵉʳ juillet → 31 août<small>Le plein été</small></dt><dd class="num">7/7 · 10h–21h</dd></div>
+          <div data-from="09-01" data-to="09-30"><dt>1ᵉʳ → 30 septembre<small>Point de vente, tap room, restauration</small></dt><dd class="num">7/7 · 10h–19h</dd></div>
+        </dl>
+        <p style="font-size:15px;color:var(--ink-2)">Moulin : <a href="tel:+33448500083" class="num">04 48 50 00 83</a> · <span style="user-select:all">lemoulindesbrasseurs@gmail.com</span></p>
+        <div class="hero__cta" style="margin-top:18px">
+          <a class="btn btn--line" href="https://www.instagram.com/lemoulindesbrasseurs/" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M128 80a48 48 0 1 0 48 48a48.05 48.05 0 0 0-48-48m0 80a32 32 0 1 1 32-32a32 32 0 0 1-32 32m48-136H80a56.06 56.06 0 0 0-56 56v96a56.06 56.06 0 0 0 56 56h96a56.06 56.06 0 0 0 56-56V80a56.06 56.06 0 0 0-56-56m40 152a40 40 0 0 1-40 40H80a40 40 0 0 1-40-40V80a40 40 0 0 1 40-40h96a40 40 0 0 1 40 40ZM192 76a12 12 0 1 1-12-12a12 12 0 0 1 12 12"/></svg> Agenda Instagram</a>
+          <a class="btn btn--line" href="https://www.facebook.com/profile.php?id=61574721677311" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m8 191.63V152h24a8 8 0 0 0 0-16h-24v-24a16 16 0 0 1 16-16h16a8 8 0 0 0 0-16h-16a32 32 0 0 0-32 32v24H96a8 8 0 0 0 0 16h24v63.63a88 88 0 1 1 16 0"/></svg> Facebook</a>
+        </div>
+      </div>
+      <div class="visit__strip">
+        <figure class="fig"><img src="img/moulin-1.jpg" alt="Le point de vente du Moulin" width="800" height="600" loading="lazy" decoding="async"></figure>
+        <figure class="fig"><img src="img/moulin-2.jpg" alt="Intérieur voûté du Moulin des Brasseurs" width="800" height="800" loading="lazy" decoding="async"></figure>
+        <figure class="fig"><img src="img/moulin-3.jpg" alt="Bouteilles au Moulin des Brasseurs" width="800" height="800" loading="lazy" decoding="async"></figure>
+      </div>
+      <div class="atelier" id="atelier">
+        <div class="atelier__txt">
+          <p class="lab" style="color:var(--jonte)">L’Atelier · visite & secrets de fabrication</p>
+          <h3 style="font-size:clamp(30px,3vw,44px);margin:10px 0 14px">Au cœur des cuves inox</h3>
+          <p>Un brasseur de l’équipe vous explique les étapes du brassage, au milieu des cuves où fermentent les bières.</p>
+          <div class="badge-tour"><b class="num">17h</b><span>Juillet et août, du lundi au vendredi</span><span>Gratuit, sans réservation · 30 à 45 min</span></div>
+          <p style="font-size:15.5px;color:var(--ink-2)">Rendez-vous devant l’atelier, les bâtiments en bois juste après le parking. Groupes de 10 personnes minimum : visite possible hors saison, sur réservation.</p>
+          <a class="btn btn--ink" href="#contact" data-subject="visite">Réserver une visite de groupe</a>
+        </div>
+        <div class="atelier__figs">
+          <figure class="fig"><img src="img/visite-01.jpg" alt="Visite de l’atelier de production" width="1400" height="923" loading="lazy" decoding="async"></figure>
+          <figure class="fig"><img src="img/atelier-03.jpg" alt="Cuves de fermentation de la brasserie" width="900" height="900" loading="lazy" decoding="async"></figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><section class="sec" id="tireuses" aria-labelledby="tapT">
+  <div class="wrap tap">
+    <div>
+      <p class="chap lab"><i>VII.</i> Pour vos événements</p>
+      <h2 id="tapT">Louez nos fûts <em>&amp; tireuses</em></h2>
+      <p class="lede" style="margin-top:20px">Mariages, anniversaires, fêtes de village, festivals : nos bières et limonades existent en fûts pression, avec des tireuses mobiles adaptées à chaque événement.</p>
+      <div class="kegs">
+        <div><b class="num">30 L</b><span>≈ 120 verres de 25 cl</span></div>
+        <div><b class="num">20 L</b><span>≈ 80 verres de 25 cl</span></div>
+      </div>
+      <p>Écocups réutilisables 25 ou 50 cl sur demande. Les professionnels équipés d’une tireuse fixe peuvent être livrés en fûts de 30 ou 20 litres.</p>
+      <div class="hero__cta" style="margin:22px 0 8px">
+        <a class="btn btn--ink" href="#contact" data-subject="tireuse-part">Devis particulier</a>
+        <a class="btn btn--line" href="#contact" data-subject="tireuse-pro">Devis professionnel</a>
+      </div>
+      <ul class="docs"><li><a href="https://lesbrasseursdelajonte.fr/wp-content/uploads/2026/05/Mode-demploi-tireuse-FROID-SEC.pdf" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M224 152a8 8 0 0 1-8 8h-24v16h16a8 8 0 0 1 0 16h-16v16a8 8 0 0 1-16 0v-56a8 8 0 0 1 8-8h32a8 8 0 0 1 8 8M92 172a28 28 0 0 1-28 28h-8v8a8 8 0 0 1-16 0v-56a8 8 0 0 1 8-8h16a28 28 0 0 1 28 28m-16 0a12 12 0 0 0-12-12h-8v24h8a12 12 0 0 0 12-12m88 8a36 36 0 0 1-36 36h-16a8 8 0 0 1-8-8v-56a8 8 0 0 1 8-8h16a36 36 0 0 1 36 36m-16 0a20 20 0 0 0-20-20h-8v40h8a20 20 0 0 0 20-20M40 112V40a16 16 0 0 1 16-16h96a8 8 0 0 1 5.66 2.34l56 56A8 8 0 0 1 216 88v24a8 8 0 0 1-16 0V96h-48a8 8 0 0 1-8-8V40H56v72a8 8 0 0 1-16 0m120-32h28.69L160 51.31Z"/></svg><span>Mode d’emploi · Tireuse froid sec</span><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M200 64v104a8 8 0 0 1-16 0V83.31L69.66 197.66a8 8 0 0 1-11.32-11.32L172.69 72H88a8 8 0 0 1 0-16h104a8 8 0 0 1 8 8"/></svg></a></li><li><a href="https://lesbrasseursdelajonte.fr/wp-content/uploads/2026/05/Mode-demploi-Tireuse-Froid-sec-avec-CO2.pdf" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M224 152a8 8 0 0 1-8 8h-24v16h16a8 8 0 0 1 0 16h-16v16a8 8 0 0 1-16 0v-56a8 8 0 0 1 8-8h32a8 8 0 0 1 8 8M92 172a28 28 0 0 1-28 28h-8v8a8 8 0 0 1-16 0v-56a8 8 0 0 1 8-8h16a28 28 0 0 1 28 28m-16 0a12 12 0 0 0-12-12h-8v24h8a12 12 0 0 0 12-12m88 8a36 36 0 0 1-36 36h-16a8 8 0 0 1-8-8v-56a8 8 0 0 1 8-8h16a36 36 0 0 1 36 36m-16 0a20 20 0 0 0-20-20h-8v40h8a20 20 0 0 0 20-20M40 112V40a16 16 0 0 1 16-16h96a8 8 0 0 1 5.66 2.34l56 56A8 8 0 0 1 216 88v24a8 8 0 0 1-16 0V96h-48a8 8 0 0 1-8-8V40H56v72a8 8 0 0 1-16 0m120-32h28.69L160 51.31Z"/></svg><span>Mode d’emploi · Tireuse froid sec avec CO₂</span><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M200 64v104a8 8 0 0 1-16 0V83.31L69.66 197.66a8 8 0 0 1-11.32-11.32L172.69 72H88a8 8 0 0 1 0-16h104a8 8 0 0 1 8 8"/></svg></a></li><li><a href="https://lesbrasseursdelajonte.fr/wp-content/uploads/2026/05/Mode-demploi-tireuse-EAU-et-CO2.pdf" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M224 152a8 8 0 0 1-8 8h-24v16h16a8 8 0 0 1 0 16h-16v16a8 8 0 0 1-16 0v-56a8 8 0 0 1 8-8h32a8 8 0 0 1 8 8M92 172a28 28 0 0 1-28 28h-8v8a8 8 0 0 1-16 0v-56a8 8 0 0 1 8-8h16a28 28 0 0 1 28 28m-16 0a12 12 0 0 0-12-12h-8v24h8a12 12 0 0 0 12-12m88 8a36 36 0 0 1-36 36h-16a8 8 0 0 1-8-8v-56a8 8 0 0 1 8-8h16a36 36 0 0 1 36 36m-16 0a20 20 0 0 0-20-20h-8v40h8a20 20 0 0 0 20-20M40 112V40a16 16 0 0 1 16-16h96a8 8 0 0 1 5.66 2.34l56 56A8 8 0 0 1 216 88v24a8 8 0 0 1-16 0V96h-48a8 8 0 0 1-8-8V40H56v72a8 8 0 0 1-16 0m120-32h28.69L160 51.31Z"/></svg><span>Mode d’emploi · Tireuse eau avec CO₂</span><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M200 64v104a8 8 0 0 1-16 0V83.31L69.66 197.66a8 8 0 0 1-11.32-11.32L172.69 72H88a8 8 0 0 1 0-16h104a8 8 0 0 1 8 8"/></svg></a></li></ul>
+    </div>
+    <div class="tap__img">
+      <img src="img/futs.jpg" alt="Fûts de bière des Brasseurs de la Jonte" width="1400" height="1050" loading="lazy" decoding="async">
+      <div class="tap__thumbs"><img src="img/tireuse-01.jpg" alt="Tireuse mobile modèle 1" width="800" height="800" loading="lazy"><img src="img/tireuse-02.jpg" alt="Tireuse mobile modèle 2" width="800" height="800" loading="lazy"><img src="img/tireuse-03.jpg" alt="Tireuse mobile modèle 3" width="800" height="800" loading="lazy"><img src="img/tireuse-04.jpg" alt="Tireuse mobile modèle 4" width="800" height="800" loading="lazy"></div>
+    </div>
+  </div>
+</section><section class="sec deep" id="trouver" aria-labelledby="whereT">
+  <svg class="edge edge--flip" style="color:var(--paper)" viewBox="0 0 2613 216" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M2401.7,167.9c15.1,3.3,29.9,5.8,44.3,7.1c88,8,67,25,131,35c24.7,3.3,36.3,5.3,35,6H0c161-7,161-58,280-63c99.5,0,156.6-15.7,187-25.8c0,0,17.3-6.7,23.4-7.8c0.5-0.1,1.1-0.3,1.6-0.4c70.7-13.3,119.8-20.7,155.1-24.8c0,0-0.1-0.1-0.1-0.2c0,0,79.6-5.2,87.4-5l1.6,0c42,0,186,26,292,64c-104-44-175.5-50.3-169-52c32.3-8.3,116.3-36,123-41c8-6,26,0,26,0s48-9,51-9s50,15,69,15s61-15,91-15s98,9,299,72c-69-27-125.5-40-121-40c14,0,120.8-19.1,167,0c46,19,159,20,150,25s-20.6,5.7-20,6c1.6,0.9,59-4,99-17c0,0,3-1,3-1l28.1-8.7c21-5.9,28.3-5.2,47.9-2.3c38,6,152,49,189,49c3.9,0-103.2,20.7-176.5,26.5l-1.5,0.1l3.7-0.2c208.3-11.2,209.4-46.4,286.4-46.4c64,0,142.4,33.1,215.9,50.9L2401.7,167.9z"/></svg>
+  <div class="wrap">
+    <div class="best__head" style="margin-bottom:0">
+      <div><p class="chap lab"><i>VIII.</i> Où nous trouver</p>
+      <h2 id="whereT">Pas de livraison chez vous, <em>mais des amis qui en font</em></h2></div>
+      <p class="lede">La logistique ne nous permet pas de livrer les particuliers. Une partie de la gamme est disponible chez ces revendeurs en ligne, et toute la gamme au Moulin.</p>
+    </div>
+    <div class="shops"><a href="http://www.lepanierducausse.fr/producteur/80-brasserie-de-la-jonte" target="_blank" rel="noopener"><img src="img/logo-panier.jpg" alt="Le Panier du Causse" width="320" height="180" loading="lazy" decoding="async"><h3>Le Panier du Causse</h3><p>Vente en ligne de produits locaux</p><span class="link">Commander <svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M200 64v104a8 8 0 0 1-16 0V83.31L69.66 197.66a8 8 0 0 1-11.32-11.32L172.69 72H88a8 8 0 0 1 0-16h104a8 8 0 0 1 8 8"/></svg></span></a><a href="http://www.bienmanger.com/1R2685_Brasseurs_Jonte_Produits.html" target="_blank" rel="noopener"><img src="img/logo-bienmanger.jpg" alt="Bien Manger" width="320" height="180" loading="lazy" decoding="async"><h3>Bien Manger</h3><p>Épicerie fine en ligne</p><span class="link">Commander <svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M200 64v104a8 8 0 0 1-16 0V83.31L69.66 197.66a8 8 0 0 1-11.32-11.32L172.69 72H88a8 8 0 0 1 0-16h104a8 8 0 0 1 8 8"/></svg></span></a><a href="https://www.maisonlauze.com/77_brasserie-de-la-jonte" target="_blank" rel="noopener"><img src="img/logo-lauze.jpg" alt="Maison Lauze" width="320" height="180" loading="lazy" decoding="async"><h3>Maison Lauze</h3><p>Bières, vins, champagne et spiritueux</p><span class="link">Commander <svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M200 64v104a8 8 0 0 1-16 0V83.31L69.66 197.66a8 8 0 0 1-11.32-11.32L172.69 72H88a8 8 0 0 1 0-16h104a8 8 0 0 1 8 8"/></svg></span></a><a href="https://www.drinks-explorer.com/marques/455-les-brasseurs-de-la-jonte" target="_blank" rel="noopener"><img src="img/logo-drinks.jpg" alt="Drinks Explorer" width="320" height="180" loading="lazy" decoding="async"><h3>Drinks Explorer</h3><p>Rhums, spiritueux, vins et bières du monde</p><span class="link">Commander <svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M200 64v104a8 8 0 0 1-16 0V83.31L69.66 197.66a8 8 0 0 1-11.32-11.32L172.69 72H88a8 8 0 0 1 0-16h104a8 8 0 0 1 8 8"/></svg></span></a><a href="https://produitsdescevennes.fr/categorie-produit/cave-a-bieres/les-brasseurs-de-la-jonte/" target="_blank" rel="noopener"><img src="img/logo-barthelemy.jpg" alt="Maison Barthélémy" width="320" height="180" loading="lazy" decoding="async"><h3>Maison Barthélémy</h3><p>Cave à vin, cave à bière, épicerie des Cévennes</p><span class="link">Commander <svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M200 64v104a8 8 0 0 1-16 0V83.31L69.66 197.66a8 8 0 0 1-11.32-11.32L172.69 72H88a8 8 0 0 1 0-16h104a8 8 0 0 1 8 8"/></svg></span></a></div>
+    <div class="partners">
+      <div><p class="lab">Imagination & illustration</p><h3>Les Ateliers Sauvages</h3>
+        <p>Sophie imagine, dessine et peaufine nos étiquettes depuis les débuts. Elle a donné à nos bières leur identité visuelle.</p>
+        <a class="link" href="https://ateliers-sauvages.fr/" target="_blank" rel="noopener">Son site <svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M200 64v104a8 8 0 0 1-16 0V83.31L69.66 197.66a8 8 0 0 1-11.32-11.32L172.69 72H88a8 8 0 0 1 0-16h104a8 8 0 0 1 8 8"/></svg></a></div>
+      <div><p class="lab">Réemploi</p><h3>Oc’Consigne</h3>
+        <p>Depuis 2021, un palox à la brasserie récupère nos bouteilles bio 75 cl vides, rincées de préférence, qui seront lavées et réutilisées.</p>
+        <a class="link" href="https://www.oc-consigne.fr/" target="_blank" rel="noopener">Oc’Consigne <svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M200 64v104a8 8 0 0 1-16 0V83.31L69.66 197.66a8 8 0 0 1-11.32-11.32L172.69 72H88a8 8 0 0 1 0-16h104a8 8 0 0 1 8 8"/></svg></a></div>
+      <div><p class="lab">Copains de collab’ · Union des Brasseurs des Cévennes</p><h3>L’amour du houblon</h3>
+        <ul class="collabs"><li><a href="https://www.facebook.com/brasserielabestia" target="_blank" rel="noopener">La Bestia</a></li><li><a href="https://www.facebook.com/profile.php?id=100057580024166" target="_blank" rel="noopener">La Tarnonaise</a></li><li><a href="http://www.bivouak.bio/" target="_blank" rel="noopener">Bivouak</a></li><li><a href="https://www.atelierdefermentation.com/" target="_blank" rel="noopener">L’Atelier de Fermentation</a></li><li><a href="https://www.brasseriedesulauze.com/" target="_blank" rel="noopener">Sulauze</a></li><li><a href="https://brasserienautile.com/" target="_blank" rel="noopener">Nautile</a></li><li><a href="https://brasseriejukebox.com/" target="_blank" rel="noopener">Jukebox</a></li><li><a href="https://www.facebook.com/brasseriekapsyl/" target="_blank" rel="noopener">Kapsyl</a></li><li><a href="https://www.eightyonebrewing.fr/" target="_blank" rel="noopener">Eighty One</a></li><li><a href="https://www.gekkobeers.com/?lang=fr" target="_blank" rel="noopener">Gekko</a></li><li><a href="https://somi.beer/" target="_blank" rel="noopener">SOMI</a></li><li><a href="https://www.aquaemaltae.com/" target="_blank" rel="noopener">Aquae Maltae</a></li><li><a href="https://www.facebook.com/brasserie.larzac/" target="_blank" rel="noopener">Brasserie du Larzac</a></li><li><a href="https://www.zoobrew.fr/" target="_blank" rel="noopener">Zoobrew</a></li><li><a href="https://lapiautre.fr/" target="_blank" rel="noopener">La Piautre</a></li></ul></div>
+    </div>
+  </div>
+</section><section class="sec" id="contact" aria-labelledby="ctT">
+  <div class="wrap contact">
+    <div>
+      <p class="chap lab"><i>IX.</i> Nous contacter</p>
+      <h2 id="ctT">Lou Castel, <em>Mas Prades</em></h2>
+      <div class="coords">
+        <div class="coord"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M128 64a40 40 0 1 0 40 40a40 40 0 0 0-40-40m0 64a24 24 0 1 1 24-24a24 24 0 0 1-24 24m0-112a88.1 88.1 0 0 0-88 88c0 31.4 14.51 64.68 42 96.25a254.2 254.2 0 0 0 41.45 38.3a8 8 0 0 0 9.18 0a254.2 254.2 0 0 0 41.37-38.3c27.45-31.57 42-64.85 42-96.25a88.1 88.1 0 0 0-88-88m0 206c-16.53-13-72-60.75-72-118a72 72 0 0 1 144 0c0 57.23-55.47 105-72 118"/></svg><div><small>Adresse</small><span>Lou Castel, Mas Prades · 48150 Gatuzières</span></div>
+          <button class="copy" type="button" data-copy="Lou Castel, Mas Prades, 48150 Gatuzières"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M216 32H88a8 8 0 0 0-8 8v40H40a8 8 0 0 0-8 8v128a8 8 0 0 0 8 8h128a8 8 0 0 0 8-8v-40h40a8 8 0 0 0 8-8V40a8 8 0 0 0-8-8m-56 176H48V96h112Zm48-48h-32V88a8 8 0 0 0-8-8H96V48h112Z"/></svg><span class="sr">Copier l’adresse</span></button></div>
+        <div class="coord"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="m222.37 158.46l-47.11-21.11l-.13-.06a16 16 0 0 0-15.17 1.4a8 8 0 0 0-.75.56L134.87 160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16 16 0 0 0 1.32-15.06v-.12L97.54 33.64a16 16 0 0 0-16.62-9.52A56.26 56.26 0 0 0 32 80c0 79.4 64.6 144 144 144a56.26 56.26 0 0 0 55.88-48.92a16 16 0 0 0-9.51-16.62M176 208A128.14 128.14 0 0 1 48 80a40.2 40.2 0 0 1 34.87-40a.6.6 0 0 0 0 .12l21 47l-20.67 24.74a6 6 0 0 0-.57.77a16 16 0 0 0-1 15.7c9.06 18.53 27.73 37.06 46.46 46.11a16 16 0 0 0 15.75-1.14a8 8 0 0 0 .74-.56L168.89 152l47 21.05h.11A40.21 40.21 0 0 1 176 208"/></svg><div><small>Brasserie · lun–ven 10h–17h</small><a href="tel:+33448500080" class="num">04 48 50 00 80</a></div>
+          <button class="copy" type="button" data-copy="04 48 50 00 80"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M216 32H88a8 8 0 0 0-8 8v40H40a8 8 0 0 0-8 8v128a8 8 0 0 0 8 8h128a8 8 0 0 0 8-8v-40h40a8 8 0 0 0 8-8V40a8 8 0 0 0-8-8m-56 176H48V96h112Zm48-48h-32V88a8 8 0 0 0-8-8H96V48h112Z"/></svg><span class="sr">Copier le numéro</span></button></div>
+        <div class="coord"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M224 48H32a8 8 0 0 0-8 8v136a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V56a8 8 0 0 0-8-8m-20.57 16L128 133.15L52.57 64ZM216 192H40V74.19l82.59 75.71a8 8 0 0 0 10.82 0L216 74.19z"/></svg><div><small>E-mail</small><a href="mailto:lesbrasseursdelajonte@gmail.com">lesbrasseursdelajonte@gmail.com</a></div>
+          <button class="copy" type="button" data-copy="lesbrasseursdelajonte@gmail.com"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M216 32H88a8 8 0 0 0-8 8v40H40a8 8 0 0 0-8 8v128a8 8 0 0 0 8 8h128a8 8 0 0 0 8-8v-40h40a8 8 0 0 0 8-8V40a8 8 0 0 0-8-8m-56 176H48V96h112Zm48-48h-32V88a8 8 0 0 0-8-8H96V48h112Z"/></svg><span class="sr">Copier l’e-mail</span></button></div>
+      </div>
+      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Les+Brasseurs+de+la+Jonte+Mas+Prades+48150+Gatuzi%C3%A8res" target="_blank" rel="noopener">
+        <img src="img/vallee.jpg" alt="La vallée de la Jonte" width="1500" height="844" loading="lazy" decoding="async">
+        <span><b>Itinéraire vers Gatuzières</b><span style="font-size:15px;color:var(--ink-2)">Entre Meyrueis et les gorges de la Jonte · ouvrir dans Google Maps</span></span></a>
+    </div>
+    <form class="form" id="form" novalidate>
+      <fieldset class="seg" style="padding:0;margin:0 0 22px"><legend class="sr">Vous êtes</legend>
+        <label><input type="radio" name="who" value="Particulier" checked>Particulier</label>
+        <label><input type="radio" name="who" value="Professionnel">Professionnel</label>
+      </fieldset>
+      <div class="fields">
+        <div class="field"><label for="fN">Nom et prénom</label><input id="fN" name="nom" autocomplete="name" required></div>
+        <div class="field" id="fCoW" hidden><label for="fCo">Entreprise / association</label><input id="fCo" name="entreprise" autocomplete="organization"></div>
+        <div class="field"><label for="fE">E-mail</label><input id="fE" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="fT">Téléphone</label><input id="fT" name="tel" type="tel" autocomplete="tel"></div>
+        <div class="field"><label for="fV">Code postal et ville</label><input id="fV" name="ville" autocomplete="address-level2"></div>
+        <div class="field field--full"><label for="fS">Objet de la demande</label>
+          <select id="fS" name="objet">
+            <option value="visite">Demande d’infos sur les visites</option>
+            <option value="horaires">Demande d’infos sur les horaires d’ouverture</option>
+            <option value="tireuse-part">Location de tireuses</option>
+            <option value="tireuse-pro">Location de tireuses (professionnel)</option>
+            <option value="brochure">Demande de brochures et tarifs (professionnel)</option>
+            <option value="autre">Autre demande</option>
+          </select></div>
+        <div class="field field--full"><label for="fM">Message</label><textarea id="fM" name="message" required></textarea></div>
+      </div>
+      <div class="form__foot">
+        <button class="btn btn--hop" type="submit">Préparer le message</button>
+        <p class="form__msg" id="fMsg" role="status"></p>
+      </div>
+    </form>
+  </div>
+</section></main><footer class="foot">
+  <div class="wrap">
+    <div><img src="img/logo-white.webp" alt="Les Brasseurs de la Jonte" width="686" height="650" loading="lazy" decoding="async">
+      <p>Brasserie artisanale au Mas Prades, Gatuzières (Lozère), depuis 2013.</p>
+      <p class="warn">L’abus d’alcool est dangereux pour la santé, à consommer avec modération.</p></div>
+    <div><h4>Visiter</h4><ul><li><a href="#moulin">Le Moulin</a></li><li><a href="#atelier">L’Atelier</a></li><li><a href="#histoire">Notre histoire</a></li><li><a href="#equipe">L’équipe</a></li></ul></div>
+    <div><h4>Boire</h4><ul><li><a href="#gamme">Nos bières</a></li><li><a href="#gamme" data-tab="limonades">Nos limonades</a></li><li><a href="#tireuses">Tireuses</a></li><li><a href="#trouver">Vente en ligne</a></li></ul></div>
+    <div><h4>Suivre</h4><ul>
+      <li><a href="https://www.instagram.com/les_brasseurs_de_la_jonte/" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M128 80a48 48 0 1 0 48 48a48.05 48.05 0 0 0-48-48m0 80a32 32 0 1 1 32-32a32 32 0 0 1-32 32m48-136H80a56.06 56.06 0 0 0-56 56v96a56.06 56.06 0 0 0 56 56h96a56.06 56.06 0 0 0 56-56V80a56.06 56.06 0 0 0-56-56m40 152a40 40 0 0 1-40 40H80a40 40 0 0 1-40-40V80a40 40 0 0 1 40-40h96a40 40 0 0 1 40 40ZM192 76a12 12 0 1 1-12-12a12 12 0 0 1 12 12"/></svg> Instagram</a></li>
+      <li><a href="https://www.facebook.com/bieredelozere" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="currentColor" d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m8 191.63V152h24a8 8 0 0 0 0-16h-24v-24a16 16 0 0 1 16-16h16a8 8 0 0 0 0-16h-16a32 32 0 0 0-32 32v24H96a8 8 0 0 0 0 16h24v63.63a88 88 0 1 1 16 0"/></svg> Facebook</a></li>
+      <li><a href="https://untappd.com/LesBrasseursDeLaJonte" target="_blank" rel="noopener">Untappd</a></li>
+      <li><a href="https://www.tripadvisor.fr/Attraction_Review-g12216600-d12657472-Reviews-Les_Brasseurs_de_la_Jonte-Gatuzieres_Lozere_Occitanie.html" target="_blank" rel="noopener">Tripadvisor · 4,8/5</a></li></ul></div>
+    <div class="legal"><span>© SARL Les Brasseurs de la Jonte</span><a href="https://lesbrasseursdelajonte.fr/mentions-legales/" target="_blank" rel="noopener">Mentions légales</a><a href="https://lesbrasseursdelajonte.fr/politique-de-confidentialite/" target="_blank" rel="noopener">Politique de confidentialité</a><span>Pictogrammes : game-icons.net (CC BY 3.0), Phosphor, Tabler (MIT)</span></div>
+  </div>
+</footer>
+<p class="mock" aria-hidden="false">Maquette non officielle · proposition de refonte par Xipirons</p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(() => {
+  "use strict";
+  document.documentElement.lang = "fr";
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+                  set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+
+  /* ---------- Heure de Paris & ouverture du Moulin ---------- */
+  const paris = (() => {
+    try {
+      const p = Object.fromEntries(new Intl.DateTimeFormat("fr-FR", { timeZone: "Europe/Paris", month: "2-digit", day: "2-digit",
+        hour: "2-digit", minute: "2-digit", weekday: "short", hour12: false }).formatToParts(new Date()).map(x => [x.type, x.value]));
+      return { m: +p.month, d: +p.day, h: +p.hour + (+p.minute) / 60, wd: p.weekday.replace(".", "") };
+    } catch (e) { const n = new Date(); return { m: n.getMonth() + 1, d: n.getDate(), h: n.getHours() + n.getMinutes() / 60, wd: "" }; }
+  })();
+  const md = paris.m * 100 + paris.d;
+  const weekend = /^(sam|dim)/i.test(paris.wd);
+  let slots, label, when;
+  if (md >= 701 && md <= 831) { slots = [[10, 21]]; label = "7/7 de 10h à 21h"; when = "Le plein été, jusqu’au 31 août · point de vente, tap room, petite restauration."; }
+  else if (md >= 501 && md <= 930) { slots = [[10, 19]]; label = "7/7 de 10h à 19h"; when = "Du 1ᵉʳ mai au 30 septembre · point de vente, tap room, petite restauration."; }
+  else { slots = weekend ? [] : [[10, 12], [14, 17]]; label = "lun–ven, 10h–12h et 14h–17h"; when = "Du 1ᵉʳ octobre au 30 avril · fermé le week-end et pendant les vacances de Noël."; }
+  const open = slots.some(([a, b]) => paris.h >= a && paris.h < b);
+  const st = $("#stNow");
+  if (st) {
+    st.innerHTML = `<span class="status__dot${open ? "" : " is-off"}" aria-hidden="true"></span>${open ? "Ouvert maintenant" : "Fermé pour l’instant"}`;
+    $("#stWhen").textContent = `Horaires : ${label}. ${when}`;
+  }
+  $$("#hours > div").forEach(r => {
+    const [fm, fd] = r.dataset.from.split("-").map(Number), [tm, td] = r.dataset.to.split("-").map(Number);
+    const a = fm * 100 + fd, b = tm * 100 + td;
+    const inside = a <= b ? md >= a && md <= b : md >= a || md <= b;
+    if (inside) { r.classList.add("is-now"); r.querySelector("dt").insertAdjacentHTML("beforeend", "<small><b>En ce moment</b></small>"); }
+  });
+
+  /* ---------- Menu mobile ---------- */
+  const menu = $("#menu"), burger = $("#burger");
+  const closeMenu = () => { menu.hidden = true; burger.setAttribute("aria-expanded", "false"); document.body.style.overflow = ""; burger.focus(); };
+  burger.addEventListener("click", () => { menu.hidden = false; burger.setAttribute("aria-expanded", "true"); document.body.style.overflow = "hidden"; $("#menuClose").focus(); });
+  $("#menuClose").addEventListener("click", closeMenu);
+  $$("#menu a[href^='#']").forEach(a => a.addEventListener("click", () => { menu.hidden = true; burger.setAttribute("aria-expanded", "false"); document.body.style.overflow = ""; }));
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !menu.hidden) closeMenu(); });
+
+  /* ---------- Copier ---------- */
+  $$("[data-copy]").forEach(b => b.addEventListener("click", async () => {
+    let ok = false;
+    try { await navigator.clipboard.writeText(b.dataset.copy); ok = true; } catch (e) {
+      try { const r = document.createRange(); r.selectNodeContents(b.previousElementSibling); const s = getSelection(); s.removeAllRanges(); s.addRange(r); } catch (e2) {}
+    }
+    const sr = b.querySelector(".sr"), was = sr.textContent;
+    if (ok) { b.dataset.done = ""; sr.textContent = "Copié"; }
+    setTimeout(() => { delete b.dataset.done; sr.textContent = was; }, 1600);
+  }));
+
+  /* ---------- Onglets de la gamme ---------- */
+  const tabs = $$(".tab");
+  const selectTab = (t, focus) => {
+    tabs.forEach(x => { const on = x === t; x.setAttribute("aria-selected", on); x.tabIndex = on ? 0 : -1; $("#" + x.getAttribute("aria-controls")).hidden = !on; });
+    if (focus) t.focus();
+    t.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
+    if (window.ScrollTrigger) ScrollTrigger.refresh();
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener("click", () => selectTab(t));
+    t.addEventListener("keydown", e => {
+      const k = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+      if (k) { e.preventDefault(); selectTab(tabs[(i + k + tabs.length) % tabs.length], true); }
+      if (e.key === "Home") { e.preventDefault(); selectTab(tabs[0], true); }
+      if (e.key === "End") { e.preventDefault(); selectTab(tabs[tabs.length - 1], true); }
+    });
+  });
+  $$("[data-tab]").forEach(a => a.addEventListener("click", () => { const t = $("#t-" + a.dataset.tab); if (t) selectTab(t); }));
+
+  /* ---------- Fiche bière ---------- */
+  const BEERS = JSON.parse($("#beerData").textContent);
+  const sheet = $("#sheet");
+  let opener = null;
+  const openSheet = (slug, from) => {
+    const b = BEERS[slug]; if (!b) return;
+    opener = from;
+    $("#sImg").src = `img/b-${slug}.webp`; $("#sImg").alt = `Bouteille de ${b.name}`;
+    $("#sRange").textContent = b.range; $("#sName").textContent = b.name; $("#sStyle").textContent = b.style;
+    $("#sAbv").textContent = b.abv ? b.abv + " vol." : "—";
+    $("#sHops").textContent = b.hops || "—"; $("#sHops").hidden = $("#sHopsT").hidden = !b.hops;
+    $("#sTaste").textContent = b.taste; $("#sOrigin").textContent = b.origin; $("#sOrigin").hidden = !b.origin;
+    if (sheet.showModal) { try { sheet.showModal(); } catch (e) { sheet.setAttribute("open", ""); } } else sheet.setAttribute("open", "");
+    $("#sClose").focus();
+  };
+  const closeSheet = () => { try { sheet.close(); } catch (e) { sheet.removeAttribute("open"); } if (opener) opener.focus(); };
+  document.addEventListener("click", e => { const o = e.target.closest("[data-open]"); if (o) openSheet(o.dataset.open, o); });
+  $("#sClose").addEventListener("click", closeSheet);
+  sheet.addEventListener("click", e => { if (e.target === sheet) closeSheet(); });
+
+  /* ---------- Bestiaire ---------- */
+  const BEST = JSON.parse($("#bestData").textContent);
+  const pImg = $("#pImg");
+  const setBeast = (slug, animate) => {
+    const b = BEST[slug]; if (!b) return;
+    $$("[data-beer]").forEach(x => x.setAttribute("aria-pressed", x.dataset.beer === slug));
+    const apply = () => {
+      pImg.src = `img/b-${slug}.webp`; pImg.alt = `Bouteille de ${b.name}`;
+      $("#pWhere").textContent = `${b.where} · ${b.sub}`; $("#pName").textContent = b.name;
+      $("#pMeta").textContent = `${b.style} · ${b.abv} vol.`; $("#pStory").textContent = b.origin; $("#pOpen").dataset.open = slug;
+    };
+    if (animate && window.gsap && !reduce) {
+      gsap.killTweensOf("#panel > *");
+      gsap.to("#panel > *", { opacity: 0, y: 8, duration: .16, overwrite: true, onComplete: () => { apply(); gsap.to("#panel > *", { opacity: 1, y: 0, duration: .35, ease: "power2.out", overwrite: true }); } });
+    } else apply();
+  };
+  $$("[data-beer]").forEach(b => b.addEventListener("click", () => setBeast(b.dataset.beer, true)));
+
+  /* ---------- Chronologie ---------- */
+  const rail = $("#rail");
+  const step = () => (rail.querySelector("li")?.getBoundingClientRect().width || 300) + 28;
+  $("#cPrev").addEventListener("click", () => rail.scrollBy({ left: -step(), behavior: "smooth" }));
+  $("#cNext").addEventListener("click", () => rail.scrollBy({ left: step(), behavior: "smooth" }));
+
+  /* ---------- Liens vers contact avec objet pré-rempli ---------- */
+  $$("[data-subject]").forEach(a => a.addEventListener("click", () => {
+    const s = a.dataset.subject; $("#fS").value = s;
+    if (/pro|brochure/.test(s)) { $$("input[name=who]")[1].checked = true; syncWho(); }
+  }));
+
+  /* ---------- Formulaire → mailto préparé ---------- */
+  const form = $("#form");
+  const syncWho = () => { $("#fCoW").hidden = form.who.value !== "Professionnel"; };
+  $$("input[name=who]").forEach(r => r.addEventListener("change", syncWho));
+  const saved = store.get("bdj-form");
+  if (saved) { try { const o = JSON.parse(saved); ["nom", "email", "tel", "ville"].forEach(k => { if (o[k]) form[k].value = o[k]; }); } catch (e) {} }
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const msg = $("#fMsg");
+    const bad = [form.nom, form.email, form.message].find(f => !f.value.trim() || (f.type === "email" && !/^\S+@\S+\.\S+$/.test(f.value)));
+    if (bad) { msg.textContent = "Merci de compléter " + bad.labels[0].textContent.toLowerCase() + "."; bad.focus(); return; }
+    const who = form.who.value, obj = form.objet.options[form.objet.selectedIndex].text;
+    const lines = [form.message.value.trim(), "", "—", `${form.nom.value.trim()} (${who.toLowerCase()})`];
+    if (who === "Professionnel" && form.entreprise.value.trim()) lines.push(form.entreprise.value.trim());
+    if (form.tel.value.trim()) lines.push("Tél. : " + form.tel.value.trim());
+    if (form.ville.value.trim()) lines.push(form.ville.value.trim());
+    lines.push(form.email.value.trim());
+    const href = `mailto:lesbrasseursdelajonte@gmail.com?subject=${encodeURIComponent(`[${who}] ${obj}`)}&body=${encodeURIComponent(lines.join("\n"))}`;
+    store.set("bdj-form", JSON.stringify({ nom: form.nom.value, email: form.email.value, tel: form.tel.value, ville: form.ville.value }));
+    const a = document.createElement("a"); a.href = href; a.rel = "noopener"; document.body.appendChild(a); a.click(); a.remove();
+    msg.innerHTML = 'Message préparé dans votre messagerie. Rien ne s’ouvre ? Écrivez à <span style="user-select:all">lesbrasseursdelajonte@gmail.com</span>.';
+  });
+
+  /* ---------- Section active dans la nav ---------- */
+  const navLinks = $$(".nav__links a");
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(es => es.forEach(en => {
+      if (en.isIntersecting) navLinks.forEach(a => a.setAttribute("aria-current", a.getAttribute("href") === "#" + en.target.id));
+    }), { rootMargin: "-45% 0px -50% 0px" });
+    navLinks.forEach(a => { const s = $(a.getAttribute("href")); if (s) io.observe(s); });
+  }
+
+  /* ---------- Mouvement : Lenis + GSAP (discret) ---------- */
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!window.gsap || !window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+  let lenis = null;
+  if (!reduce && window.Lenis) {
+    lenis = new Lenis({ lerp: .12, wheelMultiplier: 1 });
+    lenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
+    document.addEventListener("click", e => {
+      const a = e.target.closest("a[href^='#']"); if (!a) return;
+      const id = a.getAttribute("href"); if (id.length < 2) { e.preventDefault(); lenis.scrollTo(0); return; }
+      const t = $(id); if (!t) return;
+      e.preventDefault(); lenis.scrollTo(t, { offset: -parseInt(getComputedStyle(document.documentElement).getPropertyValue("--nav")) });
+      history.replaceState(null, "", id);
+    });
+    const obs = new MutationObserver(() => (menu.hidden && !sheet.open) ? lenis.start() : lenis.stop());
+    obs.observe(menu, { attributes: true, attributeFilter: ["hidden"] }); obs.observe(sheet, { attributes: true, attributeFilter: ["open"] });
+  }
+  const mm = gsap.matchMedia();
+  mm.add("(prefers-reduced-motion: no-preference)", () => {
+    // Héros : entrée douce + parallaxe ≤ 4 %
+    gsap.from(".hero .wrap > *", { y: 18, opacity: 0, duration: .9, ease: "power2.out", stagger: .12, delay: .1 });
+    gsap.to(".hero__img", { yPercent: 4, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+    // Révélations : fondu + 16 px, une fois
+    const R = ".chap, .sec h2, .lede, .story__txt p, .fig, .milestones li, .panel, .tabs, .rail li, .team li, .hours, .kegs, .docs li, .shops a, .partners > div, .coords, .maplink, .form, .facts li, .badge-tour";
+    gsap.utils.toArray(R).forEach(el => {
+      if (el.getBoundingClientRect().top < innerHeight) return; // déjà visible : on ne touche pas
+      gsap.from(el, { y: 16, opacity: 0, duration: .8, ease: "power2.out", immediateRender: false,
+        scrollTrigger: { trigger: el, start: "top 92%", once: true } });
+    });
+    // Pièce maîtresse : la vallée se dessine, puis les pictos apparaissent
+    const paths = $$("#map .draw");
+    paths.forEach(p => { const L = Math.ceil(p.getTotalLength ? p.getTotalLength() : 2000); p.style.strokeDasharray = p.getAttribute("stroke-dasharray") || ""; p.dataset.len = L; });
+    const tl = gsap.timeline({ scrollTrigger: { trigger: "#map", start: "top 78%", once: true } });
+    paths.filter(p => !p.getAttribute("stroke-dasharray")).forEach((p, i) => {
+      tl.fromTo(p, { strokeDasharray: p.dataset.len, strokeDashoffset: p.dataset.len }, { strokeDashoffset: 0, duration: 1.4, ease: "power1.inOut",
+        onComplete: () => { p.style.strokeDasharray = ""; p.style.strokeDashoffset = ""; } }, i * .12);
+    });
+    tl.from("#map text", { opacity: 0, duration: .6, stagger: .05 }, .6);
+    tl.from(".spot", { opacity: 0, duration: .45, ease: "power2.out", stagger: .07, clearProps: "opacity" }, .9);
+    return () => {};
+  });
+  // Positions à jour après polices / images lazy, et filet de sécurité : rien ne reste masqué
+  addEventListener("load", () => ScrollTrigger.refresh());
+  try { document.fonts.ready.then(() => ScrollTrigger.refresh()); } catch (e) {}
+  let rT; const ro = new ResizeObserver(() => { clearTimeout(rT); rT = setTimeout(() => ScrollTrigger.refresh(), 200); });
+  ro.observe(document.querySelector("main"));
+  ScrollTrigger.addEventListener("scrollEnd", () => {
+    ScrollTrigger.getAll().forEach(t => {
+      if (t.animation && t.progress === 0 && t.trigger && t.trigger.getBoundingClientRect().top < innerHeight) t.animation.progress(1);
+    });
+  });
+})();
+
+</script>
+
+</body>
+</html>
